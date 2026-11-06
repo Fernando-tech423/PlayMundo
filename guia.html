@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Guia prático do PlayMundo: aprenda a identificar, configurar e testar recursos de acessibilidade nos jogos, com orientações e checklist interativo.">
+<meta name="theme-color" content="#063B33">
+<title>Guia de Acessibilidade | PlayMundo</title>
+<style>
+:root{--verde-escuro:#063B33;--verde-texto:#17483F;--verde-claro:#EEF8ED;--verde-menta:#B8EFD0;--azul-claro:#B8E4F2;--verde-lima:#D9F65C;--off-white:#F4F6EE;--branco:#fff;--texto-suave:#536B65;--borda:#E1E9E3;--foco:#B08000;--largura-maxima:1280px;--escala-fonte:100%}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:var(--escala-fonte);scroll-behavior:smooth;scroll-padding-top:115px}
+body{min-width:320px;font-family:Arial,Helvetica,sans-serif;line-height:1.6;background:#fff;color:var(--verde-texto)}
+a{color:inherit}button,select{font:inherit}button{cursor:pointer}[hidden]{display:none!important}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--foco);outline-offset:3px}
+.container{width:min(100% - 48px,var(--largura-maxima));margin-inline:auto}
+.pular-conteudo{position:absolute;top:-120px;left:16px;z-index:3000;padding:12px 16px;border-radius:9px;background:#fff;color:#063B33;font-weight:700}.pular-conteudo:focus{top:12px}
+.topo{position:sticky;top:0;z-index:1000;background:var(--verde-claro);border-bottom:1px solid var(--borda)}
+.topo-conteudo{width:min(100% - 48px,1450px);min-height:68px;margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.logo{display:inline-flex;align-items:center;gap:10px;flex-shrink:0;color:var(--verde-texto);font-size:1.15rem;font-weight:800;text-decoration:none;letter-spacing:-.5px}
+.logo-icone{width:16px;height:16px;display:inline-block;border-radius:4px;background:linear-gradient(135deg,#71DFB2,#29AD83);box-shadow:0 2px 7px #17483f2b}
+.menu{display:flex;align-items:center;justify-content:flex-end;gap:17px;overflow-x:auto;scrollbar-width:thin;padding:8px 2px}
+.menu a{flex:0 0 auto;color:var(--verde-texto);font-size:.78rem;font-weight:700;text-decoration:none;transition:color .18s ease}
+.menu a:hover,.menu a[aria-current="page"]{color:#08765D;text-decoration:underline;text-underline-offset:5px}
+.etiqueta{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:#DDF4E6;color:var(--verde-escuro);font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.botao{min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 20px;border:2px solid transparent;border-radius:999px;background:#fff;color:var(--verde-escuro);font-size:.9rem;font-weight:800;text-decoration:none;transition:transform .18s ease,background .18s ease}
+.botao:hover{transform:translateY(-2px);background:var(--verde-menta)}
+.botao-principal{background:var(--verde-escuro);color:#fff}.botao-principal:hover{background:#126B59;color:#fff}
+.hero{position:relative;overflow:hidden;padding:clamp(56px,7vw,100px) 0;background:var(--verde-escuro);color:#fff}
+.hero::before,.hero::after{position:absolute;content:"";pointer-events:none;border-radius:50%;border:1px solid #b8efd035}.hero::before{width:560px;height:560px;top:-410px;right:-70px}.hero::after{width:290px;height:290px;bottom:-180px;left:48%}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);align-items:center;gap:clamp(30px,5vw,80px)}
+.hero .etiqueta{color:#e8f8ed;background:#226b56}.hero h1{max-width:740px;margin:20px 0;font-size:clamp(2.5rem,5.2vw,4.5rem);line-height:1.04;letter-spacing:-2px;color:#fff}.hero p{max-width:610px;color:#DBF1E8;font-size:1.05rem}
+.hero-acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.hero .botao-principal{color:var(--verde-escuro);background:var(--verde-lima)}.hero .botao-principal:hover{background:#e9ff96}.hero .botao-secundario{border-color:#b8efd06b;color:#fff;background:transparent}.hero .botao-secundario:hover{background:#165748}
+.hero-ilustracao{min-height:322px;padding:25px;border:1px solid #ffffff32;border-radius:26px;background:linear-gradient(135deg,#165f4f,#0b4c40 60%,#27765f);box-shadow:0 20px 50px #031d1740}
+.ilustracao-topo{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#daffe6;font-size:.82rem;font-weight:800}.ilustracao-pontos{display:flex;gap:5px}.ilustracao-pontos span{width:9px;height:9px;border-radius:50%;background:#8cc7b5}.ilustracao-pontos span:nth-child(2){background:#b8e4f2}.ilustracao-pontos span:nth-child(3){background:#d9f65c}
+.ilustracao-cartao{margin-top:18px;padding:19px;border-radius:18px;background:#f4fbf4;color:var(--verde-escuro)}.ilustracao-cartao h2{font-size:1rem}.ilustracao-linha{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:13px;font-weight:700;font-size:.8rem}.ilustracao-medidor{width:100%;height:10px;margin-top:7px;border-radius:99px;background:#dae9dd;overflow:hidden}.ilustracao-medidor span{display:block;height:100%;background:#168365;border-radius:99px}.ilustracao-blocos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.ilustracao-blocos div{min-height:70px;padding:12px 5px;border:1px solid #c8e3d0;border-radius:13px;background:#e5f6ea;text-align:center;font-size:.75rem;font-weight:800}.ilustracao-blocos strong{display:block;font-size:1.6rem;line-height:1.1;margin-bottom:5px}.ilustracao-rodape{margin-top:12px;padding:10px 14px;border-radius:12px;border:1px solid #d9f65c5c;color:#e8ffd9;font-size:.8rem;font-weight:700}
+.secao{padding:78px 0}.secao-clara{background:var(--off-white)}
+.cabecalho-secao{margin-bottom:27px}.cabecalho-secao h2{margin-top:11px;color:var(--verde-escuro);font-size:clamp(1.8rem,3vw,2.45rem);line-height:1.16;letter-spacing:-.7px}.cabecalho-secao p{max-width:760px;margin-top:12px;color:var(--texto-suave)}
+.passo-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.passo{padding:22px 19px;border:1px solid var(--borda);border-radius:20px;background:#fff;box-shadow:0 5px 18px #063b330a}.passo-numero{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--verde-menta);color:var(--verde-escuro);font-size:1.1rem;font-weight:900}.passo:nth-child(2) .passo-numero{background:var(--azul-claro)}.passo:nth-child(3) .passo-numero{background:var(--verde-lima)}.passo:nth-child(4) .passo-numero{background:#e9ddfa}.passo:nth-child(5) .passo-numero{background:#ffe3c9}.passo h3{margin:15px 0 7px;color:var(--verde-escuro);font-size:1rem;line-height:1.28}.passo p{color:var(--texto-suave);font-size:.86rem}
+.dica-larga{margin-top:23px;padding:18px 22px;border-left:5px solid #2c8d6c;border-radius:11px;background:#eaf6ef;color:#234a3c;font-size:.92rem}
+.escolha-layout{display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);align-items:start;gap:24px}.escolha-lateral,.resultado{border:1px solid var(--borda);border-radius:24px;padding:27px;background:#fff;box-shadow:0 8px 25px #063b330d}.escolha-lateral h3{font-size:1.15rem;color:var(--verde-escuro)}.escolha-lateral p{margin-top:8px;color:var(--texto-suave);font-size:.9rem}.escolha-lateral label{display:block;margin:22px 0 8px;font-size:.84rem;font-weight:800}.escolha-lateral select{width:100%;min-height:50px;padding:10px 14px;border:1.5px solid #a7c7b7;border-radius:12px;color:var(--verde-escuro);background:#fff}.escolha-lateral .aviso-pequeno{margin-top:17px;color:#47675a;font-size:.78rem}
+.resultado{min-height:340px;background:#f7fcf8}.resultado-topo{display:flex;align-items:center;gap:13px;margin-bottom:15px}.resultado-icone{display:grid;place-items:center;flex-shrink:0;width:56px;height:56px;border-radius:17px;background:#c9efdf;font-size:1.8rem}.resultado h3{color:var(--verde-escuro);font-size:1.3rem;line-height:1.2}.resultado-subtitulo{font-size:.86rem;color:var(--texto-suave)}.resultado-lista{list-style:none;display:grid;gap:12px;margin:17px 0 20px}.resultado-lista li{position:relative;padding-left:27px;font-size:.92rem;color:#325c4b}.resultado-lista li::before{position:absolute;left:0;top:1px;content:"✓";font-weight:900;color:#087454}.resultado-link{font-size:.88rem;font-weight:800;color:#066346;text-underline-offset:3px}
+.check-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);align-items:start;gap:25px}.checklist-caixa{padding:26px;border:1px solid var(--borda);border-radius:24px;background:#fff}.checklist-topo{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.checklist-topo h3{font-size:1.25rem;color:var(--verde-escuro)}.contador{padding:6px 12px;border-radius:100px;background:#e8f6eb;color:var(--verde-escuro);font-size:.85rem;font-weight:800}.barra-progresso{height:12px;margin:18px 0 22px;border-radius:100px;background:#e7efe7;overflow:hidden}.barra-progresso span{display:block;width:0;height:100%;border-radius:inherit;background:#198362;transition:width .25s ease}
+.lista-checagem{list-style:none;display:grid;gap:9px}.lista-checagem label{display:flex;align-items:flex-start;gap:13px;padding:15px 16px;border:1px solid #e1eae3;border-radius:13px;background:#fbfefb;cursor:pointer}.lista-checagem label:hover{border-color:#92cbb4;background:#f3fcf6}.lista-checagem input{flex:0 0 auto;width:20px;height:20px;accent-color:#08765d;margin-top:3px}.lista-checagem strong{display:block;color:var(--verde-escuro);font-size:.9rem}.lista-checagem small{display:block;margin-top:3px;color:var(--texto-suave);font-size:.8rem;line-height:1.45}.lista-checagem input:checked + span strong{text-decoration:line-through;text-decoration-thickness:1px;color:#527463}.check-acoes{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:18px}.botao-limpar{min-height:42px;padding:8px 16px;border:1px solid #9fc8b4;border-radius:999px;background:#f4faf5;color:var(--verde-escuro);font-size:.85rem;font-weight:800}.botao-limpar:hover{background:#d9f0e2}.status-salvamento{color:#537166;font-size:.8rem}
+.check-lateral{position:relative;overflow:hidden;padding:27px;border-radius:24px;background:var(--verde-escuro);color:#fff}.check-lateral::after{position:absolute;content:"";right:-75px;bottom:-95px;width:250px;height:250px;border:1px solid #ffffff45;border-radius:50%}.check-lateral .etiqueta{color:#063b33;background:var(--verde-lima)}.check-lateral h3{position:relative;margin-top:20px;font-size:1.65rem;line-height:1.18}.check-lateral p{position:relative;margin-top:15px;color:#d8f1e3;font-size:.92rem}.check-lateral .botao{position:relative;margin-top:22px;background:var(--verde-lima);color:#063b33}.check-lateral .botao:hover{background:#e8ffa1}
+.plataforma-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:22px;align-items:start}.ps5-caixa,.plataforma-nota{border:1px solid var(--borda);border-radius:23px;padding:27px;background:#fff}.ps5-caixa h3,.plataforma-nota h3{color:var(--verde-escuro);font-size:1.25rem}.ps5-etapas{list-style:none;margin-top:21px;display:grid;gap:16px}.ps5-etapas li{display:flex;gap:13px}.ps5-etapas .numero{width:34px;height:34px;flex-shrink:0;display:grid;place-items:center;border-radius:10px;background:var(--verde-menta);color:#064b38;font-weight:900}.ps5-etapas strong{display:block;color:var(--verde-escuro)}.ps5-etapas p{color:var(--texto-suave);font-size:.89rem}.ps5-caixa a{display:inline-block;margin-top:21px;color:#075c4b;font-weight:800;text-underline-offset:3px}.plataforma-nota{background:#e9f5f7;border-color:#d0e7ea}.plataforma-nota p{margin-top:14px;color:#365a61;font-size:.92rem}.plataforma-nota ul{margin:15px 0 0 20px;color:#365a61;font-size:.89rem}.plataforma-nota li+li{margin-top:8px}.plataforma-nota a{display:inline-block;margin-top:18px;font-weight:800;color:#075c4b;text-underline-offset:3px}
+.perguntas{display:grid;gap:12px;max-width:980px}.perguntas details{border:1px solid var(--borda);border-radius:15px;background:#fff;overflow:hidden}.perguntas summary{padding:19px 22px;color:var(--verde-escuro);font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px}.perguntas summary::-webkit-details-marker{display:none}.perguntas summary::after{content:"+";font-size:1.4rem;font-weight:700;color:#146f53}.perguntas details[open] summary::after{content:"−"}.perguntas details[open] summary{border-bottom:1px solid var(--borda);background:#f6fcf7}.perguntas details p{padding:16px 22px 20px;color:#4d665b;font-size:.92rem}
+.fontes-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.fonte-card{display:flex;flex-direction:column;gap:11px;padding:24px;border:1px solid var(--borda);border-radius:20px;background:#fff}.fonte-card h3{color:var(--verde-escuro);font-size:1.05rem}.fonte-card p{color:var(--texto-suave);font-size:.85rem;flex:1}.fonte-card a{color:#086549;font-size:.87rem;font-weight:800;text-underline-offset:3px}.fonte-card .fonte-icone{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--verde-menta);font-size:1.3rem}.fonte-card:nth-child(2) .fonte-icone{background:var(--azul-claro)}.fonte-card:nth-child(3) .fonte-icone{background:var(--verde-lima)}
+.proxima{padding:72px 0;background:var(--verde-claro)}.proxima-caixa{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:36px 40px;border-radius:26px;background:#d1f0df}.proxima-caixa h2{color:var(--verde-escuro);font-size:clamp(1.65rem,3vw,2.2rem);line-height:1.2}.proxima-caixa p{margin-top:9px;color:#466a58}
+.rodape{padding:26px 0;background:var(--verde-escuro);color:#e4f6e9}.rodape-conteudo{display:flex;justify-content:space-between;align-items:center;gap:20px}.rodape .logo{color:#fff}.rodape p{font-size:.82rem}.rodape-links{display:flex;flex-wrap:wrap;gap:17px}.rodape-links a{font-size:.82rem;font-weight:700;text-decoration:none}.rodape-links a:hover{text-decoration:underline}
+.acessibilidade-ferramenta{position:fixed;right:20px;bottom:20px;z-index:1100}.botao-acessibilidade{min-height:48px;padding:11px 17px;border:2px solid #fff;border-radius:999px;background:var(--verde-escuro);color:#fff;box-shadow:0 5px 18px #0000002b;font-size:.85rem;font-weight:800}.painel-acessibilidade{width:min(310px,calc(100vw - 32px));margin-bottom:10px;padding:20px;border:1px solid var(--borda);border-radius:18px;background:#fff;box-shadow:0 10px 35px #00000024}.painel-topo{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.painel-topo h2{color:var(--verde-escuro);font-size:1.05rem}.fechar-painel{width:32px;height:32px;border:0;border-radius:50%;color:var(--verde-escuro);background:var(--verde-claro);font-size:1.15rem}.acoes-acessibilidade{display:grid;grid-template-columns:1fr 1fr;gap:9px}.acoes-acessibilidade button,.restaurar-preferencias{min-height:42px;padding:8px 10px;border:1px solid var(--borda);border-radius:10px;color:var(--verde-escuro);background:var(--verde-claro);font-size:.8rem;font-weight:700}.restaurar-preferencias{width:100%;margin-top:9px;background:#fff}
+body.alto-contraste{background:#000;color:#fff}body.alto-contraste .topo,body.alto-contraste .secao,body.alto-contraste .secao-clara,body.alto-contraste .proxima,body.alto-contraste .passo,body.alto-contraste .dica-larga,body.alto-contraste .escolha-lateral,body.alto-contraste .resultado,body.alto-contraste .checklist-caixa,body.alto-contraste .check-lateral,body.alto-contraste .ps5-caixa,body.alto-contraste .plataforma-nota,body.alto-contraste .perguntas details,body.alto-contraste .perguntas details[open] summary,body.alto-contraste .fonte-card,body.alto-contraste .proxima-caixa,body.alto-contraste .painel-acessibilidade,body.alto-contraste .lista-checagem label{background:#000;color:#fff;border-color:#fff}body.alto-contraste .logo,body.alto-contraste .menu a,body.alto-contraste h2,body.alto-contraste h3,body.alto-contraste .cabecalho-secao p,body.alto-contraste .passo p,body.alto-contraste .dica-larga,body.alto-contraste .escolha-lateral p,body.alto-contraste .escolha-lateral label,body.alto-contraste .resultado-lista li,body.alto-contraste .resultado-subtitulo,body.alto-contraste .check-lateral p,body.alto-contraste .lista-checagem strong,body.alto-contraste .lista-checagem small,body.alto-contraste .status-salvamento,body.alto-contraste .ps5-etapas p,body.alto-contraste .plataforma-nota p,body.alto-contraste .plataforma-nota ul,body.alto-contraste .perguntas p,body.alto-contraste .fonte-card p,body.alto-contraste .proxima-caixa p,body.alto-contraste .fonte-card a,body.alto-contraste .resultado-link,body.alto-contraste .ps5-caixa a,body.alto-contraste .plataforma-nota a,body.alto-contraste .perguntas summary,body.alto-contraste .contador{color:#fff}body.alto-contraste .escolha-lateral select,body.alto-contraste .botao-limpar,body.alto-contraste .acoes-acessibilidade button,body.alto-contraste .restaurar-preferencias,body.alto-contraste .fechar-painel{background:#111;color:#fff;border-color:#fff}body.alto-contraste .etiqueta,body.alto-contraste .passo-numero,body.alto-contraste .resultado-icone,body.alto-contraste .fonte-icone{background:#fff;color:#000}body.alto-contraste .botao-principal{border-color:#fff}body.alto-contraste .resultado-lista li::before{color:#fff}body.alto-contraste .lista-checagem input:checked + span strong{color:#fff}body.alto-contraste .barra-progresso{background:#444}body.alto-contraste .contador{background:#333}
+@media(max-width:1100px){.topo-conteudo{flex-direction:column;align-items:flex-start;gap:5px;padding:13px 0 8px}.menu{width:100%;justify-content:flex-start}.passo-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:850px){.hero-grid{grid-template-columns:1fr}.hero-ilustracao{min-height:260px}.escolha-layout,.check-layout,.plataforma-grid{grid-template-columns:1fr}.fontes-grid{grid-template-columns:1fr 1fr}.proxima-caixa{flex-direction:column;align-items:flex-start}}
+@media(max-width:620px){.container,.topo-conteudo{width:min(100% - 32px,var(--largura-maxima))}.hero{padding:55px 0}.hero h1{letter-spacing:-1px}.hero-acoes{flex-direction:column}.hero-acoes .botao{width:100%}.secao{padding:58px 0}.passo-grid,.fontes-grid{grid-template-columns:1fr}.passo{padding:22px}.escolha-lateral,.resultado,.checklist-caixa,.ps5-caixa,.plataforma-nota{padding:21px}.check-lateral{padding:24px}.checklist-topo{align-items:flex-start}.proxima-caixa{padding:28px 22px}.proxima-caixa .botao{width:100%}.rodape-conteudo{flex-direction:column;align-items:flex-start}.acessibilidade-ferramenta{right:12px;bottom:12px}.ilustracao-blocos div{font-size:.7rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-conteudo"><a class="logo" href="index.html" aria-label="PlayMundo — página inicial"><span class="logo-icone" aria-hidden="true"></span><span>PlayMundo</span></a><nav class="menu" aria-label="Navegação principal"><a href="index.html">Início</a><a href="acessibilidade-visual.html">Visual</a><a href="acessibilidade-motora.html">Motora</a><a href="acessibilidade-auditiva.html">Auditiva</a><a href="acessibilidade-cognitiva.html">Cognitiva</a><a href="catalogo.html">Jogos</a><a href="comparacao.html">Comparar</a><a href="guia.html" aria-current="page">Guia</a><a href="impacto.html">Impacto</a><a href="sobre.html">Sobre</a></nav></div></header>
+<main id="conteudo">
+<section class="hero" aria-labelledby="titulo-hero"><div class="container hero-grid"><div><span class="etiqueta">Guia de acessibilidade</span><h1 id="titulo-hero">Seu jeito de jogar também conta.</h1><p>Não existe uma única configuração ideal para todo mundo. Aprenda a encontrar opções de acessibilidade, experimentar ajustes e escolher experiências que combinem com você.</p><div class="hero-acoes"><a class="botao botao-principal" href="#primeiros-passos">Começar o guia <span aria-hidden="true">↓</span></a><a class="botao botao-secundario" href="#checklist">Abrir checklist</a></div></div><div class="hero-ilustracao" aria-hidden="true"><div class="ilustracao-topo"><span>Meu painel de jogo</span><div class="ilustracao-pontos"><span></span><span></span><span></span></div></div><div class="ilustracao-cartao"><h2>Configurações personalizadas</h2><div class="ilustracao-linha"><span>Tamanho do texto</span><strong>Maior</strong></div><div class="ilustracao-medidor"><span style="width:83%"></span></div><div class="ilustracao-linha"><span>Ritmo da experiência</span><strong>Flexível</strong></div><div class="ilustracao-medidor"><span style="width:65%"></span></div><div class="ilustracao-blocos"><div><strong>◉</strong>Visual</div><div><strong>♫</strong>Áudio</div><div><strong>✥</strong>Controles</div></div></div><div class="ilustracao-rodape">✓ A melhor configuração é a que funciona para você</div></div></div></section>
+<section class="secao secao-clara" id="primeiros-passos" aria-labelledby="titulo-passos"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Comece por aqui</span><h2 id="titulo-passos">Cinco passos para jogar com mais conforto</h2><p>Um caminho simples para quem nunca mexeu nas opções de acessibilidade ou quer descobrir novos recursos.</p></div><div class="passo-grid"><article class="passo"><span class="passo-numero">01</span><h3>Identifique o que precisa</h3><p>Observe o que dificulta sua experiência: texto pequeno, comandos rápidos, sons importantes ou excesso de informações.</p></article><article class="passo"><span class="passo-numero">02</span><h3>Pesquise antes de jogar</h3><p>Consulte a descrição oficial, as opções do console e o menu de acessibilidade do próprio jogo.</p></article><article class="passo"><span class="passo-numero">03</span><h3>Abra as configurações</h3><p>Procure menus como “Acessibilidade”, “Controles”, “Áudio”, “Vídeo” e “Jogabilidade”.</p></article><article class="passo"><span class="passo-numero">04</span><h3>Teste aos poucos</h3><p>Altere uma opção de cada vez, entre no jogo e veja se a mudança realmente ajuda.</p></article><article class="passo"><span class="passo-numero">05</span><h3>Revise quando quiser</h3><p>Suas necessidades podem mudar. Ajustes de conforto não precisam ser permanentes.</p></article></div><p class="dica-larga"><strong>Vale lembrar:</strong> nem todos os jogos têm os mesmos menus. Alguns recursos dependem da plataforma, da versão ou do idioma escolhido.</p></div></section>
+<section class="secao" id="orientacoes" aria-labelledby="titulo-orientacoes"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Escolha seu foco</span><h2 id="titulo-orientacoes">O que você quer melhorar na experiência?</h2><p>Selecione uma categoria para receber sugestões práticas. Você pode trocar a opção quantas vezes quiser.</p></div><div class="escolha-layout"><div class="escolha-lateral"><h3>Encontre um ponto de partida</h3><p>As recomendações são exemplos de recursos que podem existir em jogos. Confirme sempre a disponibilidade no título escolhido.</p><label for="tipo-necessidade">Categoria de acessibilidade</label><select id="tipo-necessidade" name="tipo-necessidade"><option value="visual">Visual</option><option value="motora">Motora</option><option value="auditiva">Auditiva</option><option value="cognitiva">Cognitiva e ritmo de jogo</option></select><p class="aviso-pequeno">A opção selecionada fica salva neste navegador para facilitar uma próxima visita.</p></div><div class="resultado" id="resultado-orientacao" aria-live="polite" aria-atomic="true"><div class="resultado-topo"><span class="resultado-icone" id="icone-orientacao" aria-hidden="true">👁</span><div><h3 id="nome-orientacao">Acessibilidade visual</h3><p class="resultado-subtitulo" id="subtitulo-orientacao">Deixe informações importantes mais fáceis de perceber.</p></div></div><ul class="resultado-lista" id="lista-orientacoes"><li>Aumente o tamanho das legendas e dos textos.</li><li>Experimente modos de contraste e filtros de cor.</li><li>Procure narração de menus e sinais sonoros de orientação.</li></ul><a id="link-orientacao" class="resultado-link" href="acessibilidade-visual.html">Explorar jogos e recursos visuais <span aria-hidden="true">↗</span></a></div></div></div></section>
+<section class="secao secao-clara" id="checklist" aria-labelledby="titulo-checklist"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Checklist interativo</span><h2 id="titulo-checklist">Antes de começar a jogar</h2><p>Marque cada etapa conforme você avança. Seu progresso é armazenado localmente no navegador, sem criar uma conta.</p></div><div class="check-layout"><div class="checklist-caixa"><div class="checklist-topo"><h3>Meu preparo para jogar</h3><span class="contador" id="contador-checklist" role="status" aria-live="polite">0 de 6 etapas</span></div><div class="barra-progresso" role="progressbar" id="progresso-checklist" aria-label="Progresso do checklist" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><span id="barra-checklist"></span></div><ul class="lista-checagem"><li><label><input type="checkbox" data-etapa="0"><span><strong>Conferi os recursos do jogo</strong><small>Li a descrição oficial ou procurei as opções de acessibilidade.</small></span></label></li><li><label><input type="checkbox" data-etapa="1"><span><strong>Revisei texto e contraste</strong><small>Verifiquei tamanho de fonte, cores e facilidade de leitura.</small></span></label></li><li><label><input type="checkbox" data-etapa="2"><span><strong>Ajustei áudio e legendas</strong><small>Conferi se os sons importantes também podem ser percebidos de outras formas.</small></span></label></li><li><label><input type="checkbox" data-etapa="3"><span><strong>Testei controles e comandos</strong><small>Experimentei alternativas para botões, movimentos e sensibilidade.</small></span></label></li><li><label><input type="checkbox" data-etapa="4"><span><strong>Revisei ritmo e dificuldade</strong><small>Procurei tutoriais, assistências e opções para reduzir a pressão do tempo.</small></span></label></li><li><label><input type="checkbox" data-etapa="5"><span><strong>Joguei alguns minutos para testar</strong><small>Observei o conforto e ajustei o que ainda precisava melhorar.</small></span></label></li></ul><div class="check-acoes"><button class="botao-limpar" type="button" id="limpar-checklist">Desmarcar todas</button><span class="status-salvamento" id="status-checklist" role="status" aria-live="polite">O progresso fica salvo neste navegador.</span></div></div><aside class="check-lateral"><span class="etiqueta">Descubra mais jogos</span><h3>Um bom jogo dá espaço para diferentes maneiras de jogar.</h3><p>Quer encontrar exemplos de recursos reais? Explore o nosso catálogo e compare os jogos antes de escolher.</p><a href="catalogo.html" class="botao">Ver catálogo <span aria-hidden="true">→</span></a></aside></div></div></section>
+<section class="secao" id="configuracoes" aria-labelledby="titulo-configuracoes"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Na prática</span><h2 id="titulo-configuracoes">Onde encontro essas configurações?</h2><p>Um exemplo real no PlayStation 5 e algumas orientações que valem para outras plataformas.</p></div><div class="plataforma-grid"><article class="ps5-caixa"><h3>Passo a passo no PlayStation 5</h3><ol class="ps5-etapas"><li><span class="numero">1</span><div><strong>Abra a tela inicial do console</strong><p>Selecione <strong>Configurações</strong> e depois <strong>Acessibilidade</strong>.</p></div></li><li><span class="numero">2</span><div><strong>Escolha o que deseja ajustar</strong><p>Explore as opções de controle, zoom, exibição e texto, leitor de tela ou legendas ocultas.</p></div></li><li><span class="numero">3</span><div><strong>Consulte os recursos de cada jogo</strong><p>Na PlayStation Store, abra a página de um jogo e verifique as etiquetas de acessibilidade disponíveis.</p></div></li><li><span class="numero">4</span><div><strong>Confira também o menu do jogo</strong><p>Alguns ajustes só aparecem dentro do próprio título. A disponibilidade varia conforme o jogo.</p></div></li></ol><a href="https://www.playstation.com/pt-br/support/hardware/ps5-accessibility-settings/" target="_blank" rel="noopener noreferrer">Ver instruções oficiais do PS5 <span aria-hidden="true">↗</span></a></article><aside class="plataforma-nota"><h3>Em outros consoles e no computador</h3><p>Os nomes dos menus mudam, mas vale procurar estes pontos:</p><ul><li>Configurações de acessibilidade do sistema operacional ou console.</li><li>Opções de controle, teclado, mouse e botões.</li><li>Áudio, legendas e indicação visual de sons.</li><li>Vídeo, contraste, movimento e tamanho do texto.</li><li>Jogabilidade, assistência e dificuldade.</li></ul><p>Importante: ajustar a acessibilidade do sistema não garante que um jogo específico ofereça o mesmo recurso.</p><a href="https://learn.microsoft.com/en-us/gaming/accessibility/guidelines" target="_blank" rel="noopener noreferrer">Conhecer orientações de acessibilidade em jogos <span aria-hidden="true">↗</span></a></aside></div></div></section>
+<section class="secao secao-clara" id="duvidas" aria-labelledby="titulo-duvidas"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Dúvidas comuns</span><h2 id="titulo-duvidas">Perguntas que aparecem pelo caminho</h2></div><div class="perguntas"><details><summary>Todo jogo tem configurações de acessibilidade?</summary><p>Não. A quantidade e o tipo de recursos variam bastante. Por isso, vale consultar páginas oficiais, análises de acessibilidade e o menu do jogo antes de tomar uma decisão.</p></details><details><summary>Ativar assistência significa jogar “errado”?</summary><p>De jeito nenhum. Assistências e ajustes são ferramentas para adaptar a experiência às necessidades e preferências de cada pessoa. O objetivo é conseguir participar e se divertir.</p></details><details><summary>As opções do console funcionam automaticamente em todos os jogos?</summary><p>Nem sempre. Alguns ajustes do sistema se aplicam à interface do console, enquanto outros dependem de compatibilidade com o jogo ou do aplicativo. Consulte as informações de cada recurso.</p></details><details><summary>Posso usar vários recursos ao mesmo tempo?</summary><p>Em muitos jogos, sim, mas isso depende das configurações disponíveis. Experimente combinações com calma e veja o que funciona melhor para você.</p></details><details><summary>O checklist envia meus dados para alguém?</summary><p>Não. As marcações são guardadas apenas no armazenamento local deste navegador. Você pode apagá-las a qualquer momento pelo botão “Desmarcar todas” ou limpando os dados do site no navegador.</p></details></div></div></section>
+<section class="secao" id="fontes" aria-labelledby="titulo-fontes"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Fontes e aprofundamento</span><h2 id="titulo-fontes">Continue aprendendo com fontes confiáveis</h2><p>As orientações deste guia são introdutórias. Para confirmar recursos e limitações específicos, consulte a documentação oficial.</p></div><div class="fontes-grid"><article class="fonte-card"><span class="fonte-icone" aria-hidden="true">🎮</span><h3>PlayStation — Acessibilidade no PS5</h3><p>Instruções para encontrar e ajustar recursos de controles, tela, leitura de texto e legendas.</p><a href="https://www.playstation.com/pt-br/support/hardware/ps5-accessibility-settings/" target="_blank" rel="noopener noreferrer">Abrir guia oficial <span aria-hidden="true">↗</span></a></article><article class="fonte-card"><span class="fonte-icone" aria-hidden="true">♿</span><h3>PlayStation — Recursos e etiquetas</h3><p>Visão geral das opções do console e das etiquetas que indicam recursos de acessibilidade nos jogos.</p><a href="https://www.playstation.com/pt-br/accessibility/" target="_blank" rel="noopener noreferrer">Conhecer os recursos <span aria-hidden="true">↗</span></a></article><article class="fonte-card"><span class="fonte-icone" aria-hidden="true">📖</span><h3>Microsoft — Diretrizes para jogos</h3><p>Recomendações sobre contraste, narração, controles, legendas, dificuldade e outras áreas de acessibilidade.</p><a href="https://learn.microsoft.com/en-us/gaming/accessibility/guidelines" target="_blank" rel="noopener noreferrer">Ler as diretrizes <span aria-hidden="true">↗</span></a></article></div></div></section>
+<section class="proxima" aria-labelledby="titulo-proxima"><div class="container"><div class="proxima-caixa"><div><span class="etiqueta">Continue explorando</span><h2 id="titulo-proxima" style="margin-top:12px">Acessibilidade também transforma comunidades.</h2><p>Na próxima página, vamos conversar sobre o impacto social de experiências mais inclusivas.</p></div><a class="botao botao-principal" href="impacto.html">Próxima: impacto social <span aria-hidden="true">→</span></a></div></div></section>
+</main>
+<footer class="rodape"><div class="container rodape-conteudo"><a class="logo" href="index.html"><span class="logo-icone" aria-hidden="true"></span><span>PlayMundo</span></a><p>Jogos, inclusão e novas formas de imaginar.</p><nav class="rodape-links" aria-label="Links do rodapé"><a href="index.html">Início</a><a href="catalogo.html">Catálogo</a><a href="sobre.html">Contato</a></nav></div></footer>
+<div class="acessibilidade-ferramenta"><div class="painel-acessibilidade" id="painel-acessibilidade" aria-labelledby="titulo-painel" hidden><div class="painel-topo"><h2 id="titulo-painel">Opções de acessibilidade</h2><button type="button" class="fechar-painel" id="fechar-painel" aria-label="Fechar painel">×</button></div><div class="acoes-acessibilidade"><button type="button" id="aumentar-fonte">Aumentar texto +</button><button type="button" id="diminuir-fonte">Diminuir texto −</button><button type="button" id="alternar-contraste" aria-pressed="false">Alto contraste</button></div><button type="button" id="restaurar-preferencias" class="restaurar-preferencias">Restaurar padrão</button></div><button type="button" class="botao-acessibilidade" id="abrir-painel" aria-controls="painel-acessibilidade" aria-expanded="false">♿ Acessibilidade</button></div>
+<script>
+(() => {
+    const chavePreferencias = "playmundo-preferencias-acessibilidade";
+    const painel = document.getElementById("painel-acessibilidade");
+    const botaoAbrir = document.getElementById("abrir-painel");
+    const botaoFechar = document.getElementById("fechar-painel");
+    const botaoAumentar = document.getElementById("aumentar-fonte");
+    const botaoDiminuir = document.getElementById("diminuir-fonte");
+    const botaoContraste = document.getElementById("alternar-contraste");
+    const botaoRestaurar = document.getElementById("restaurar-preferencias");
+    let escalaFonte = 1;
+    let altoContraste = false;
+
+    function salvarPreferencias() {
+        try { localStorage.setItem(chavePreferencias, JSON.stringify({ escalaFonte, altoContraste })); }
+        catch (erro) { console.warn("Não foi possível salvar as preferências neste navegador.", erro); }
+    }
+    function aplicarPreferencias() {
+        document.documentElement.style.setProperty("--escala-fonte", `${Math.round(escalaFonte * 100)}%`);
+        document.body.classList.toggle("alto-contraste", altoContraste);
+        botaoContraste.setAttribute("aria-pressed", String(altoContraste));
+    }
+    function carregarPreferencias() {
+        try {
+            const salvas = localStorage.getItem(chavePreferencias);
+            if (salvas) {
+                const preferencias = JSON.parse(salvas);
+                if (typeof preferencias.escalaFonte === "number") escalaFonte = Math.min(1.3, Math.max(.9, preferencias.escalaFonte));
+                altoContraste = Boolean(preferencias.altoContraste);
+            }
+        } catch (erro) { console.warn("As preferências salvas não puderam ser carregadas.", erro); }
+        aplicarPreferencias();
+    }
+    function fecharPainel() {
+        painel.hidden = true;
+        botaoAbrir.setAttribute("aria-expanded", "false");
+        botaoAbrir.focus();
+    }
+    botaoAbrir.addEventListener("click", () => {
+        const vaiAbrir = painel.hidden;
+        painel.hidden = !vaiAbrir;
+        botaoAbrir.setAttribute("aria-expanded", String(vaiAbrir));
+        if (vaiAbrir) botaoFechar.focus();
+    });
+    botaoFechar.addEventListener("click", fecharPainel);
+    document.addEventListener("keydown", evento => {
+        if (evento.key === "Escape" && !painel.hidden) fecharPainel();
+    });
+    botaoAumentar.addEventListener("click", () => {
+        escalaFonte = Math.min(1.3, Number((escalaFonte + .1).toFixed(1)));
+        aplicarPreferencias();
+        salvarPreferencias();
+    });
+    botaoDiminuir.addEventListener("click", () => {
+        escalaFonte = Math.max(.9, Number((escalaFonte - .1).toFixed(1)));
+        aplicarPreferencias();
+        salvarPreferencias();
+    });
+    botaoContraste.addEventListener("click", () => {
+        altoContraste = !altoContraste;
+        aplicarPreferencias();
+        salvarPreferencias();
+    });
+    botaoRestaurar.addEventListener("click", () => {
+        escalaFonte = 1;
+        altoContraste = false;
+        aplicarPreferencias();
+        try { localStorage.removeItem(chavePreferencias); }
+        catch (erro) { console.warn("Não foi possível limpar as preferências salvas.", erro); }
+    });
+    carregarPreferencias();
+})();
+
+(() => {
+    const opcoes = {
+        visual: { icone: "👁", nome: "Acessibilidade visual", subtitulo: "Deixe informações importantes mais fáceis de perceber.", dicas: ["Aumente o tamanho das legendas e dos textos.", "Experimente modos de alto contraste e filtros de cor, quando disponíveis.", "Procure narração de menus, audiodescrição e sinais sonoros de orientação.", "Confira se ícones e indicadores são compreensíveis sem depender apenas da cor."], pagina: "acessibilidade-visual.html", textoLink: "Explorar jogos e recursos visuais" },
+        motora: { icone: "🎮", nome: "Acessibilidade motora", subtitulo: "Adapte os comandos ao seu jeito de jogar.", dicas: ["Procure remapeamento de botões e layouts alternativos de controle.", "Experimente opções de apertar uma vez em vez de manter o botão pressionado.", "Confira ajustes de câmera, mira e sensibilidade quando existirem.", "Observe se há assistência para movimentos rápidos ou ações repetitivas."], pagina: "acessibilidade-motora.html", textoLink: "Explorar jogos e recursos motores" },
+        auditiva: { icone: "💬", nome: "Acessibilidade auditiva", subtitulo: "Acompanhe a ação sem depender apenas de sons.", dicas: ["Ative legendas e personalize tamanho, contraste e fundo, se possível.", "Verifique se o jogo identifica os personagens que estão falando.", "Procure indicadores visuais de direção e alertas de acontecimentos sonoros.", "Confira se diálogos e informações essenciais estão disponíveis em texto."], pagina: "acessibilidade-auditiva.html", textoLink: "Explorar jogos e recursos auditivos" },
+        cognitiva: { icone: "🧩", nome: "Acessibilidade cognitiva", subtitulo: "Encontre mais clareza e liberdade de ritmo.", dicas: ["Procure tutoriais que possam ser repetidos e instruções claras.", "Experimente interfaces mais simples e menor quantidade de informação simultânea.", "Verifique opções de dificuldade, assistência e ritmo de jogo.", "Confira alternativas para desafios com tempo limitado ou respostas muito rápidas."], pagina: "acessibilidade-cognitiva.html", textoLink: "Explorar jogos e recursos cognitivos" }
+    };
+    const seletor = document.getElementById("tipo-necessidade");
+    const icone = document.getElementById("icone-orientacao");
+    const titulo = document.getElementById("nome-orientacao");
+    const subtitulo = document.getElementById("subtitulo-orientacao");
+    const lista = document.getElementById("lista-orientacoes");
+    const link = document.getElementById("link-orientacao");
+    const chave = "playmundo-guia-tipo";
+
+    function mostrarOrientacao(tipo) {
+        const dado = opcoes[tipo] || opcoes.visual;
+        icone.textContent = dado.icone;
+        titulo.textContent = dado.nome;
+        subtitulo.textContent = dado.subtitulo;
+        lista.replaceChildren();
+        dado.dicas.forEach(dica => {
+            const li = document.createElement("li");
+            li.textContent = dica;
+            lista.appendChild(li);
+        });
+        link.href = dado.pagina;
+        link.textContent = dado.textoLink + " ↗";
+    }
+    try {
+        const tipoSalvo = localStorage.getItem(chave);
+        if (tipoSalvo && opcoes[tipoSalvo]) seletor.value = tipoSalvo;
+    } catch (erro) { console.warn("A seleção anterior não pôde ser carregada.", erro); }
+    mostrarOrientacao(seletor.value);
+    seletor.addEventListener("change", () => {
+        mostrarOrientacao(seletor.value);
+        try { localStorage.setItem(chave, seletor.value); }
+        catch (erro) { console.warn("Não foi possível salvar a categoria escolhida.", erro); }
+    });
+})();
+
+(() => {
+    const caixas = Array.from(document.querySelectorAll("[data-etapa]"));
+    const contador = document.getElementById("contador-checklist");
+    const progresso = document.getElementById("progresso-checklist");
+    const barra = document.getElementById("barra-checklist");
+    const status = document.getElementById("status-checklist");
+    const botaoLimpar = document.getElementById("limpar-checklist");
+    const chave = "playmundo-guia-checklist";
+
+    function atualizarProgresso() {
+        const concluidas = caixas.filter(caixa => caixa.checked).length;
+        contador.textContent = `${concluidas} de ${caixas.length} etapas`;
+        progresso.setAttribute("aria-valuenow", String(concluidas));
+        barra.style.width = `${(concluidas / caixas.length) * 100}%`;
+        status.textContent = concluidas === caixas.length ? "Tudo marcado! Revise seus ajustes sempre que precisar." : "O progresso fica salvo neste navegador.";
+    }
+    function salvarChecklist() {
+        try { localStorage.setItem(chave, JSON.stringify(caixas.map(caixa => caixa.checked))); }
+        catch (erro) { status.textContent = "Não foi possível salvar nesta sessão do navegador."; }
+    }
+    try {
+        const salvas = JSON.parse(localStorage.getItem(chave) || "null");
+        if (Array.isArray(salvas) && salvas.length === caixas.length) caixas.forEach((caixa, indice) => { caixa.checked = salvas[indice] === true; });
+    } catch (erro) { status.textContent = "Não foi possível recuperar seu progresso anterior."; }
+    atualizarProgresso();
+    caixas.forEach(caixa => caixa.addEventListener("change", () => {
+        atualizarProgresso();
+        salvarChecklist();
+    }));
+    botaoLimpar.addEventListener("click", () => {
+        caixas.forEach(caixa => { caixa.checked = false; });
+        atualizarProgresso();
+        try { localStorage.removeItem(chave); }
+        catch (erro) { status.textContent = "Não foi possível limpar o armazenamento do navegador."; }
+        botaoLimpar.focus();
+    });
+})();
+</script>
+</body>
+</html>

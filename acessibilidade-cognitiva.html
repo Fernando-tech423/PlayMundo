@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça recursos de acessibilidade cognitiva nos jogos: tutoriais, interfaces simples, ajuste de dificuldade, redução de velocidade e opções de personalização.">
+    <meta name="theme-color" content="#063B33">
+    <title>Acessibilidade Cognitiva | PlayMundo</title>
+    <style>
+
+
+        :root {
+            --verde-escuro: #063B33;
+            --verde-texto: #17483F;
+            --verde-claro: #EEF8ED;
+            --verde-menta: #B8EFD0;
+            --azul-claro: #B8E4F2;
+            --verde-lima: #D9F65C;
+            --off-white: #F4F6EE;
+            --branco: #FFFFFF;
+            --texto-suave: #536B65;
+            --borda: #E1E9E3;
+            --foco: #B08000;
+            --raio: 18px;
+            --largura-maxima: 1280px;
+            --escala-fonte: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: var(--escala-fonte);
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            min-width: 320px;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: var(--verde-texto);
+            background: var(--branco);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a { color: inherit; }
+        button { font: inherit; }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--foco);
+            outline-offset: 4px;
+        }
+
+        .container {
+            width: min(100% - 48px, var(--largura-maxima));
+            margin-inline: auto;
+        }
+
+        .pular-conteudo {
+            position: absolute;
+            top: -100px;
+            left: 16px;
+            z-index: 3000;
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: var(--verde-escuro);
+            background: var(--branco);
+            font-weight: 700;
+        }
+
+        .pular-conteudo:focus { top: 12px; }
+
+        .topo {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--verde-claro);
+            border-bottom: 1px solid var(--borda);
+        }
+
+        .topo-conteudo {
+            width: min(100% - 48px, 1450px);
+            min-height: 68px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            color: var(--verde-texto);
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icone {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #71DFB2, #29AD83);
+            box-shadow: 0 2px 7px #17483f2b;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 17px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            padding: 8px 2px;
+        }
+
+        .menu a {
+            flex: 0 0 auto;
+            color: var(--verde-texto);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .menu a:hover,
+        .menu a[aria-current="page"] {
+            color: #08765D;
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+
+        .etiqueta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            color: var(--verde-escuro);
+            background: #DDF4E6;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .titulo-secao {
+            color: var(--verde-escuro);
+            font-size: clamp(1.65rem, 3vw, 2.25rem);
+            line-height: 1.2;
+            letter-spacing: -0.7px;
+        }
+
+        .descricao-secao {
+            max-width: 760px;
+            margin-top: 12px;
+            color: var(--texto-suave);
+            font-size: 1rem;
+        }
+
+        .cabecalho-secao { margin-bottom: 30px; }
+
+        .botao {
+            min-height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 11px 20px;
+            border: 2px solid transparent;
+            border-radius: 999px;
+            background: var(--branco);
+            color: var(--verde-escuro);
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 180ms ease, background 180ms ease;
+        }
+
+        .botao:hover {
+            transform: translateY(-2px);
+            background: var(--verde-menta);
+        }
+
+        .botao-principal {
+            color: var(--branco);
+            background: var(--verde-escuro);
+        }
+
+        .botao-principal:hover {
+            color: var(--branco);
+            background: #126B59;
+        }
+
+        .inicio {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: clamp(58px, 8vw, 96px) 0;
+            color: var(--branco);
+            background: var(--verde-escuro);
+        }
+
+        .inicio::before,
+        .inicio::after {
+            position: absolute;
+            z-index: -1;
+            content: "";
+            border: 1px solid #b8efd02b;
+            border-radius: 50%;
+        }
+
+        .inicio::before {
+            width: 520px;
+            height: 520px;
+            top: -300px;
+            right: -80px;
+        }
+
+        .inicio::after {
+            width: 330px;
+            height: 330px;
+            right: 16%;
+            bottom: -250px;
+        }
+
+        .inicio-conteudo {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+            align-items: center;
+            gap: clamp(35px, 6vw, 85px);
+        }
+
+        .inicio .etiqueta {
+            color: #E8F8ED;
+            background: #226B56;
+        }
+
+        .inicio h1 {
+            max-width: 760px;
+            margin: 20px 0 18px;
+            color: var(--branco);
+            font-size: clamp(2.45rem, 5.2vw, 4.25rem);
+            line-height: 1.04;
+            letter-spacing: -2px;
+        }
+
+        .inicio-texto p {
+            max-width: 680px;
+            margin-bottom: 25px;
+            color: #E0ECE6;
+            font-size: clamp(1rem, 1.4vw, 1.12rem);
+        }
+
+        .inicio-acoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .inicio-visual {
+            position: relative;
+            min-height: 290px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 28px;
+            overflow: hidden;
+            border: 1px solid #70A99A66;
+            border-radius: 26px;
+            background: linear-gradient(145deg, #0C5044, #0A443A 70%);
+            box-shadow: 0 24px 60px #001d193b;
+        }
+
+        .inicio-visual strong {
+            position: relative;
+            color: var(--verde-menta);
+            font-size: 1.3rem;
+        }
+
+        .inicio-visual span {
+            position: relative;
+            margin-top: 5px;
+            color: #E0ECE6;
+            font-size: 0.9rem;
+        }
+
+        .introducao {
+            padding: 58px 0 62px;
+        }
+
+        .introducao-caixa {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 26px;
+            padding: 28px 32px;
+            border: 1px solid var(--borda);
+            border-radius: var(--raio);
+            background: var(--verde-claro);
+        }
+
+        .introducao-caixa h2 {
+            margin-bottom: 7px;
+            color: var(--verde-escuro);
+            font-size: 1.35rem;
+        }
+
+        .introducao-caixa p {
+            max-width: 830px;
+            color: var(--texto-suave);
+            font-size: 0.94rem;
+        }
+
+        .recursos {
+            padding: 68px 0 76px;
+            background: var(--off-white);
+        }
+
+        .grade-recursos {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .cartao-recurso {
+            min-height: 205px;
+            padding: 25px;
+            border: 1px solid var(--borda);
+            border-radius: var(--raio);
+            background: var(--branco);
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .cartao-recurso:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px #17483f12;
+        }
+
+        .recurso-icone {
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 16px;
+            border-radius: 14px;
+            color: var(--verde-escuro);
+            background: var(--verde-menta);
+            font-size: 1.35rem;
+            font-weight: 800;
+        }
+
+        .cartao-recurso:nth-child(2) .recurso-icone,
+        .cartao-recurso:nth-child(4) .recurso-icone { background: var(--azul-claro); }
+
+        .cartao-recurso:nth-child(3) .recurso-icone,
+        .cartao-recurso:nth-child(5) .recurso-icone { background: var(--verde-lima); }
+
+        .cartao-recurso h3 {
+            margin-bottom: 8px;
+            color: var(--verde-escuro);
+            font-size: 1.12rem;
+        }
+
+        .cartao-recurso p {
+            color: var(--texto-suave);
+            font-size: 0.92rem;
+        }
+
+        .cartao-recurso .nota-recurso {
+            display: block;
+            margin-top: 11px;
+            color: #08765D;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .destaque-jogo {
+            padding: 74px 0 80px;
+        }
+
+        .jogo-card {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+            overflow: hidden;
+            border: 1px solid var(--borda);
+            border-radius: 24px;
+            background: var(--branco);
+            box-shadow: 0 16px 42px #17483f12;
+        }
+
+        .jogo-capa {
+            position: relative;
+            min-height: 390px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 28px;
+            overflow: hidden;
+            color: var(--branco);
+            background: linear-gradient(155deg, #172C35 0%, #164A4D 45%, #0B201F 100%);
+        }
+
+        .jogo-capa::before {
+            position: absolute;
+            width: 145%;
+            height: 110px;
+            top: 38%;
+            left: -20%;
+            content: "";
+            transform: rotate(-17deg);
+            border-top: 7px solid #D9F65C;
+            border-bottom: 7px solid #B8EFD0;
+            background: linear-gradient(90deg, transparent, #FFFFFF18, transparent);
+        }
+
+        .jogo-capa::after {
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            right: -50px;
+            bottom: -70px;
+            content: "";
+            border: 2px solid #FFFFFF38;
+            border-radius: 50%;
+            box-shadow: 0 0 0 18px #FFFFFF0A, 0 0 0 38px #FFFFFF08;
+        }
+
+        .capa-etiqueta,
+        .capa-titulo,
+        .capa-subtitulo { position: relative; z-index: 1; }
+
+        .capa-etiqueta {
+            align-self: flex-start;
+            padding: 7px 11px;
+            border: 1px solid #FFFFFF55;
+            border-radius: 999px;
+            background: #063B3370;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .capa-titulo {
+            color: var(--branco);
+            font-size: clamp(2.3rem, 4vw, 3.6rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .capa-subtitulo {
+            margin-top: 10px;
+            color: #D9F65C;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+        }
+
+        .jogo-info { padding: clamp(25px, 4vw, 42px); }
+
+        .jogo-info h3 {
+            margin: 13px 0 12px;
+            color: var(--verde-escuro);
+            font-size: clamp(1.55rem, 3vw, 2.1rem);
+            line-height: 1.15;
+        }
+
+        .jogo-info > p {
+            margin-bottom: 20px;
+            color: var(--texto-suave);
+            font-size: 0.94rem;
+        }
+
+        .lista-destaque {
+            display: grid;
+            gap: 12px;
+            margin: 20px 0 25px;
+            list-style: none;
+        }
+
+        .lista-destaque li {
+            display: grid;
+            grid-template-columns: 24px 1fr;
+            gap: 10px;
+            color: var(--verde-texto);
+            font-size: 0.9rem;
+        }
+
+        .lista-destaque li span:first-child {
+            width: 22px;
+            height: 22px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--verde-escuro);
+            background: var(--verde-menta);
+            font-size: 0.75rem;
+            font-weight: 900;
+        }
+
+        .observacao {
+            padding: 15px 17px;
+            border-left: 4px solid #D6B23F;
+            border-radius: 0 10px 10px 0;
+            color: #4E4A35;
+            background: #FFF8D9;
+            font-size: 0.86rem;
+        }
+
+        .dicas {
+            padding: 68px 0 75px;
+            background: var(--verde-claro);
+        }
+
+        .grade-dicas {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .dica {
+            padding: 23px;
+            border: 1px solid #D8E8DC;
+            border-radius: var(--raio);
+            background: #FFFFFFC9;
+        }
+
+        .dica strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--verde-escuro);
+            font-size: 1rem;
+        }
+
+        .dica p {
+            color: var(--texto-suave);
+            font-size: 0.88rem;
+        }
+
+        .proxima-pagina {
+            padding: 66px 0;
+        }
+
+        .proxima-caixa {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            padding: clamp(24px, 4vw, 40px);
+            border-radius: 24px;
+            background: var(--azul-claro);
+        }
+
+        .proxima-caixa h2 {
+            margin-bottom: 7px;
+            color: var(--verde-escuro);
+            font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+        }
+
+        .proxima-caixa p {
+            max-width: 680px;
+            color: #31554C;
+            font-size: 0.92rem;
+        }
+
+        .rodape {
+            padding: 30px 0;
+            color: #E0ECE6;
+            background: var(--verde-escuro);
+        }
+
+        .rodape-conteudo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .rodape .logo { color: var(--branco); }
+        .rodape p { font-size: 0.82rem; }
+
+        .rodape-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .rodape-links a {
+            color: #E0ECE6;
+            font-size: 0.82rem;
+            text-decoration: none;
+        }
+
+        .rodape-links a:hover { text-decoration: underline; }
+
+        .acessibilidade-ferramenta {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1100;
+        }
+
+        .botao-acessibilidade {
+            min-height: 48px;
+            padding: 11px 17px;
+            border: 2px solid var(--branco);
+            border-radius: 999px;
+            color: var(--branco);
+            background: var(--verde-escuro);
+            box-shadow: 0 5px 18px #0000002b;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .painel-acessibilidade {
+            width: min(310px, calc(100vw - 32px));
+            margin-bottom: 10px;
+            padding: 20px;
+            border: 1px solid var(--borda);
+            border-radius: 18px;
+            background: var(--branco);
+            box-shadow: 0 10px 35px #00000024;
+        }
+
+        .painel-acessibilidade[hidden] { display: none; }
+
+        .painel-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .painel-topo h2 {
+            color: var(--verde-escuro);
+            font-size: 1.05rem;
+        }
+
+        .fechar-painel {
+            width: 32px;
+            height: 32px;
+            border: 0;
+            border-radius: 50%;
+            color: var(--verde-escuro);
+            background: var(--verde-claro);
+            font-size: 1.15rem;
+            cursor: pointer;
+        }
+
+        .acoes-acessibilidade {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .acoes-acessibilidade button,
+        .restaurar-preferencias {
+            min-height: 42px;
+            padding: 8px 10px;
+            border: 1px solid var(--borda);
+            border-radius: 10px;
+            color: var(--verde-escuro);
+            background: var(--verde-claro);
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .restaurar-preferencias {
+            width: 100%;
+            margin-top: 9px;
+            background: var(--branco);
+        }
+
+        body.alto-contraste {
+            color: #FFFFFF;
+            background: #000000;
+        }
+
+        body.alto-contraste .topo,
+        body.alto-contraste .introducao,
+        body.alto-contraste .recursos,
+        body.alto-contraste .destaque-jogo,
+        body.alto-contraste .dicas,
+        body.alto-contraste .proxima-pagina,
+        body.alto-contraste .cartao-recurso,
+        body.alto-contraste .jogo-card,
+        body.alto-contraste .painel-acessibilidade {
+            color: #FFFFFF;
+            background: #000000;
+            border-color: #FFFFFF;
+        }
+
+        body.alto-contraste .menu a,
+        body.alto-contraste .logo,
+        body.alto-contraste .titulo-secao,
+        body.alto-contraste .descricao-secao,
+        body.alto-contraste .introducao-caixa h2,
+        body.alto-contraste .introducao-caixa p,
+        body.alto-contraste .cartao-recurso h3,
+        body.alto-contraste .cartao-recurso p,
+        body.alto-contraste .jogo-info h3,
+        body.alto-contraste .jogo-info > p,
+        body.alto-contraste .lista-destaque li,
+        body.alto-contraste .dica strong,
+        body.alto-contraste .dica p,
+        body.alto-contraste .proxima-caixa h2,
+        body.alto-contraste .proxima-caixa p {
+            color: #FFFFFF;
+        }
+
+        body.alto-contraste .introducao-caixa,
+        body.alto-contraste .dica,
+        body.alto-contraste .proxima-caixa,
+        body.alto-contraste .acoes-acessibilidade button,
+        body.alto-contraste .restaurar-preferencias {
+            color: #FFFFFF;
+            background: #151515;
+            border: 1px solid #FFFFFF;
+        }
+
+        body.alto-contraste .observacao {
+            color: #FFFFFF;
+            background: #292400;
+            border-color: #FFF08A;
+        }
+
+        body.alto-contraste .lista-destaque li span:first-child {
+            color: #000000;
+            background: #FFFFFF;
+        }
+
+        body.alto-contraste .etiqueta {
+            color: #000000;
+            background: #FFFFFF;
+        }
+
+        @media (max-width: 1050px) {
+            .topo-conteudo {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 5px;
+                padding: 13px 0 8px;
+            }
+
+            .menu {
+                width: 100%;
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .inicio-conteudo,
+            .jogo-card { grid-template-columns: 1fr; }
+
+            .inicio-visual { min-height: 250px; }
+            .jogo-capa { min-height: 290px; }
+            .grade-dicas { grid-template-columns: 1fr; }
+            .introducao-caixa { grid-template-columns: 1fr; }
+            .proxima-caixa { align-items: flex-start; flex-direction: column; }
+        }
+
+        @media (max-width: 620px) {
+            .container,
+            .topo-conteudo { width: min(100% - 32px, var(--largura-maxima)); }
+
+            .inicio { padding: 56px 0; }
+            .inicio h1 { letter-spacing: -1px; }
+            .inicio-acoes { align-items: stretch; flex-direction: column; }
+            .inicio-acoes .botao { width: 100%; }
+            .grade-recursos { grid-template-columns: 1fr; }
+            .cartao-recurso { min-height: auto; }
+            .rodape-conteudo { align-items: flex-start; flex-direction: column; }
+            .acessibilidade-ferramenta { right: 12px; bottom: 12px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+        .mente-grafico {
+            display: grid;
+            justify-items: center;
+            gap: 15px;
+            width: 100%;
+            margin: auto 0;
+            padding-bottom: 10px;
+        }
+
+        .mente-passos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mente-passos span {
+            display: grid;
+            place-items: center;
+            width: 50px;
+            height: 50px;
+            border: 2px solid #B8EFD080;
+            border-radius: 15px;
+            color: #D9F65C;
+            background: #073D35;
+            font-size: 1.35rem;
+            font-weight: 900;
+        }
+
+        .mente-passos span:first-child { background: var(--verde-lima); color: var(--verde-escuro); }
+        .mente-passos i { width: 20px; height: 2px; background: #B8EFD0; }
+
+        .mente-painel {
+            width: min(100%, 300px);
+            padding: 15px 18px;
+            border: 1px solid #B8EFD080;
+            border-radius: 15px;
+            background: #062C29;
+        }
+
+        .mente-painel small {
+            display: block;
+            color: var(--verde-lima);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .mente-painel b { display: block; margin-top: 4px; font-size: 1.12rem; color: #FFFFFF; }
+        .mente-painel em { display: block; font-size: 0.83rem; font-style: normal; color: #D0E3D9; }
+
+        .jogo-capa.capa-celeste {
+            isolation: isolate;
+            background: linear-gradient(180deg, #253763 0%, #4B3C75 42%, #CC6688 74%, #ED9E9A 100%);
+        }
+
+        .jogo-capa.capa-celeste::before {
+            top: auto;
+            left: -12%;
+            bottom: -105px;
+            width: 95%;
+            height: 335px;
+            transform: rotate(-24deg);
+            border: 0;
+            clip-path: polygon(0 100%, 46% 5%, 100% 100%);
+            background: linear-gradient(135deg, #D4E7E8 0%, #668EA2 35%, #253B65 82%);
+        }
+
+        .jogo-capa.capa-celeste::after {
+            right: -27%;
+            bottom: -130px;
+            width: 115%;
+            height: 350px;
+            border: 0;
+            border-radius: 0;
+            clip-path: polygon(0 100%, 55% 0, 100% 100%);
+            box-shadow: none;
+            background: linear-gradient(140deg, #ACC7D2, #39577E 70%);
+            opacity: 0.92;
+        }
+
+        .celeste-sol {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            right: 5%;
+            top: 12%;
+            border-radius: 50%;
+            background: #FFD4B4;
+            opacity: 0.85;
+            box-shadow: 0 0 0 20px #FFD4B412;
+        }
+
+        .capa-celeste .capa-titulo {
+            color: #FFFFFF;
+            font-size: clamp(2.9rem, 5vw, 4.7rem);
+            letter-spacing: -0.05em;
+            text-shadow: 0 4px 20px #162542AA;
+            text-transform: none;
+        }
+
+        .capa-celeste .capa-subtitulo { color: #FFFFFF; text-shadow: 0 1px 5px #162542; }
+        .capa-celeste .capa-etiqueta { background: #24345C99; }
+
+        .exemplo-interativo { padding: 68px 0; background: var(--off-white); }
+
+        .exemplo-caixa {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(260px, 0.9fr);
+            gap: 26px;
+            align-items: center;
+            padding: clamp(24px, 4vw, 42px);
+            border: 1px solid var(--borda);
+            border-radius: 24px;
+            background: #FFFFFF;
+        }
+
+        .exemplo-caixa h2 { margin: 15px 0 12px; color: var(--verde-escuro); font-size: clamp(1.45rem, 2.8vw, 2rem); line-height: 1.2; }
+        .exemplo-caixa p { margin-bottom: 20px; color: var(--texto-suave); }
+        .exemplo-caixa .botao { border-color: var(--verde-escuro); }
+
+        .interface-demo {
+            padding: 20px;
+            border: 2px solid #A9D6C2;
+            border-radius: 19px;
+            background: #F0FAF3;
+        }
+
+        .interface-demo h3 { margin-bottom: 15px; color: var(--verde-escuro); font-size: 1rem; }
+        .interface-demo .etapa { display: flex; gap: 10px; align-items: center; padding: 11px 0; border-bottom: 1px solid #CDE5D7; font-weight: 700; }
+        .interface-demo .etapa:last-of-type { border: 0; }
+        .etapa span { display: grid; place-items: center; flex: 0 0 29px; width: 29px; height: 29px; border-radius: 50%; background: var(--verde-menta); color: var(--verde-escuro); }
+        .interface-demo .elemento-extra { margin-top: 13px; padding: 11px; border: 1px dashed #87B7A4; border-radius: 9px; color: #335B50; font-size: 0.82rem; }
+        .interface-demo.simplificada .elemento-extra { display: none; }
+        .interface-demo.simplificada .etapa:not(:first-of-type) { display: none; }
+        .estado-interface { min-height: 25px; margin-top: 9px; font-size: 0.82rem; font-weight: 700; color: #08765D; }
+
+        body.alto-contraste .exemplo-interativo,
+        body.alto-contraste .exemplo-caixa,
+        body.alto-contraste .interface-demo {
+            color: #FFFFFF;
+            background: #000000;
+            border-color: #FFFFFF;
+        }
+
+        body.alto-contraste .exemplo-caixa h2,
+        body.alto-contraste .exemplo-caixa p,
+        body.alto-contraste .interface-demo h3,
+        body.alto-contraste .interface-demo .etapa,
+        body.alto-contraste .interface-demo .elemento-extra,
+        body.alto-contraste .estado-interface { color: #FFFFFF; }
+
+        body.alto-contraste .interface-demo .elemento-extra { border-color: #FFFFFF; }
+
+        @media (max-width: 800px) {
+            .exemplo-caixa { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo principal</a>
+<header class="topo">
+    <div class="topo-conteudo">
+        <a class="logo" href="index.html" aria-label="PlayMundo — página inicial"><span class="logo-icone" aria-hidden="true"></span><span>PlayMundo</span></a>
+        <nav class="menu" aria-label="Navegação principal">
+            <a href="index.html">Início</a>
+            <a href="acessibilidade-visual.html">Visual</a>
+            <a href="acessibilidade-motora.html">Motora</a>
+            <a href="acessibilidade-auditiva.html">Auditiva</a>
+            <a href="acessibilidade-cognitiva.html" aria-current="page">Cognitiva</a>
+            <a href="catalogo.html">Jogos</a>
+            <a href="comparacao.html">Comparar</a>
+            <a href="guia.html">Guia</a>
+            <a href="impacto.html">Impacto</a>
+            <a href="sobre.html">Sobre</a>
+        </nav>
+    </div>
+</header>
+
+<main id="conteudo">
+    <section class="inicio" aria-labelledby="titulo-inicio">
+        <div class="container inicio-conteudo">
+            <div class="inicio-texto">
+                <span class="etiqueta">Acessibilidade cognitiva</span>
+                <h1>Uma experiência mais simples e compreensível.</h1>
+                <p>Jogos também podem respeitar diferentes ritmos de aprendizagem e formas de processar informações. Conheça recursos que ajudam a entender regras, organizar tarefas e aproveitar os desafios com mais autonomia.</p>
+                <div class="inicio-acoes">
+                    <a class="botao" href="#recursos">Explorar recursos <span aria-hidden="true">↓</span></a>
+                    <a class="botao botao-principal" href="#jogo-destaque">Ver jogo em destaque</a>
+                </div>
+            </div>
+            <aside class="inicio-visual" aria-label="Ilustração de três etapas de uma tarefa, apresentadas de forma organizada">
+                <div class="mente-grafico" aria-hidden="true">
+                    <div class="mente-passos"><span>1</span><i></i><span>2</span><i></i><span>3</span></div>
+                    <div class="mente-painel"><small>PASSO 1 DE 3</small><b>Entenda o objetivo</b><em>Uma informação de cada vez.</em></div>
+                </div>
+                <strong>Seu ritmo faz parte do jogo.</strong>
+                <span>Instruções claras e opções de personalização fazem diferença.</span>
+            </aside>
+        </div>
+    </section>
+
+    <section class="introducao" aria-labelledby="titulo-introducao">
+        <div class="container">
+            <div class="introducao-caixa">
+                <div>
+                    <h2 id="titulo-introducao">O que é acessibilidade cognitiva nos games?</h2>
+                    <p>É o conjunto de escolhas de design que podem facilitar a compreensão de instruções, o foco, a memória de tarefas e a tomada de decisões. Não existe uma configuração ideal para todas as pessoas: oferecer alternativas é o que torna a experiência mais flexível.</p>
+                </div>
+                <span class="etiqueta">Clareza e autonomia</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="recursos" id="recursos" aria-labelledby="titulo-recursos">
+        <div class="container">
+            <div class="cabecalho-secao">
+                <span class="etiqueta">Recursos importantes</span>
+                <h2 class="titulo-secao" id="titulo-recursos">O que procurar em um jogo?</h2>
+                <p class="descricao-secao">Estes são exemplos gerais de recursos úteis para a acessibilidade cognitiva. Eles não estão necessariamente disponíveis em todos os jogos.</p>
+            </div>
+            <div class="grade-recursos">
+                <article class="cartao-recurso">
+                    <div class="recurso-icone" aria-hidden="true">1·2</div>
+                    <h3>Tutoriais</h3>
+                    <p>Apresentam comandos e regras aos poucos, com oportunidades de praticar antes de avançar para desafios mais complexos.</p>
+                    <span class="nota-recurso">Procure por: explicações passo a passo, dicas e repetição de instruções.</span>
+                </article>
+                <article class="cartao-recurso">
+                    <div class="recurso-icone" aria-hidden="true">☷</div>
+                    <h3>Interface simplificada</h3>
+                    <p>Organiza as informações essenciais e reduz elementos desnecessários na tela, para facilitar a leitura e diminuir distrações.</p>
+                    <span class="nota-recurso">Procure por: interface limpa, objetivos destacados e menos informações simultâneas.</span>
+                </article>
+                <article class="cartao-recurso">
+                    <div class="recurso-icone" aria-hidden="true">★</div>
+                    <h3>Ajuste de dificuldade</h3>
+                    <p>Permite adaptar desafios e consequências dos erros, tornando a progressão mais compatível com diferentes necessidades e preferências.</p>
+                    <span class="nota-recurso">Procure por: modos de assistência, dificuldade ajustável e opções personalizadas.</span>
+                </article>
+                <article class="cartao-recurso">
+                    <div class="recurso-icone" aria-hidden="true">◷</div>
+                    <h3>Redução da velocidade do jogo</h3>
+                    <p>Oferece mais tempo para observar acontecimentos, interpretar situações e planejar a próxima ação, quando o ritmo padrão é muito rápido.</p>
+                    <span class="nota-recurso">Procure por: velocidade de jogo ajustável e possibilidade de pausar.</span>
+                </article>
+                <article class="cartao-recurso">
+                    <div class="recurso-icone" aria-hidden="true">⚙</div>
+                    <h3>Opções de configuração da interface</h3>
+                    <p>Possibilitam personalizar a apresentação das informações, como exibição de dicas, tamanho dos textos e destaque de objetivos, quando disponíveis.</p>
+                    <span class="nota-recurso">Procure por: preferências visuais, ajustes de HUD e opções de ajuda.</span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="exemplo-interativo" aria-labelledby="titulo-exemplo">
+        <div class="container exemplo-caixa">
+            <div>
+                <span class="etiqueta">Experimente no PlayMundo</span>
+                <h2 id="titulo-exemplo">Como uma interface mais simples pode ajudar?</h2>
+                <p>Use o botão para comparar duas formas de mostrar as mesmas tarefas. Este é um exemplo didático criado para a página, não uma imagem de um jogo existente.</p>
+                <button class="botao botao-principal" id="alternar-exemplo" type="button" aria-pressed="false" aria-controls="interface-demo">Simplificar a interface</button>
+                <div class="estado-interface" id="estado-interface" role="status" aria-live="polite">Exemplo completo: todas as tarefas e informações aparecem.</div>
+            </div>
+            <div class="interface-demo" id="interface-demo" aria-label="Exemplo de organização visual de tarefas">
+                <h3>Minha missão</h3>
+                <div class="etapa"><span>1</span>Encontre a trilha principal</div>
+                <div class="etapa"><span>2</span>Converse com o guia</div>
+                <div class="etapa"><span>3</span>Chegue ao próximo ponto</div>
+                <div class="elemento-extra">Dica adicional: explore a área para descobrir itens opcionais. Há outros caminhos, mas eles não são necessários agora.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="destaque-jogo" id="jogo-destaque" aria-labelledby="titulo-jogo">
+        <div class="container">
+            <div class="cabecalho-secao">
+                <span class="etiqueta">Jogo em destaque</span>
+                <h2 class="titulo-secao" id="titulo-jogo">Celeste: adapte o ritmo com o Modo Assistência</h2>
+                <p class="descricao-secao">Um exemplo concreto de personalização de desafios, que pode ajudar jogadores a lidar com o ritmo e as exigências de uma aventura de plataforma.</p>
+            </div>
+            <article class="jogo-card">
+                <div class="jogo-capa capa-celeste" role="img" aria-label="Arte ilustrativa original inspirada em uma paisagem de montanhas, com céu em tons de roxo e rosa e o título Celeste">
+                    <div class="celeste-sol" aria-hidden="true"></div>
+                    <span class="capa-etiqueta">Plataforma e aventura</span>
+                    <div>
+                        <div class="capa-titulo">Celeste</div>
+                        <div class="capa-subtitulo">CADA JOGADOR, SEU RITMO</div>
+                    </div>
+                </div>
+                <div class="jogo-info">
+                    <span class="etiqueta">Por que está nesta página?</span>
+                    <h3>Mais tempo e diferentes formas de superar um desafio</h3>
+                    <p>Celeste é um jogo de plataforma conhecido pelos desafios de precisão. Seu Modo Assistência permite modificar algumas regras para que o jogador encontre uma experiência mais adequada às próprias necessidades.</p>
+                    <span class="destaque-numero">Modo Assistência</span>
+                    <ul class="lista-destaque">
+                        <li><span aria-hidden="true">✓</span><span><strong>Velocidade ajustável:</strong> permite reduzir o ritmo do jogo em etapas, chegando a 50% da velocidade padrão.</span></li>
+                        <li><span aria-hidden="true">✓</span><span><strong>Resistência infinita:</strong> permite permanecer segurando superfícies sem esgotar a resistência.</span></li>
+                        <li><span aria-hidden="true">✓</span><span><strong>Impulsos adicionais:</strong> possibilita mudar a quantidade de impulsos no ar, inclusive ativando impulsos ilimitados.</span></li>
+                        <li><span aria-hidden="true">✓</span><span><strong>Invencibilidade opcional:</strong> reduz consequências de alguns perigos do cenário.</span></li>
+                        <li><span aria-hidden="true">✓</span><span><strong>Assistência de impulso:</strong> oferece mais tempo para escolher a direção do movimento.</span></li>
+                    </ul>
+                    <p class="observacao"><strong>Importante:</strong> Celeste não é apresentado aqui como um jogo oficialmente classificado na categoria de acessibilidade cognitiva. Ele ilustra como ajustar ritmo e dificuldade pode beneficiar diferentes jogadores. A lista de recursos cognitivos acima é geral e não significa que Celeste ofereça todas essas opções.</p>
+                    <p><a href="https://www.celestegame.com/changelog.html" target="_blank" rel="noopener noreferrer">Consultar o histórico oficial de atualizações de Celeste</a></p>
+                    <p><a href="https://accessible.games/accessible-player-experiences/challenge-patterns/slow-it-down/" target="_blank" rel="noopener noreferrer">Ver exemplo de velocidade ajustável no projeto Accessible Games</a></p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="dicas" aria-labelledby="titulo-dicas">
+        <div class="container">
+            <div class="cabecalho-secao">
+                <span class="etiqueta">Na hora de escolher</span>
+                <h2 class="titulo-secao" id="titulo-dicas">Como avaliar a acessibilidade cognitiva?</h2>
+                <p class="descricao-secao">Três perguntas podem ajudar a perceber se o jogo respeita diferentes formas de aprender e interagir.</p>
+            </div>
+            <div class="grade-dicas">
+                <article class="dica"><strong>1. As instruções são claras?</strong><p>Veja se é possível rever objetivos, consultar comandos e aprender as mecânicas em etapas.</p></article>
+                <article class="dica"><strong>2. Há tempo para decidir?</strong><p>Procure opções de pausa, redução da velocidade ou outras formas de controlar a pressão do tempo.</p></article>
+                <article class="dica"><strong>3. A interface pode mudar?</strong><p>Observe se é possível reduzir distrações, destacar informações importantes e personalizar a apresentação.</p></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="proxima-pagina" aria-labelledby="titulo-proxima">
+        <div class="container">
+            <div class="proxima-caixa">
+                <div>
+                    <span class="etiqueta">Continue explorando</span>
+                    <h2 id="titulo-proxima">Próxima parada: catálogo de jogos</h2>
+                    <p>Agora que você conheceu diferentes formas de acessibilidade, explore jogos e recursos em um só lugar.</p>
+                </div>
+                <a class="botao botao-principal" href="catalogo.html">Ir para a próxima página <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="rodape">
+    <div class="container rodape-conteudo">
+        <a class="logo" href="index.html"><span class="logo-icone" aria-hidden="true"></span><span>PlayMundo</span></a>
+        <p>Jogos, inclusão e novas formas de imaginar.</p>
+        <nav class="rodape-links" aria-label="Links do rodapé"><a href="index.html">Início</a><a href="catalogo.html">Catálogo</a><a href="sobre.html">Contato</a></nav>
+    </div>
+</footer>
+
+<div class="acessibilidade-ferramenta">
+    <div class="painel-acessibilidade" id="painel-acessibilidade" aria-labelledby="titulo-painel" hidden>
+        <div class="painel-topo"><h2 id="titulo-painel">Opções de acessibilidade</h2><button class="fechar-painel" id="fechar-painel" type="button" aria-label="Fechar painel">×</button></div>
+        <div class="acoes-acessibilidade"><button id="aumentar-fonte" type="button">Aumentar texto +</button><button id="diminuir-fonte" type="button">Diminuir texto −</button><button id="alternar-contraste" type="button" aria-pressed="false">Alto contraste</button></div>
+        <button class="restaurar-preferencias" id="restaurar-preferencias" type="button">Restaurar padrão</button>
+    </div>
+    <button class="botao-acessibilidade" id="abrir-painel" type="button" aria-controls="painel-acessibilidade" aria-expanded="false">♿ Acessibilidade</button>
+</div>
+<script>
+
+
+        (() => {
+            const chavePreferencias = "playmundo-preferencias-acessibilidade";
+            const painel = document.getElementById("painel-acessibilidade");
+            const botaoAbrir = document.getElementById("abrir-painel");
+            const botaoFechar = document.getElementById("fechar-painel");
+            const botaoAumentar = document.getElementById("aumentar-fonte");
+            const botaoDiminuir = document.getElementById("diminuir-fonte");
+            const botaoContraste = document.getElementById("alternar-contraste");
+            const botaoRestaurar = document.getElementById("restaurar-preferencias");
+
+            let escalaFonte = 1;
+            let altoContraste = false;
+
+            function salvarPreferencias() {
+                const preferencias = { escalaFonte, altoContraste };
+                try {
+                    localStorage.setItem(chavePreferencias, JSON.stringify(preferencias));
+                } catch (erro) {
+                    console.warn("Não foi possível salvar as preferências neste navegador.", erro);
+                }
+            }
+
+            function aplicarPreferencias() {
+                document.documentElement.style.setProperty("--escala-fonte", `${Math.round(escalaFonte * 100)}%`);
+                document.body.classList.toggle("alto-contraste", altoContraste);
+                botaoContraste.setAttribute("aria-pressed", String(altoContraste));
+            }
+
+            function carregarPreferencias() {
+                try {
+                    const salvas = localStorage.getItem(chavePreferencias);
+                    if (salvas) {
+                        const preferencias = JSON.parse(salvas);
+                        if (typeof preferencias.escalaFonte === "number") {
+                            escalaFonte = Math.min(1.3, Math.max(0.9, preferencias.escalaFonte));
+                        }
+                        altoContraste = Boolean(preferencias.altoContraste);
+                    }
+                } catch (erro) {
+                    console.warn("As preferências salvas não puderam ser carregadas.", erro);
+                }
+                aplicarPreferencias();
+            }
+
+            function fecharPainel() {
+                painel.hidden = true;
+                botaoAbrir.setAttribute("aria-expanded", "false");
+                botaoAbrir.focus();
+            }
+
+            botaoAbrir.addEventListener("click", () => {
+                const vaiAbrir = painel.hidden;
+                painel.hidden = !vaiAbrir;
+                botaoAbrir.setAttribute("aria-expanded", String(vaiAbrir));
+                if (vaiAbrir) botaoFechar.focus();
+            });
+
+            botaoFechar.addEventListener("click", fecharPainel);
+
+            document.addEventListener("keydown", (evento) => {
+                if (evento.key === "Escape" && !painel.hidden) fecharPainel();
+            });
+
+            botaoAumentar.addEventListener("click", () => {
+                escalaFonte = Math.min(1.3, Number((escalaFonte + 0.1).toFixed(1)));
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoDiminuir.addEventListener("click", () => {
+                escalaFonte = Math.max(0.9, Number((escalaFonte - 0.1).toFixed(1)));
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoContraste.addEventListener("click", () => {
+                altoContraste = !altoContraste;
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoRestaurar.addEventListener("click", () => {
+                escalaFonte = 1;
+                altoContraste = false;
+                aplicarPreferencias();
+                try {
+                    localStorage.removeItem(chavePreferencias);
+                } catch (erro) {
+                    console.warn("Não foi possível limpar as preferências salvas.", erro);
+                }
+            });
+
+            carregarPreferencias();
+        })();
+
+        (() => {
+            const botao = document.getElementById("alternar-exemplo");
+            const interfaceDemo = document.getElementById("interface-demo");
+            const estado = document.getElementById("estado-interface");
+
+            botao.addEventListener("click", () => {
+                const simplificada = interfaceDemo.classList.toggle("simplificada");
+                botao.setAttribute("aria-pressed", String(simplificada));
+                botao.textContent = simplificada ? "Mostrar interface completa" : "Simplificar a interface";
+                estado.textContent = simplificada
+                    ? "Exemplo simplificado: apenas a próxima tarefa aparece."
+                    : "Exemplo completo: todas as tarefas e informações aparecem.";
+            });
+        })();
+
+</script>
+</body>
+</html>

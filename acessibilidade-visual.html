@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça recursos de acessibilidade visual em jogos, como narração, contraste, audiodescrição, indicadores sonoros e ajustes visuais.">
+    <meta name="theme-color" content="#063B33">
+    <title>Acessibilidade Visual | PlayMundo</title>
+    <style>
+        :root {
+            --verde-escuro: #063B33;
+            --verde-texto: #17483F;
+            --verde-claro: #EEF8ED;
+            --verde-menta: #B8EFD0;
+            --azul-claro: #B8E4F2;
+            --verde-lima: #D9F65C;
+            --off-white: #F4F6EE;
+            --branco: #FFFFFF;
+            --texto-suave: #536B65;
+            --borda: #E1E9E3;
+            --foco: #B08000;
+            --raio: 18px;
+            --largura-maxima: 1280px;
+            --escala-fonte: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: var(--escala-fonte);
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            min-width: 320px;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: var(--verde-texto);
+            background: var(--branco);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a { color: inherit; }
+        button { font: inherit; }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--foco);
+            outline-offset: 4px;
+        }
+
+        .container {
+            width: min(100% - 48px, var(--largura-maxima));
+            margin-inline: auto;
+        }
+
+        .pular-conteudo {
+            position: absolute;
+            top: -100px;
+            left: 16px;
+            z-index: 3000;
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: var(--verde-escuro);
+            background: var(--branco);
+            font-weight: 700;
+        }
+
+        .pular-conteudo:focus { top: 12px; }
+
+        .topo {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--verde-claro);
+            border-bottom: 1px solid var(--borda);
+        }
+
+        .topo-conteudo {
+            width: min(100% - 48px, 1450px);
+            min-height: 68px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            color: var(--verde-texto);
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icone {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #71DFB2, #29AD83);
+            box-shadow: 0 2px 7px #17483f2b;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 17px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            padding: 8px 2px;
+        }
+
+        .menu a {
+            flex: 0 0 auto;
+            color: var(--verde-texto);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .menu a:hover,
+        .menu a[aria-current="page"] {
+            color: #08765D;
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+
+        .etiqueta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            color: var(--verde-escuro);
+            background: #DDF4E6;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .titulo-secao {
+            color: var(--verde-escuro);
+            font-size: clamp(1.65rem, 3vw, 2.25rem);
+            line-height: 1.2;
+            letter-spacing: -0.7px;
+        }
+
+        .descricao-secao {
+            max-width: 760px;
+            margin-top: 12px;
+            color: var(--texto-suave);
+            font-size: 1rem;
+        }
+
+        .cabecalho-secao { margin-bottom: 30px; }
+
+        .botao {
+            min-height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 11px 20px;
+            border: 2px solid transparent;
+            border-radius: 999px;
+            background: var(--branco);
+            color: var(--verde-escuro);
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 180ms ease, background 180ms ease;
+        }
+
+        .botao:hover {
+            transform: translateY(-2px);
+            background: var(--verde-menta);
+        }
+
+        .botao-principal {
+            color: var(--branco);
+            background: var(--verde-escuro);
+        }
+
+        .botao-principal:hover {
+            color: var(--branco);
+            background: #126B59;
+        }
+
+        .inicio {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: clamp(58px, 8vw, 96px) 0;
+            color: var(--branco);
+            background: var(--verde-escuro);
+        }
+
+        .inicio::before,
+        .inicio::after {
+            position: absolute;
+            z-index: -1;
+            content: "";
+            border: 1px solid #b8efd02b;
+            border-radius: 50%;
+        }
+
+        .inicio::before {
+            width: 520px;
+            height: 520px;
+            top: -300px;
+            right: -80px;
+        }
+
+        .inicio::after {
+            width: 330px;
+            height: 330px;
+            right: 16%;
+            bottom: -250px;
+        }
+
+        .inicio-conteudo {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+            align-items: center;
+            gap: clamp(35px, 6vw, 85px);
+        }
+
+        .inicio .etiqueta {
+            color: #E8F8ED;
+            background: #226B56;
+        }
+
+        .inicio h1 {
+            max-width: 760px;
+            margin: 20px 0 18px;
+            color: var(--branco);
+            font-size: clamp(2.45rem, 5.2vw, 4.25rem);
+            line-height: 1.04;
+            letter-spacing: -2px;
+        }
+
+        .inicio-texto p {
+            max-width: 680px;
+            margin-bottom: 25px;
+            color: #E0ECE6;
+            font-size: clamp(1rem, 1.4vw, 1.12rem);
+        }
+
+        .inicio-acoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .inicio-visual {
+            position: relative;
+            min-height: 290px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 28px;
+            overflow: hidden;
+            border: 1px solid #70A99A66;
+            border-radius: 26px;
+            background: linear-gradient(145deg, #0C5044, #0A443A 70%);
+            box-shadow: 0 24px 60px #001d193b;
+        }
+
+        .olho-grafico {
+            position: absolute;
+            width: 205px;
+            height: 125px;
+            top: 42px;
+            left: 50%;
+            display: grid;
+            place-items: center;
+            transform: translateX(-50%) rotate(-7deg);
+            border: 5px solid var(--verde-menta);
+            border-radius: 100% 8% 100% 8%;
+            background: #B8EFD018;
+        }
+
+        .olho-grafico::before {
+            width: 62px;
+            height: 62px;
+            content: "";
+            border: 9px solid var(--verde-lima);
+            border-radius: 50%;
+            background: #B8EFD0;
+            box-shadow: 0 0 0 15px #B8EFD020;
+        }
+
+        .inicio-visual strong {
+            position: relative;
+            color: var(--verde-menta);
+            font-size: 1.3rem;
+        }
+
+        .inicio-visual span {
+            position: relative;
+            margin-top: 5px;
+            color: #E0ECE6;
+            font-size: 0.9rem;
+        }
+
+        .introducao {
+            padding: 58px 0 62px;
+        }
+
+        .introducao-caixa {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 26px;
+            padding: 28px 32px;
+            border: 1px solid var(--borda);
+            border-radius: var(--raio);
+            background: var(--verde-claro);
+        }
+
+        .introducao-caixa h2 {
+            margin-bottom: 7px;
+            color: var(--verde-escuro);
+            font-size: 1.35rem;
+        }
+
+        .introducao-caixa p {
+            max-width: 830px;
+            color: var(--texto-suave);
+            font-size: 0.94rem;
+        }
+
+        .recursos {
+            padding: 68px 0 76px;
+            background: var(--off-white);
+        }
+
+        .grade-recursos {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .cartao-recurso {
+            min-height: 205px;
+            padding: 25px;
+            border: 1px solid var(--borda);
+            border-radius: var(--raio);
+            background: var(--branco);
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .cartao-recurso:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px #17483f12;
+        }
+
+        .recurso-icone {
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 16px;
+            border-radius: 14px;
+            color: var(--verde-escuro);
+            background: var(--verde-menta);
+            font-size: 1.35rem;
+            font-weight: 800;
+        }
+
+        .cartao-recurso:nth-child(2) .recurso-icone,
+        .cartao-recurso:nth-child(4) .recurso-icone { background: var(--azul-claro); }
+
+        .cartao-recurso:nth-child(3) .recurso-icone,
+        .cartao-recurso:nth-child(5) .recurso-icone { background: var(--verde-lima); }
+
+        .cartao-recurso h3 {
+            margin-bottom: 8px;
+            color: var(--verde-escuro);
+            font-size: 1.12rem;
+        }
+
+        .cartao-recurso p {
+            color: var(--texto-suave);
+            font-size: 0.92rem;
+        }
+
+        .cartao-recurso .nota-recurso {
+            display: block;
+            margin-top: 11px;
+            color: #08765D;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .destaque-jogo {
+            padding: 74px 0 80px;
+        }
+
+        .jogo-card {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+            overflow: hidden;
+            border: 1px solid var(--borda);
+            border-radius: 24px;
+            background: var(--branco);
+            box-shadow: 0 16px 42px #17483f12;
+        }
+
+        .jogo-capa {
+            position: relative;
+            min-height: 390px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 28px;
+            overflow: hidden;
+            color: var(--branco);
+            background: linear-gradient(155deg, #172C35 0%, #164A4D 45%, #0B201F 100%);
+        }
+
+        .jogo-capa::before {
+            position: absolute;
+            width: 145%;
+            height: 110px;
+            top: 38%;
+            left: -20%;
+            content: "";
+            transform: rotate(-17deg);
+            border-top: 7px solid #D9F65C;
+            border-bottom: 7px solid #B8EFD0;
+            background: linear-gradient(90deg, transparent, #FFFFFF18, transparent);
+        }
+
+        .jogo-capa::after {
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            right: -50px;
+            bottom: -70px;
+            content: "";
+            border: 2px solid #FFFFFF38;
+            border-radius: 50%;
+            box-shadow: 0 0 0 18px #FFFFFF0A, 0 0 0 38px #FFFFFF08;
+        }
+
+        .capa-etiqueta,
+        .capa-titulo,
+        .capa-subtitulo { position: relative; z-index: 1; }
+
+        .capa-etiqueta {
+            align-self: flex-start;
+            padding: 7px 11px;
+            border: 1px solid #FFFFFF55;
+            border-radius: 999px;
+            background: #063B3370;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .capa-titulo {
+            color: var(--branco);
+            font-size: clamp(2.3rem, 4vw, 3.6rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .capa-subtitulo {
+            margin-top: 10px;
+            color: #D9F65C;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+        }
+
+        .jogo-info { padding: clamp(25px, 4vw, 42px); }
+
+        .jogo-info h3 {
+            margin: 13px 0 12px;
+            color: var(--verde-escuro);
+            font-size: clamp(1.55rem, 3vw, 2.1rem);
+            line-height: 1.15;
+        }
+
+        .jogo-info > p {
+            margin-bottom: 20px;
+            color: var(--texto-suave);
+            font-size: 0.94rem;
+        }
+
+        .lista-destaque {
+            display: grid;
+            gap: 12px;
+            margin: 20px 0 25px;
+            list-style: none;
+        }
+
+        .lista-destaque li {
+            display: grid;
+            grid-template-columns: 24px 1fr;
+            gap: 10px;
+            color: var(--verde-texto);
+            font-size: 0.9rem;
+        }
+
+        .lista-destaque li span:first-child {
+            width: 22px;
+            height: 22px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--verde-escuro);
+            background: var(--verde-menta);
+            font-size: 0.75rem;
+            font-weight: 900;
+        }
+
+        .observacao {
+            padding: 15px 17px;
+            border-left: 4px solid #D6B23F;
+            border-radius: 0 10px 10px 0;
+            color: #4E4A35;
+            background: #FFF8D9;
+            font-size: 0.86rem;
+        }
+
+        .dicas {
+            padding: 68px 0 75px;
+            background: var(--verde-claro);
+        }
+
+        .grade-dicas {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .dica {
+            padding: 23px;
+            border: 1px solid #D8E8DC;
+            border-radius: var(--raio);
+            background: #FFFFFFC9;
+        }
+
+        .dica strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--verde-escuro);
+            font-size: 1rem;
+        }
+
+        .dica p {
+            color: var(--texto-suave);
+            font-size: 0.88rem;
+        }
+
+        .proxima-pagina {
+            padding: 66px 0;
+        }
+
+        .proxima-caixa {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            padding: clamp(24px, 4vw, 40px);
+            border-radius: 24px;
+            background: var(--azul-claro);
+        }
+
+        .proxima-caixa h2 {
+            margin-bottom: 7px;
+            color: var(--verde-escuro);
+            font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+        }
+
+        .proxima-caixa p {
+            max-width: 680px;
+            color: #31554C;
+            font-size: 0.92rem;
+        }
+
+        .rodape {
+            padding: 30px 0;
+            color: #E0ECE6;
+            background: var(--verde-escuro);
+        }
+
+        .rodape-conteudo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .rodape .logo { color: var(--branco); }
+        .rodape p { font-size: 0.82rem; }
+
+        .rodape-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .rodape-links a {
+            color: #E0ECE6;
+            font-size: 0.82rem;
+            text-decoration: none;
+        }
+
+        .rodape-links a:hover { text-decoration: underline; }
+
+        .acessibilidade-ferramenta {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1100;
+        }
+
+        .botao-acessibilidade {
+            min-height: 48px;
+            padding: 11px 17px;
+            border: 2px solid var(--branco);
+            border-radius: 999px;
+            color: var(--branco);
+            background: var(--verde-escuro);
+            box-shadow: 0 5px 18px #0000002b;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .painel-acessibilidade {
+            width: min(310px, calc(100vw - 32px));
+            margin-bottom: 10px;
+            padding: 20px;
+            border: 1px solid var(--borda);
+            border-radius: 18px;
+            background: var(--branco);
+            box-shadow: 0 10px 35px #00000024;
+        }
+
+        .painel-acessibilidade[hidden] { display: none; }
+
+        .painel-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .painel-topo h2 {
+            color: var(--verde-escuro);
+            font-size: 1.05rem;
+        }
+
+        .fechar-painel {
+            width: 32px;
+            height: 32px;
+            border: 0;
+            border-radius: 50%;
+            color: var(--verde-escuro);
+            background: var(--verde-claro);
+            font-size: 1.15rem;
+            cursor: pointer;
+        }
+
+        .acoes-acessibilidade {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .acoes-acessibilidade button,
+        .restaurar-preferencias {
+            min-height: 42px;
+            padding: 8px 10px;
+            border: 1px solid var(--borda);
+            border-radius: 10px;
+            color: var(--verde-escuro);
+            background: var(--verde-claro);
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .restaurar-preferencias {
+            width: 100%;
+            margin-top: 9px;
+            background: var(--branco);
+        }
+
+        body.alto-contraste {
+            color: #FFFFFF;
+            background: #000000;
+        }
+
+        body.alto-contraste .topo,
+        body.alto-contraste .introducao,
+        body.alto-contraste .recursos,
+        body.alto-contraste .destaque-jogo,
+        body.alto-contraste .dicas,
+        body.alto-contraste .proxima-pagina,
+        body.alto-contraste .cartao-recurso,
+        body.alto-contraste .jogo-card,
+        body.alto-contraste .painel-acessibilidade {
+            color: #FFFFFF;
+            background: #000000;
+            border-color: #FFFFFF;
+        }
+
+        body.alto-contraste .menu a,
+        body.alto-contraste .logo,
+        body.alto-contraste .titulo-secao,
+        body.alto-contraste .descricao-secao,
+        body.alto-contraste .introducao-caixa h2,
+        body.alto-contraste .introducao-caixa p,
+        body.alto-contraste .cartao-recurso h3,
+        body.alto-contraste .cartao-recurso p,
+        body.alto-contraste .jogo-info h3,
+        body.alto-contraste .jogo-info > p,
+        body.alto-contraste .lista-destaque li,
+        body.alto-contraste .dica strong,
+        body.alto-contraste .dica p,
+        body.alto-contraste .proxima-caixa h2,
+        body.alto-contraste .proxima-caixa p {
+            color: #FFFFFF;
+        }
+
+        body.alto-contraste .introducao-caixa,
+        body.alto-contraste .dica,
+        body.alto-contraste .proxima-caixa,
+        body.alto-contraste .acoes-acessibilidade button,
+        body.alto-contraste .restaurar-preferencias {
+            color: #FFFFFF;
+            background: #151515;
+            border: 1px solid #FFFFFF;
+        }
+
+        body.alto-contraste .observacao {
+            color: #FFFFFF;
+            background: #292400;
+            border-color: #FFF08A;
+        }
+
+        body.alto-contraste .lista-destaque li span:first-child {
+            color: #000000;
+            background: #FFFFFF;
+        }
+
+        body.alto-contraste .etiqueta {
+            color: #000000;
+            background: #FFFFFF;
+        }
+
+        @media (max-width: 1050px) {
+            .topo-conteudo {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 5px;
+                padding: 13px 0 8px;
+            }
+
+            .menu {
+                width: 100%;
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .inicio-conteudo,
+            .jogo-card { grid-template-columns: 1fr; }
+
+            .inicio-visual { min-height: 250px; }
+            .jogo-capa { min-height: 290px; }
+            .grade-dicas { grid-template-columns: 1fr; }
+            .introducao-caixa { grid-template-columns: 1fr; }
+            .proxima-caixa { align-items: flex-start; flex-direction: column; }
+        }
+
+        @media (max-width: 620px) {
+            .container,
+            .topo-conteudo { width: min(100% - 32px, var(--largura-maxima)); }
+
+            .inicio { padding: 56px 0; }
+            .inicio h1 { letter-spacing: -1px; }
+            .inicio-acoes { align-items: stretch; flex-direction: column; }
+            .inicio-acoes .botao { width: 100%; }
+            .grade-recursos { grid-template-columns: 1fr; }
+            .cartao-recurso { min-height: auto; }
+            .rodape-conteudo { align-items: flex-start; flex-direction: column; }
+            .acessibilidade-ferramenta { right: 12px; bottom: 12px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo principal</a>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a class="logo" href="index.html" aria-label="PlayMundo — página inicial">
+                <span class="logo-icone" aria-hidden="true"></span>
+                <span>PlayMundo</span>
+            </a>
+            <nav class="menu" aria-label="Navegação principal">
+                <a href="index.html">Início</a>
+                <a href="acessibilidade-visual.html" aria-current="page">Visual</a>
+                <a href="acessibilidade-motora.html">Motora</a>
+                <a href="acessibilidade-auditiva.html">Auditiva</a>
+                <a href="acessibilidade-cognitiva.html">Cognitiva</a>
+                <a href="catalogo.html">Jogos</a>
+                <a href="comparacao.html">Comparar</a>
+                <a href="guia.html">Guia</a>
+                <a href="impacto.html">Impacto</a>
+                <a href="sobre.html">Sobre</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <section class="inicio" aria-labelledby="titulo-inicio">
+            <div class="container inicio-conteudo">
+                <div class="inicio-texto">
+                    <span class="etiqueta">Acessibilidade visual</span>
+                    <h1>Mais formas de perceber e aproveitar cada jogo.</h1>
+                    <p>Conheça recursos que ajudam pessoas com baixa visão, daltonismo ou cegueira a encontrar informações, acompanhar acontecimentos e navegar pelas experiências dos games.</p>
+                    <div class="inicio-acoes">
+                        <a class="botao" href="#recursos">Conhecer os recursos <span aria-hidden="true">↓</span></a>
+                        <a class="botao botao-principal" href="#jogo-destaque">Ver jogo em destaque</a>
+                    </div>
+                </div>
+                <aside class="inicio-visual" aria-label="Ilustração abstrata de um olho, representando acessibilidade visual">
+                    <div class="olho-grafico" aria-hidden="true"></div>
+                    <strong>Enxergar o jogo de outras maneiras</strong>
+                    <span>Informação visual, sonora e narrada com mais possibilidades.</span>
+                </aside>
+            </div>
+        </section>
+
+        <section class="introducao" aria-labelledby="titulo-introducao">
+            <div class="container">
+                <div class="introducao-caixa">
+                    <div>
+                        <h2 id="titulo-introducao">O que é acessibilidade visual nos games?</h2>
+                        <p>É o conjunto de opções que pode facilitar a leitura da interface, a identificação de elementos e a compreensão do que acontece no jogo. Cada pessoa tem necessidades diferentes, por isso oferecer configurações variadas faz diferença.</p>
+                    </div>
+                    <span class="etiqueta">Mais possibilidades para jogar</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="recursos" id="recursos" aria-labelledby="titulo-recursos">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <span class="etiqueta">Recursos importantes</span>
+                    <h2 class="titulo-secao" id="titulo-recursos">O que procurar em um jogo?</h2>
+                    <p class="descricao-secao">Estes recursos podem aparecer nas configurações de acessibilidade, vídeo, áudio ou interface. A disponibilidade e a forma de funcionamento variam de jogo para jogo.</p>
+                </div>
+
+                <div class="grade-recursos">
+                    <article class="cartao-recurso">
+                        <div class="recurso-icone" aria-hidden="true">🔊</div>
+                        <h3>Narração</h3>
+                        <p>Um narrador de tela pode ler menus, opções, informações e elementos da interface em voz alta. Isso ajuda na navegação de quem tem dificuldade para enxergar ou ler o texto na tela.</p>
+                        <span class="nota-recurso">Procure por: narrador de tela, leitura de interface ou screen reader.</span>
+                    </article>
+
+                    <article class="cartao-recurso">
+                        <div class="recurso-icone" aria-hidden="true">◐</div>
+                        <h3>Alto contraste</h3>
+                        <p>O aumento de contraste ajuda a diferenciar textos, ícones, menus e informações importantes do fundo. Alguns jogos também permitem ajustar o contraste de elementos específicos, como o HUD.</p>
+                        <span class="nota-recurso">Procure por: alto contraste, contraste da interface ou contraste do HUD.</span>
+                    </article>
+
+                    <article class="cartao-recurso">
+                        <div class="recurso-icone" aria-hidden="true">🎧</div>
+                        <h3>Audiodescrição</h3>
+                        <p>Uma descrição falada explica ações e informações visuais que podem não ser percebidas apenas pelos sons habituais do jogo. Em alguns títulos, ela está disponível somente em cenas ou momentos específicos.</p>
+                        <span class="nota-recurso">Procure por: audiodescrição ou audio description.</span>
+                    </article>
+
+                    <article class="cartao-recurso">
+                        <div class="recurso-icone" aria-hidden="true">♫</div>
+                        <h3>Indicadores sonoros</h3>
+                        <p>Sons diferentes podem avisar sobre mudanças, direções, perigos, limites ou acontecimentos importantes. Eles oferecem pistas adicionais para acompanhar a partida sem depender apenas da imagem.</p>
+                        <span class="nota-recurso">Procure por: alertas de áudio, sinais sonoros ou assistência por áudio.</span>
+                    </article>
+
+                    <article class="cartao-recurso">
+                        <div class="recurso-icone" aria-hidden="true">Aa</div>
+                        <h3>Ajustes visuais</h3>
+                        <p>Opções como aumentar textos, mudar cores, personalizar filtros para daltonismo, ampliar legendas e reduzir animações de fundo podem tornar a leitura e a navegação mais confortáveis.</p>
+                        <span class="nota-recurso">Procure por: tamanho do texto, filtros de cor, legendas e interface.</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="destaque-jogo" id="jogo-destaque" aria-labelledby="titulo-jogo">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <span class="etiqueta">Jogo em destaque</span>
+                    <h2 class="titulo-secao" id="titulo-jogo">Acessibilidade visual em Forza Motorsport</h2>
+                    <p class="descricao-secao">Um exemplo de jogo que reúne diferentes opções para personalizar a forma como informações visuais e sonoras são apresentadas.</p>
+                </div>
+
+                <article class="jogo-card">
+                    <div class="jogo-capa" role="img" aria-label="Arte gráfica inspirada em corrida, com o nome Forza Motorsport">
+                        <span class="capa-etiqueta">Corrida e simulação</span>
+                        <div>
+                            <div class="capa-titulo">Forza<br>Motorsport</div>
+                            <div class="capa-subtitulo">ACESSIBILIDADE EM FOCO</div>
+                        </div>
+                    </div>
+
+                    <div class="jogo-info">
+                        <span class="etiqueta">Por que está nesta página?</span>
+                        <h3>Mais controle sobre como receber informações</h3>
+                        <p>Forza Motorsport oferece opções visuais que ajudam a distinguir informações da interface e ler menus e elementos durante a corrida. O jogo também inclui narração de tela, audiodescrição em momentos compatíveis e assistências sonoras para orientar a direção.</p>
+
+                        <ul class="lista-destaque">
+                            <li><span aria-hidden="true">✓</span><span><strong>Modos para daltonismo:</strong> permitem alterar cores da interface e aplicar filtros ao mundo do jogo para protanopia, deuteranopia e tritanopia.</span></li>
+                            <li><span aria-hidden="true">✓</span><span><strong>Contraste e texto:</strong> oferece aumento de contraste, ajuste de contraste do HUD e tamanhos maiores para textos dos menus e da corrida.</span></li>
+                            <li><span aria-hidden="true">✓</span><span><strong>Narrador de tela:</strong> lê elementos da interface e auxilia na navegação dos menus. O suporte de narração inclui o idioma português.</span></li>
+                            <li><span aria-hidden="true">✓</span><span><strong>Audiodescrição:</strong> descreve ações visuais em momentos cinematográficos compatíveis com o recurso.</span></li>
+                            <li><span aria-hidden="true">✓</span><span><strong>Indicadores sonoros:</strong> alertas podem indicar aproximação dos limites da pista, direção incorreta, momento de trocar a marcha e necessidade de desacelerar.</span></li>
+                        </ul>
+
+                        <p class="observacao"><strong>Importante:</strong> a audiodescrição é disponibilizada em momentos cinematográficos compatíveis, e as assistências sonoras são recursos específicos de direção. Isso não significa que toda a experiência do jogo seja descrita por áudio.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="dicas" aria-labelledby="titulo-dicas">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <span class="etiqueta">Na hora de escolher</span>
+                    <h2 class="titulo-secao" id="titulo-dicas">Como descobrir se um jogo oferece esses recursos?</h2>
+                    <p class="descricao-secao">Antes de começar, vale conferir as configurações e procurar informações sobre acessibilidade. Algumas opções ficam disponíveis já no primeiro menu do jogo.</p>
+                </div>
+                <div class="grade-dicas">
+                    <article class="dica">
+                        <strong>1. Explore as configurações</strong>
+                        <p>Procure menus chamados Acessibilidade, Vídeo, Interface, Áudio ou Legendas.</p>
+                    </article>
+                    <article class="dica">
+                        <strong>2. Confira os detalhes</strong>
+                        <p>Veja se o recurso funciona durante toda a partida ou apenas em menus, cenas ou situações específicas.</p>
+                    </article>
+                    <article class="dica">
+                        <strong>3. Teste combinações</strong>
+                        <p>Quando possível, ajuste contraste, tamanho do texto, cores e áudio até encontrar uma configuração confortável.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="proxima-pagina" aria-labelledby="titulo-proxima">
+            <div class="container">
+                <div class="proxima-caixa">
+                    <div>
+                        <span class="etiqueta">Continue explorando</span>
+                        <h2 id="titulo-proxima">Próxima parada: acessibilidade motora</h2>
+                        <p>Conheça recursos que permitem adaptar controles, comandos e movimentos para diferentes necessidades motoras.</p>
+                    </div>
+                    <a class="botao botao-principal" href="acessibilidade-motora.html">Ir para a próxima página <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape-conteudo">
+            <a class="logo" href="index.html">
+                <span class="logo-icone" aria-hidden="true"></span>
+                <span>PlayMundo</span>
+            </a>
+            <p>Jogos, inclusão e novas formas de imaginar.</p>
+            <nav class="rodape-links" aria-label="Links do rodapé">
+                <a href="index.html">Início</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="sobre.html">Contato</a>
+            </nav>
+        </div>
+    </footer>
+
+    <div class="acessibilidade-ferramenta">
+        <div class="painel-acessibilidade" id="painel-acessibilidade" aria-labelledby="titulo-painel" hidden>
+            <div class="painel-topo">
+                <h2 id="titulo-painel">Opções de acessibilidade</h2>
+                <button class="fechar-painel" id="fechar-painel" type="button" aria-label="Fechar painel">×</button>
+            </div>
+            <div class="acoes-acessibilidade">
+                <button type="button" id="aumentar-fonte">Aumentar texto +</button>
+                <button type="button" id="diminuir-fonte">Diminuir texto −</button>
+                <button type="button" id="alternar-contraste" aria-pressed="false">Alto contraste</button>
+            </div>
+            <button class="restaurar-preferencias" type="button" id="restaurar-preferencias">Restaurar padrão</button>
+        </div>
+        <button class="botao-acessibilidade" id="abrir-painel" type="button" aria-expanded="false" aria-controls="painel-acessibilidade">♿ Acessibilidade</button>
+    </div>
+
+    <script>
+        (() => {
+            const chavePreferencias = "playmundo-preferencias-acessibilidade";
+            const painel = document.getElementById("painel-acessibilidade");
+            const botaoAbrir = document.getElementById("abrir-painel");
+            const botaoFechar = document.getElementById("fechar-painel");
+            const botaoAumentar = document.getElementById("aumentar-fonte");
+            const botaoDiminuir = document.getElementById("diminuir-fonte");
+            const botaoContraste = document.getElementById("alternar-contraste");
+            const botaoRestaurar = document.getElementById("restaurar-preferencias");
+
+            let escalaFonte = 1;
+            let altoContraste = false;
+
+            function salvarPreferencias() {
+                const preferencias = { escalaFonte, altoContraste };
+                try {
+                    localStorage.setItem(chavePreferencias, JSON.stringify(preferencias));
+                } catch (erro) {
+                    console.warn("Não foi possível salvar as preferências neste navegador.", erro);
+                }
+            }
+
+            function aplicarPreferencias() {
+                document.documentElement.style.setProperty("--escala-fonte", `${Math.round(escalaFonte * 100)}%`);
+                document.body.classList.toggle("alto-contraste", altoContraste);
+                botaoContraste.setAttribute("aria-pressed", String(altoContraste));
+            }
+
+            function carregarPreferencias() {
+                try {
+                    const salvas = localStorage.getItem(chavePreferencias);
+                    if (salvas) {
+                        const preferencias = JSON.parse(salvas);
+                        if (typeof preferencias.escalaFonte === "number") {
+                            escalaFonte = Math.min(1.3, Math.max(0.9, preferencias.escalaFonte));
+                        }
+                        altoContraste = Boolean(preferencias.altoContraste);
+                    }
+                } catch (erro) {
+                    console.warn("As preferências salvas não puderam ser carregadas.", erro);
+                }
+                aplicarPreferencias();
+            }
+
+            function fecharPainel() {
+                painel.hidden = true;
+                botaoAbrir.setAttribute("aria-expanded", "false");
+                botaoAbrir.focus();
+            }
+
+            botaoAbrir.addEventListener("click", () => {
+                const vaiAbrir = painel.hidden;
+                painel.hidden = !vaiAbrir;
+                botaoAbrir.setAttribute("aria-expanded", String(vaiAbrir));
+                if (vaiAbrir) botaoFechar.focus();
+            });
+
+            botaoFechar.addEventListener("click", fecharPainel);
+
+            document.addEventListener("keydown", (evento) => {
+                if (evento.key === "Escape" && !painel.hidden) fecharPainel();
+            });
+
+            botaoAumentar.addEventListener("click", () => {
+                escalaFonte = Math.min(1.3, Number((escalaFonte + 0.1).toFixed(1)));
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoDiminuir.addEventListener("click", () => {
+                escalaFonte = Math.max(0.9, Number((escalaFonte - 0.1).toFixed(1)));
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoContraste.addEventListener("click", () => {
+                altoContraste = !altoContraste;
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoRestaurar.addEventListener("click", () => {
+                escalaFonte = 1;
+                altoContraste = false;
+                aplicarPreferencias();
+                try {
+                    localStorage.removeItem(chavePreferencias);
+                } catch (erro) {
+                    console.warn("Não foi possível limpar as preferências salvas.", erro);
+                }
+            });
+
+            carregarPreferencias();
+        })();
+    </script>
+</body>
+</html>

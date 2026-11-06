@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Entenda o impacto social dos jogos: acessibilidade, diversidade, sustentabilidade, ODS 10 e 12 e atitudes práticas para incluir mais pessoas.">
+<meta name="theme-color" content="#063B33">
+<title>Impacto Social | PlayMundo</title>
+<style>
+
+:root{--verde-escuro:#063B33;--verde-texto:#17483F;--verde-claro:#EEF8ED;--verde-menta:#B8EFD0;--azul-claro:#B8E4F2;--verde-lima:#D9F65C;--off-white:#F4F6EE;--branco:#fff;--texto-suave:#536B65;--borda:#E1E9E3;--foco:#B08000;--largura-maxima:1280px;--escala-fonte:100%}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:var(--escala-fonte);scroll-behavior:smooth;scroll-padding-top:115px}
+body{min-width:320px;font-family:Arial,Helvetica,sans-serif;line-height:1.6;background:#fff;color:var(--verde-texto)}
+a{color:inherit}button,select{font:inherit}button{cursor:pointer}[hidden]{display:none!important}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--foco);outline-offset:3px}
+.container{width:min(100% - 48px,var(--largura-maxima));margin-inline:auto}
+.pular-conteudo{position:absolute;top:-120px;left:16px;z-index:3000;padding:12px 16px;border-radius:9px;background:#fff;color:#063B33;font-weight:700}.pular-conteudo:focus{top:12px}
+.topo{position:sticky;top:0;z-index:1000;background:var(--verde-claro);border-bottom:1px solid var(--borda)}
+.topo-conteudo{width:min(100% - 48px,1450px);min-height:68px;margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.logo{display:inline-flex;align-items:center;gap:10px;flex-shrink:0;color:var(--verde-texto);font-size:1.15rem;font-weight:800;text-decoration:none;letter-spacing:-.5px}
+.logo-icone{width:16px;height:16px;display:inline-block;border-radius:4px;background:linear-gradient(135deg,#71DFB2,#29AD83);box-shadow:0 2px 7px #17483f2b}
+.menu{display:flex;align-items:center;justify-content:flex-end;gap:17px;overflow-x:auto;scrollbar-width:thin;padding:8px 2px}
+.menu a{flex:0 0 auto;color:var(--verde-texto);font-size:.78rem;font-weight:700;text-decoration:none;transition:color .18s ease}
+.menu a:hover,.menu a[aria-current="page"]{color:#08765D;text-decoration:underline;text-underline-offset:5px}
+.etiqueta{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:#DDF4E6;color:var(--verde-escuro);font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.botao{min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 20px;border:2px solid transparent;border-radius:999px;background:#fff;color:var(--verde-escuro);font-size:.9rem;font-weight:800;text-decoration:none;transition:transform .18s ease,background .18s ease}
+.botao:hover{transform:translateY(-2px);background:var(--verde-menta)}
+.botao-principal{background:var(--verde-escuro);color:#fff}.botao-principal:hover{background:#126B59;color:#fff}
+.hero{position:relative;overflow:hidden;padding:clamp(56px,7vw,100px) 0;background:var(--verde-escuro);color:#fff}
+.hero::before,.hero::after{position:absolute;content:"";pointer-events:none;border-radius:50%;border:1px solid #b8efd035}.hero::before{width:560px;height:560px;top:-410px;right:-70px}.hero::after{width:290px;height:290px;bottom:-180px;left:48%}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);align-items:center;gap:clamp(30px,5vw,80px)}
+.hero .etiqueta{color:#e8f8ed;background:#226b56}.hero h1{max-width:740px;margin:20px 0;font-size:clamp(2.5rem,5.2vw,4.5rem);line-height:1.04;letter-spacing:-2px;color:#fff}.hero p{max-width:610px;color:#DBF1E8;font-size:1.05rem}
+.hero-acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.hero .botao-principal{color:var(--verde-escuro);background:var(--verde-lima)}.hero .botao-principal:hover{background:#e9ff96}.hero .botao-secundario{border-color:#b8efd06b;color:#fff;background:transparent}.hero .botao-secundario:hover{background:#165748}
+.hero-ilustracao{min-height:322px;padding:25px;border:1px solid #ffffff32;border-radius:26px;background:linear-gradient(135deg,#165f4f,#0b4c40 60%,#27765f);box-shadow:0 20px 50px #031d1740}
+.ilustracao-topo{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#daffe6;font-size:.82rem;font-weight:800}.ilustracao-pontos{display:flex;gap:5px}.ilustracao-pontos span{width:9px;height:9px;border-radius:50%;background:#8cc7b5}.ilustracao-pontos span:nth-child(2){background:#b8e4f2}.ilustracao-pontos span:nth-child(3){background:#d9f65c}
+.ilustracao-cartao{margin-top:18px;padding:19px;border-radius:18px;background:#f4fbf4;color:var(--verde-escuro)}.ilustracao-cartao h2{font-size:1rem}.ilustracao-linha{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:13px;font-weight:700;font-size:.8rem}.ilustracao-medidor{width:100%;height:10px;margin-top:7px;border-radius:99px;background:#dae9dd;overflow:hidden}.ilustracao-medidor span{display:block;height:100%;background:#168365;border-radius:99px}.ilustracao-blocos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.ilustracao-blocos div{min-height:70px;padding:12px 5px;border:1px solid #c8e3d0;border-radius:13px;background:#e5f6ea;text-align:center;font-size:.75rem;font-weight:800}.ilustracao-blocos strong{display:block;font-size:1.6rem;line-height:1.1;margin-bottom:5px}.ilustracao-rodape{margin-top:12px;padding:10px 14px;border-radius:12px;border:1px solid #d9f65c5c;color:#e8ffd9;font-size:.8rem;font-weight:700}
+.secao{padding:78px 0}.secao-clara{background:var(--off-white)}
+.cabecalho-secao{margin-bottom:27px}.cabecalho-secao h2{margin-top:11px;color:var(--verde-escuro);font-size:clamp(1.8rem,3vw,2.45rem);line-height:1.16;letter-spacing:-.7px}.cabecalho-secao p{max-width:760px;margin-top:12px;color:var(--texto-suave)}
+
+
+.hero-ilustracao{display:grid;gap:16px;align-content:start}
+.painel-topo-decorativo{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#e4f8eb;font-weight:800;font-size:.85rem}
+.painel-pontos{display:flex;gap:6px}.painel-pontos span{width:9px;height:9px;border-radius:50%;background:#b8efd0}.painel-pontos span:nth-child(2){background:#b8e4f2}.painel-pontos span:nth-child(3){background:#d9f65c}
+.painel-cartao{padding:20px;border-radius:19px;background:#f6fcf6;color:var(--verde-escuro)}.painel-cartao h2{font-size:1.1rem;line-height:1.3}.painel-cartao p{margin-top:7px;font-size:.84rem;color:#466657}
+.painel-medalhas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:19px}
+.painel-medalha{min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:13px 6px;border-radius:13px;background:#e5f6ea;text-align:center;font-size:.75rem;font-weight:800}.painel-medalha:nth-child(2){background:#e1f4fc}.painel-medalha:nth-child(3){background:#edf8c5}.painel-medalha .icone{font-size:1.8rem;line-height:1}
+.painel-frase{padding:13px 16px;border:1px solid #b8efd060;border-radius:12px;color:#eeffdf;font-size:.84rem;font-weight:700}
+.dado-faixa{border-bottom:1px solid var(--borda);background:#e8f5ec}.dado-conteudo{display:grid;grid-template-columns:minmax(130px,.6fr) minmax(130px,.5fr) minmax(0,2.3fr);align-items:center;gap:22px;padding:28px 0}.dado-numero{color:#064c3b;font-weight:900;font-size:clamp(2.05rem,4vw,3.3rem);letter-spacing:-1.5px;line-height:1.05}.dado-titulo{display:block;color:#315c4a;font-size:.76rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em}.dado-conteudo p{color:#335d4d;font-size:.93rem}.dado-conteudo a{font-weight:800;color:#066348;text-underline-offset:3px}
+.trilhas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.trilha{display:flex;flex-direction:column;min-height:305px;padding:28px;border:1px solid var(--borda);border-radius:24px;background:#fff;box-shadow:0 6px 22px #063b3309}.trilha:nth-child(1){border-top:6px solid #73d8ad}.trilha:nth-child(2){border-top:6px solid #93cce9}.trilha:nth-child(3){border-top:6px solid #cfe85a}.trilha-icone{display:grid;place-items:center;width:53px;height:53px;border-radius:16px;background:#dff4e9;font-size:1.6rem}.trilha:nth-child(2) .trilha-icone{background:#e2f5fc}.trilha:nth-child(3) .trilha-icone{background:#eff8c8}.trilha h3{margin:18px 0 10px;color:var(--verde-escuro);font-size:1.27rem}.trilha p{color:var(--texto-suave);font-size:.92rem}.trilha a{margin-top:auto;padding-top:20px;color:#066649;font-size:.89rem;font-weight:800;text-underline-offset:3px}
+.ods-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.ods-card{display:grid;grid-template-columns:86px 1fr;align-items:start;gap:20px;padding:26px;border:1px solid #d9e7df;border-radius:23px;background:#fff}.ods-numero{display:grid;place-items:center;min-height:84px;border-radius:17px;background:#da4163;color:#fff;font-size:2.5rem;font-weight:900}.ods-card:nth-child(2) .ods-numero{background:#b68a27}.ods-card h3{color:var(--verde-escuro);font-size:1.2rem}.ods-card p{margin:8px 0 12px;color:var(--texto-suave);font-size:.91rem}.ods-card a{font-size:.84rem;font-weight:800;color:#066449;text-underline-offset:3px}.ods-aviso{margin-top:20px;font-size:.84rem;color:#536b65}
+.jogos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.jogo-card{overflow:hidden;border:1px solid var(--borda);border-radius:23px;background:#fff;display:flex;flex-direction:column}.jogo-capa{display:grid;place-items:center;min-height:155px;padding:20px;text-align:center;color:#fff;position:relative;overflow:hidden}.jogo-capa::after{content:"";position:absolute;width:200px;height:200px;right:-65px;top:-120px;border:2px solid #ffffff35;border-radius:50%}.capa-forza{background:linear-gradient(135deg,#0f3758,#166d79 65%,#65bca8)}.capa-venba{background:linear-gradient(135deg,#733958,#ba6d66 65%,#eeb872)}.capa-terra{background:linear-gradient(135deg,#20583d,#33855a 65%,#a2bf75)}.jogo-simbolo{font-size:3.2rem;line-height:1.1;text-shadow:0 5px 15px #0003}.jogo-conteudo{padding:23px;display:flex;flex-direction:column;flex:1}.jogo-conteudo .etiqueta{align-self:flex-start;text-transform:none;font-size:.68rem;letter-spacing:0}.jogo-conteudo h3{margin:12px 0 8px;color:var(--verde-escuro);font-size:1.25rem}.jogo-conteudo p{color:var(--texto-suave);font-size:.89rem}.jogo-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;padding-top:18px}.jogo-links a{font-weight:800;font-size:.82rem;color:#066348;text-underline-offset:3px}
+.plano-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:24px;align-items:start}.plano-criador,.plano-resultado{padding:29px;border:1px solid var(--borda);border-radius:23px;background:#fff}.plano-criador h3,.plano-resultado h3{font-size:1.22rem;color:var(--verde-escuro)}.plano-criador p,.plano-resultado p{margin-top:8px;color:var(--texto-suave);font-size:.9rem}.plano-criador label{display:block;margin:20px 0 8px;font-size:.86rem;font-weight:800;color:var(--verde-escuro)}.plano-criador select{width:100%;min-height:50px;padding:11px 13px;border:1.5px solid #9fcab5;border-radius:12px;background:#fff;color:var(--verde-escuro)}.ideia-atual{min-height:128px;margin:17px 0;padding:18px;border-left:5px solid #228d69;border-radius:14px;background:#eff9f1}.ideia-atual strong{display:block;color:#064a3c;font-size:.87rem}.ideia-atual p{margin-top:7px;color:#274e42;font-size:.96rem;font-weight:700}.plano-botoes{display:flex;flex-wrap:wrap;gap:10px}.plano-botoes .botao{font-size:.83rem}.botao-alternativo{border:1px solid #9dc5b1;background:#e7f7ec}.plano-contagem{display:inline-flex;margin-top:14px;color:#456858;font-size:.84rem;font-weight:800}.lista-plano{display:grid;gap:12px;margin:17px 0 0;list-style:none}.lista-plano li{display:flex;align-items:start;justify-content:space-between;gap:14px;padding:14px;border:1px solid #cbe5d5;border-radius:14px;background:#f3fbf5}.lista-plano strong{display:block;color:var(--verde-escuro);font-size:.79rem}.lista-plano span{display:block;margin-top:4px;color:#355949;font-size:.87rem}.lista-plano button{flex-shrink:0;padding:7px 11px;border:1px solid #a5c7b3;border-radius:9px;background:#fff;color:#17483f;font-size:.77rem;font-weight:800}.plano-vazio{margin-top:19px;padding:24px;border:2px dashed #c3dfce;border-radius:14px;text-align:center;color:#547263}.plano-acoes-finais{display:flex;flex-wrap:wrap;align-items:center;gap:13px;margin-top:18px}.plano-acoes-finais button{padding:8px 12px;border:1px solid #9dc5b1;border-radius:9px;background:#fff;color:var(--verde-escuro);font-size:.83rem;font-weight:800}.plano-status{font-size:.8rem;color:#416c58}
+.fontes-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.fonte-card{padding:23px;border:1px solid var(--borda);border-radius:17px;background:#fff}.fonte-card small{display:block;margin-bottom:8px;color:#517565;font-weight:800;text-transform:uppercase;letter-spacing:.05em}.fonte-card h3{margin-bottom:8px;font-size:1rem;color:var(--verde-escuro)}.fonte-card p{font-size:.85rem;color:var(--texto-suave)}.fonte-card a{display:inline-block;margin-top:14px;font-size:.83rem;font-weight:800;color:#066348;text-underline-offset:3px}
+.proxima{padding:56px 0;background:#e9f7ec}.proxima-caixa{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:34px;border-radius:25px;background:#063b33;color:#fff}.proxima-caixa h2{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.2}.proxima-caixa p{margin-top:8px;color:#d4efe0;font-size:.92rem}.proxima-caixa .botao{background:var(--verde-lima);color:var(--verde-escuro)}
+body.alto-contraste{background:#000;color:#fff}body.alto-contraste .topo,body.alto-contraste .secao,body.alto-contraste .secao-clara,body.alto-contraste .dado-faixa,body.alto-contraste .trilha,body.alto-contraste .ods-card,body.alto-contraste .jogo-card,body.alto-contraste .plano-criador,body.alto-contraste .plano-resultado,body.alto-contraste .plano-vazio,body.alto-contraste .lista-plano li,body.alto-contraste .ideia-atual,body.alto-contraste .fonte-card,body.alto-contraste .proxima,body.alto-contraste .proxima-caixa,body.alto-contraste .painel-acessibilidade{background:#000;color:#fff;border-color:#fff}
+body.alto-contraste .logo,body.alto-contraste .menu a,body.alto-contraste h2,body.alto-contraste h3,body.alto-contraste .cabecalho-secao p,body.alto-contraste .dado-numero,body.alto-contraste .dado-titulo,body.alto-contraste .dado-conteudo p,body.alto-contraste .trilha p,body.alto-contraste .ods-card p,body.alto-contraste .jogo-conteudo p,body.alto-contraste .plano-criador p,body.alto-contraste .plano-resultado p,body.alto-contraste .plano-criador label,body.alto-contraste .ideia-atual strong,body.alto-contraste .ideia-atual p,body.alto-contraste .lista-plano strong,body.alto-contraste .lista-plano span,body.alto-contraste .plano-vazio,body.alto-contraste .plano-contagem,body.alto-contraste .plano-status,body.alto-contraste .fonte-card p,body.alto-contraste .proxima-caixa p,body.alto-contraste .ods-aviso{color:#fff}
+body.alto-contraste .trilha a,body.alto-contraste .ods-card a,body.alto-contraste .jogo-links a,body.alto-contraste .fonte-card a,body.alto-contraste .dado-conteudo a{color:#ffff69}
+body.alto-contraste .botao,body.alto-contraste .plano-criador select,body.alto-contraste .plano-resultado button,body.alto-contraste .plano-botoes button,body.alto-contraste .botao-acessibilidade,body.alto-contraste .painel-acessibilidade button{background:#111;color:#fff;border:2px solid #fff}
+body.alto-contraste .etiqueta,body.alto-contraste .painel-medalha,body.alto-contraste .ods-numero{background:#222;color:#fff;border:1px solid #fff}
+@media(max-width:1100px){.topo-conteudo{flex-direction:column;align-items:flex-start;gap:5px;padding:13px 0 8px}.menu{width:100%;justify-content:flex-start}.dado-conteudo{grid-template-columns:repeat(2,minmax(0,1fr))}.dado-conteudo p{grid-column:1/-1}}
+@media(max-width:850px){.hero-grid,.plano-grid{grid-template-columns:1fr}.hero-ilustracao{min-height:260px}.trilhas,.jogos-grid{grid-template-columns:1fr 1fr}.ods-grid{grid-template-columns:1fr}.fontes-grid{grid-template-columns:1fr 1fr}.proxima-caixa{flex-direction:column;align-items:flex-start}}
+@media(max-width:620px){.container,.topo-conteudo{width:min(100% - 32px,var(--largura-maxima))}.hero{padding:55px 0}.hero h1{letter-spacing:-1px}.hero-acoes{flex-direction:column}.hero-acoes .botao{width:100%}.secao{padding:58px 0}.dado-conteudo{gap:14px;padding:24px 0}.dado-numero{font-size:2rem}.trilhas,.jogos-grid,.fontes-grid{grid-template-columns:1fr}.trilha{min-height:unset}.ods-card{grid-template-columns:64px 1fr;gap:15px;padding:19px}.ods-numero{min-height:64px;font-size:1.95rem}.plano-criador,.plano-resultado{padding:21px}.plano-botoes .botao{width:100%}.proxima-caixa{padding:28px 22px}.proxima-caixa .botao{width:100%}.rodape-conteudo{flex-direction:column;align-items:flex-start}.acessibilidade-ferramenta{right:12px;bottom:12px}.painel-medalha{min-height:88px}.painel-medalha .icone{font-size:1.5rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+.rodape{padding:26px 0;background:var(--verde-escuro);color:#e4f6e9}.rodape-conteudo{display:flex;justify-content:space-between;align-items:center;gap:20px}.rodape .logo{color:#fff}.rodape p{font-size:.82rem}.rodape-links{display:flex;flex-wrap:wrap;gap:17px}.rodape-links a{font-size:.82rem;font-weight:700;text-decoration:none}.rodape-links a:hover{text-decoration:underline}
+.acessibilidade-ferramenta{position:fixed;right:20px;bottom:20px;z-index:1100}.botao-acessibilidade{min-height:48px;padding:11px 17px;border:2px solid #fff;border-radius:999px;background:var(--verde-escuro);color:#fff;box-shadow:0 5px 18px #0000002b;font-size:.85rem;font-weight:800}.painel-acessibilidade{width:min(310px,calc(100vw - 32px));margin-bottom:10px;padding:20px;border:1px solid var(--borda);border-radius:18px;background:#fff;box-shadow:0 10px 35px #00000024}.painel-topo{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.painel-topo h2{color:var(--verde-escuro);font-size:1.05rem}.fechar-painel{width:32px;height:32px;border:0;border-radius:50%;color:var(--verde-escuro);background:var(--verde-claro);font-size:1.15rem}.acoes-acessibilidade{display:grid;grid-template-columns:1fr 1fr;gap:9px}.acoes-acessibilidade button,.restaurar-preferencias{min-height:42px;padding:8px 10px;border:1px solid var(--borda);border-radius:10px;color:var(--verde-escuro);background:var(--verde-claro);font-size:.8rem;font-weight:700}.restaurar-preferencias{width:100%;margin-top:9px;background:#fff}
+
+</style>
+</head>
+<body>
+
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo principal</a>
+<header class="topo"><div class="topo-conteudo"><a aria-label="PlayMundo — página inicial" class="logo" href="index.html"><span aria-hidden="true" class="logo-icone"></span><span>PlayMundo</span></a><nav aria-label="Navegação principal" class="menu"><a href="index.html">Início</a><a href="acessibilidade-visual.html">Visual</a><a href="acessibilidade-motora.html">Motora</a><a href="acessibilidade-auditiva.html">Auditiva</a><a href="acessibilidade-cognitiva.html">Cognitiva</a><a href="catalogo.html">Jogos</a><a href="comparacao.html">Comparar</a><a href="guia.html">Guia</a><a aria-current="page" href="impacto.html">Impacto</a><a href="sobre.html">Sobre</a></nav></div></header>
+<main id="conteudo">
+<section class="hero" aria-labelledby="titulo-principal">
+<div class="container hero-grid">
+<div>
+<span class="etiqueta">Impacto social e sustentabilidade</span>
+<h1 id="titulo-principal">O impacto vai além da tela.</h1>
+<p>Jogos podem abrir conversas sobre respeito, inclusão e meio ambiente. Aqui, você descobre como escolhas de design e boas histórias ajudam a imaginar um mundo mais acessível.</p>
+<div class="hero-acoes"><a class="botao botao-principal" href="#caminhos">Explorar o impacto ↓</a><a class="botao botao-secundario" href="#plano">Montar meu plano</a></div>
+</div>
+<div class="hero-ilustracao" aria-label="Ilustração das três frentes do PlayMundo: acesso, representação e planeta" role="img">
+<div class="painel-topo-decorativo"><span>Um universo com espaço para mais pessoas</span><span class="painel-pontos" aria-hidden="true"><span></span><span></span><span></span></span></div>
+<div class="painel-cartao"><h2>Três maneiras de transformar a experiência</h2><p>Pequenas escolhas podem ampliar quem participa, quem se vê e o que aprendemos.</p><div class="painel-medalhas"><div class="painel-medalha"><span class="icone" aria-hidden="true">♿</span>Acesso</div><div class="painel-medalha"><span class="icone" aria-hidden="true">🤝</span>Representação</div><div class="painel-medalha"><span class="icone" aria-hidden="true">🌱</span>Planeta</div></div></div>
+<div class="painel-frase">★ Jogar também pode ser um jeito de conhecer outras realidades.</div>
+</div></div>
+</section>
+<div class="dado-faixa"><div class="container dado-conteudo"><div><span class="dado-titulo">Brasil · Censo 2022</span><strong class="dado-numero">14,4 milhões</strong></div><div><span class="dado-titulo">Pessoas com deficiência</span><strong class="dado-numero">7,3%</strong></div><p>Segundo os resultados preliminares do IBGE, esses números se referem à população brasileira com <strong>2 anos ou mais</strong>. Não são uma estimativa de jogadores: ajudam a dimensionar por que inclusão e acessibilidade importam em toda a sociedade. <a href="https://educa.ibge.gov.br/jovens/materias-especiais/22695-censo-2022-7-3-da-populacao-com-2-anos-ou-mais-tinha-alguma-deficiencia.html" target="_blank" rel="noopener noreferrer">Consultar o IBGE ↗</a></p></div></div>
+<section class="secao" id="caminhos" aria-labelledby="titulo-caminhos"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Além do entretenimento</span><h2 id="titulo-caminhos">Três caminhos para um universo mais inclusivo</h2><p>O impacto não depende de uma única função ou de um único tipo de jogo. Ele pode aparecer nas possibilidades de acesso, nas histórias contadas e nos assuntos que uma experiência desperta.</p></div><div class="trilhas">
+<article class="trilha"><div class="trilha-icone" aria-hidden="true">♿</div><h3>Acessibilidade é participação</h3><p>Legendas, narração, remapeamento de comandos e ajustes de ritmo podem diminuir barreiras. O objetivo é oferecer mais maneiras de aproveitar uma experiência, respeitando diferentes necessidades.</p><a href="guia.html">Aprender a configurar recursos ↗</a></article>
+<article class="trilha"><div class="trilha-icone" aria-hidden="true">🗣️</div><h3>Diversidade cria novas perspectivas</h3><p>Personagens, culturas e histórias variadas permitem conhecer vivências diferentes. Representatividade não substitui pesquisa nem escuta, mas ajuda a ampliar as narrativas que encontramos nos jogos.</p><a href="catalogo.html">Explorar histórias no catálogo ↗</a></article>
+<article class="trilha"><div class="trilha-icone" aria-hidden="true">🌿</div><h3>Sustentabilidade gera reflexão</h3><p>Jogos com temas ambientais podem inspirar perguntas sobre restauração, consumo e cuidado com a natureza. Uma mensagem dentro do jogo não significa, por si só, que sua produção seja ambientalmente sustentável.</p><a href="#jogos-impacto">Conhecer exemplos ↗</a></article>
+</div></div></section>
+<section class="secao secao-clara" id="ods" aria-labelledby="titulo-ods"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Agenda 2030 da ONU</span><h2 id="titulo-ods">Como o PlayMundo se relaciona aos ODS</h2><p>Nosso projeto educacional dialoga especialmente com dois Objetivos de Desenvolvimento Sustentável. Essa relação é temática: não significa que o site já tenha alcançado metas da ONU.</p></div><div class="ods-grid">
+<article class="ods-card"><span class="ods-numero" aria-label="ODS 10">10</span><div><h3>Redução das desigualdades</h3><p>A meta 10.2 propõe promover inclusão social, econômica e política para todas as pessoas, incluindo pessoas com deficiência. O PlayMundo contribui com informação sobre barreiras e opções de acessibilidade nos jogos.</p><a href="https://brasil.un.org/pt-br/sdgs/10" target="_blank" rel="noopener noreferrer">Conhecer o ODS 10 na ONU ↗</a></div></article>
+<article class="ods-card"><span class="ods-numero" aria-label="ODS 12">12</span><div><h3>Consumo e produção responsáveis</h3><p>O ODS 12 trata de padrões sustentáveis. No PlayMundo, a conexão aparece na divulgação de jogos que abordam preservação ambiental e no estímulo à reflexão sobre escolhas de consumo.</p><a href="https://brasil.un.org/pt-br/sdgs/12" target="_blank" rel="noopener noreferrer">Conhecer o ODS 12 na ONU ↗</a></div></article>
+</div><p class="ods-aviso">O PlayMundo é um projeto informativo sobre jogos e inclusão. Não é uma entidade da ONU e não apresenta resultados sociais medidos até o momento.</p></div></section>
+<section class="secao" id="jogos-impacto" aria-labelledby="titulo-jogos"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Histórias e possibilidades</span><h2 id="titulo-jogos">Três jogos, três conversas importantes</h2><p>Cada exemplo se destaca por um motivo diferente. O tema de uma história e os recursos técnicos de acessibilidade são coisas distintas.</p></div><div class="jogos-grid">
+<article class="jogo-card"><div class="jogo-capa capa-forza" aria-hidden="true"><span class="jogo-simbolo">🏎️</span></div><div class="jogo-conteudo"><span class="etiqueta">Acessibilidade</span><h3>Forza Motorsport</h3><p>Mostra como recursos como narração de menus e assistências de direção podem oferecer mais formas de participar de um jogo de corrida.</p><div class="jogo-links"><a href="acessibilidade-visual.html">Ver recursos no PlayMundo ↗</a></div></div></article>
+<article class="jogo-card"><div class="jogo-capa capa-venba" aria-hidden="true"><span class="jogo-simbolo">🍲</span></div><div class="jogo-conteudo"><span class="etiqueta">Diversidade</span><h3>Venba</h3><p>Uma narrativa de culinária sobre uma família indiana que migra para o Canadá, explorando memórias, identidade e vínculos culturais.</p><div class="jogo-links"><a href="catalogo.html">Ver no catálogo ↗</a><a href="https://www.xbox.com/pt-BR/games/store/venba/9P5P55S7HB9S" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a></div></div></article>
+<article class="jogo-card"><div class="jogo-capa capa-terra" aria-hidden="true"><span class="jogo-simbolo">🌱</span></div><div class="jogo-conteudo"><span class="etiqueta">Meio ambiente</span><h3>Terra Nil</h3><p>Propõe recuperar paisagens degradadas e reconstruir ecossistemas, colocando a restauração ambiental no centro da experiência.</p><div class="jogo-links"><a href="catalogo.html">Ver no catálogo ↗</a><a href="https://www.devolverdigital.com/games/terra-nil" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a></div></div></article>
+</div></div></section>
+<section class="secao secao-clara" id="plano" aria-labelledby="titulo-plano"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Participe de um jeito simples</span><h2 id="titulo-plano">Monte seu plano de impacto</h2><p>Escolha atitudes que façam sentido para você. É uma ferramenta de reflexão, não uma pesquisa ou contador de ações realizadas. Suas escolhas ficam salvas apenas neste navegador.</p></div><div class="plano-grid"><div class="plano-criador"><h3>Escolha um tema</h3><p>Veja uma sugestão de atitude e personalize sua lista.</p><label for="tema-acao">Quero começar por</label><select id="tema-acao"><option value="inclusao">Inclusão e acessibilidade</option><option value="diversidade">Diversidade e respeito</option><option value="sustentabilidade">Consciência ambiental</option></select><div class="ideia-atual" aria-live="polite"><strong id="rotulo-ideia">Inclusão e acessibilidade</strong><p id="texto-ideia">Conhecer os recursos de acessibilidade de um jogo antes de recomendá-lo.</p></div><div class="plano-botoes"><button class="botao botao-alternativo" type="button" id="outra-ideia">Ver outra sugestão</button><button class="botao botao-principal" type="button" id="adicionar-ideia">Adicionar ao meu plano +</button></div><span class="plano-contagem" id="contador-plano">0 de 3 atitudes escolhidas</span></div><div class="plano-resultado"><h3>Meu plano de impacto</h3><p>Você pode adicionar até três atitudes, remover itens e retomar sua lista mais tarde.</p><div class="plano-vazio" id="plano-vazio">Sua lista ainda está vazia. Escolha uma sugestão para começar.</div><ul class="lista-plano" id="lista-plano" aria-label="Atitudes escolhidas" aria-live="polite"></ul><div class="plano-acoes-finais"><button id="limpar-plano" type="button">Limpar meu plano</button><span class="plano-status" id="status-plano" role="status" aria-live="polite">As escolhas ficam neste navegador.</span></div></div></div></div></section>
+<section class="secao" id="fontes" aria-labelledby="titulo-fontes"><div class="container"><div class="cabecalho-secao"><span class="etiqueta">Referências confiáveis</span><h2 id="titulo-fontes">Quer se aprofundar?</h2><p>Estas fontes ajudam a diferenciar dados estatísticos, metas públicas e exemplos de jogos. Sempre confira o contexto e a data das informações.</p></div><div class="fontes-grid"><article class="fonte-card"><small>Dados públicos · IBGE</small><h3>Pessoas com deficiência no Censo 2022</h3><p>Resultados preliminares da amostra, publicados em 2025, para a população com dois anos ou mais.</p><a href="https://educa.ibge.gov.br/jovens/materias-especiais/22695-censo-2022-7-3-da-populacao-com-2-anos-ou-mais-tinha-alguma-deficiencia.html" target="_blank" rel="noopener noreferrer">Ler no IBGE ↗</a></article><article class="fonte-card"><small>Agenda 2030 · ONU</small><h3>ODS 10 — Redução das desigualdades</h3><p>Apresenta as metas de inclusão e igualdade de oportunidades relacionadas ao nosso tema.</p><a href="https://brasil.un.org/pt-br/sdgs/10" target="_blank" rel="noopener noreferrer">Ler na ONU ↗</a></article><article class="fonte-card"><small>Agenda 2030 · ONU</small><h3>ODS 12 — Consumo e produção responsáveis</h3><p>Reúne metas de consumo consciente, prevenção de resíduos e informação ambiental.</p><a href="https://brasil.un.org/pt-br/sdgs/12" target="_blank" rel="noopener noreferrer">Ler na ONU ↗</a></article></div></div></section>
+<section class="proxima" aria-labelledby="titulo-proxima"><div class="container"><div class="proxima-caixa"><div><h2 id="titulo-proxima">Conheça quem está por trás do PlayMundo</h2><p>Veja o propósito do projeto, como entrar em contato e como participar.</p></div><a class="botao" href="sobre.html">Próxima página: Sobre →</a></div></div></section>
+</main>
+<footer class="rodape"><div class="container rodape-conteudo"><a class="logo" href="index.html"><span aria-hidden="true" class="logo-icone"></span><span>PlayMundo</span></a><p>Jogos, inclusão e novas formas de imaginar.</p><nav aria-label="Links do rodapé" class="rodape-links"><a href="index.html">Início</a><a href="catalogo.html">Catálogo</a><a href="sobre.html">Contato</a></nav></div></footer>
+<div class="acessibilidade-ferramenta"><div aria-labelledby="titulo-painel" class="painel-acessibilidade" hidden="" id="painel-acessibilidade"><div class="painel-topo"><h2 id="titulo-painel">Opções de acessibilidade</h2><button aria-label="Fechar painel" class="fechar-painel" id="fechar-painel" type="button">×</button></div><div class="acoes-acessibilidade"><button id="aumentar-fonte" type="button">Aumentar texto +</button><button id="diminuir-fonte" type="button">Diminuir texto −</button><button aria-pressed="false" id="alternar-contraste" type="button">Alto contraste</button></div><button class="restaurar-preferencias" id="restaurar-preferencias" type="button">Restaurar padrão</button></div><button aria-controls="painel-acessibilidade" aria-expanded="false" class="botao-acessibilidade" id="abrir-painel" type="button">♿ Acessibilidade</button></div>
+
+<script>
+(() => {
+    const chavePreferencias = "playmundo-preferencias-acessibilidade";
+    const painel = document.getElementById("painel-acessibilidade");
+    const botaoAbrir = document.getElementById("abrir-painel");
+    const botaoFechar = document.getElementById("fechar-painel");
+    const botaoAumentar = document.getElementById("aumentar-fonte");
+    const botaoDiminuir = document.getElementById("diminuir-fonte");
+    const botaoContraste = document.getElementById("alternar-contraste");
+    const botaoRestaurar = document.getElementById("restaurar-preferencias");
+    let escalaFonte = 1;
+    let altoContraste = false;
+
+    function salvarPreferencias() {
+        try { localStorage.setItem(chavePreferencias, JSON.stringify({ escalaFonte, altoContraste })); }
+        catch (erro) { console.warn("Não foi possível salvar as preferências neste navegador.", erro); }
+    }
+    function aplicarPreferencias() {
+        document.documentElement.style.setProperty("--escala-fonte", `${Math.round(escalaFonte * 100)}%`);
+        document.body.classList.toggle("alto-contraste", altoContraste);
+        botaoContraste.setAttribute("aria-pressed", String(altoContraste));
+    }
+    function carregarPreferencias() {
+        try {
+            const salvas = localStorage.getItem(chavePreferencias);
+            if (salvas) {
+                const preferencias = JSON.parse(salvas);
+                if (typeof preferencias.escalaFonte === "number") escalaFonte = Math.min(1.3, Math.max(.9, preferencias.escalaFonte));
+                altoContraste = Boolean(preferencias.altoContraste);
+            }
+        } catch (erro) { console.warn("As preferências salvas não puderam ser carregadas.", erro); }
+        aplicarPreferencias();
+    }
+    function fecharPainel() {
+        painel.hidden = true;
+        botaoAbrir.setAttribute("aria-expanded", "false");
+        botaoAbrir.focus();
+    }
+    botaoAbrir.addEventListener("click", () => {
+        const vaiAbrir = painel.hidden;
+        painel.hidden = !vaiAbrir;
+        botaoAbrir.setAttribute("aria-expanded", String(vaiAbrir));
+        if (vaiAbrir) botaoFechar.focus();
+    });
+    botaoFechar.addEventListener("click", fecharPainel);
+    document.addEventListener("keydown", evento => {
+        if (evento.key === "Escape" && !painel.hidden) fecharPainel();
+    });
+    botaoAumentar.addEventListener("click", () => {
+        escalaFonte = Math.min(1.3, Number((escalaFonte + .1).toFixed(1)));
+        aplicarPreferencias();
+        salvarPreferencias();
+    });
+    botaoDiminuir.addEventListener("click", () => {
+        escalaFonte = Math.max(.9, Number((escalaFonte - .1).toFixed(1)));
+        aplicarPreferencias();
+        salvarPreferencias();
+    });
+    botaoContraste.addEventListener("click", () => {
+        altoContraste = !altoContraste;
+        aplicarPreferencias();
+        salvarPreferencias();
+    });
+    botaoRestaurar.addEventListener("click", () => {
+        escalaFonte = 1;
+        altoContraste = false;
+        aplicarPreferencias();
+        try { localStorage.removeItem(chavePreferencias); }
+        catch (erro) { console.warn("Não foi possível limpar as preferências salvas.", erro); }
+    });
+    carregarPreferencias();
+})();
+
+(() => {
+    const ideias = {
+        inclusao: [
+            { id: "i1", texto: "Conhecer os recursos de acessibilidade de um jogo antes de recomendá-lo." },
+            { id: "i2", texto: "Compartilhar o guia de acessibilidade com alguém que possa se beneficiar dele." },
+            { id: "i3", texto: "Perguntar às pessoas quais opções facilitariam sua experiência, sem presumir suas necessidades." }
+        ],
+        diversidade: [
+            { id: "d1", texto: "Explorar um jogo que apresente culturas ou experiências diferentes das minhas." },
+            { id: "d2", texto: "Valorizar personagens e histórias com diferentes perspectivas." },
+            { id: "d3", texto: "Conversar com respeito sobre representatividade e escutar outras experiências." }
+        ],
+        sustentabilidade: [
+            { id: "s1", texto: "Conhecer um jogo que incentive reflexão sobre preservação da natureza." },
+            { id: "s2", texto: "Pesquisar formas responsáveis de conservar, doar ou descartar equipamentos eletrônicos." },
+            { id: "s3", texto: "Conversar sobre o impacto ambiental do consumo e o uso consciente de recursos." }
+        ]
+    };
+    const nomes = { inclusao: "Inclusão e acessibilidade", diversidade: "Diversidade e respeito", sustentabilidade: "Consciência ambiental" };
+    const categoria = document.getElementById("tema-acao");
+    const rotulo = document.getElementById("rotulo-ideia");
+    const texto = document.getElementById("texto-ideia");
+    const botaoOutra = document.getElementById("outra-ideia");
+    const botaoAdicionar = document.getElementById("adicionar-ideia");
+    const lista = document.getElementById("lista-plano");
+    const vazio = document.getElementById("plano-vazio");
+    const contador = document.getElementById("contador-plano");
+    const status = document.getElementById("status-plano");
+    const botaoLimpar = document.getElementById("limpar-plano");
+    const chave = "playmundo-impacto-plano";
+    const indice = { inclusao: 0, diversidade: 0, sustentabilidade: 0 };
+    let plano = [];
+    const todas = Object.entries(ideias).flatMap(([tema, valores]) => valores.map(valor => ({ ...valor, tema })));
+
+    function sugestaoAtual() {
+        return ideias[categoria.value][indice[categoria.value]];
+    }
+    function atualizarSugestao() {
+        const item = sugestaoAtual();
+        rotulo.textContent = nomes[categoria.value];
+        texto.textContent = item.texto;
+        botaoAdicionar.disabled = plano.length >= 3 || plano.includes(item.id);
+        botaoAdicionar.textContent = plano.includes(item.id) ? "Já está no meu plano ✓" : "Adicionar ao meu plano +";
+    }
+    function salvar() {
+        try {
+            localStorage.setItem(chave, JSON.stringify(plano));
+            status.textContent = "Seu plano foi salvo neste navegador.";
+        } catch (erro) {
+            status.textContent = "O navegador não permitiu salvar o plano.";
+        }
+    }
+    function exibirPlano() {
+        lista.replaceChildren();
+        vazio.hidden = plano.length > 0;
+        plano.forEach(id => {
+            const item = todas.find(ideia => ideia.id === id);
+            if (!item) return;
+            const li = document.createElement("li");
+            const bloco = document.createElement("div");
+            const titulo = document.createElement("strong");
+            titulo.textContent = nomes[item.tema];
+            const descricao = document.createElement("span");
+            descricao.textContent = item.texto;
+            bloco.append(titulo, descricao);
+            const botao = document.createElement("button");
+            botao.type = "button";
+            botao.textContent = "Remover";
+            botao.dataset.remover = id;
+            botao.setAttribute("aria-label", `Remover atitude: ${item.texto}`);
+            li.append(bloco, botao);
+            lista.appendChild(li);
+        });
+        contador.textContent = `${plano.length} de 3 atitudes escolhidas`;
+        botaoLimpar.disabled = plano.length === 0;
+        atualizarSugestao();
+    }
+    try {
+        const salvas = JSON.parse(localStorage.getItem(chave) || "[]");
+        if (Array.isArray(salvas)) {
+            plano = [...new Set(salvas.filter(id => typeof id === "string" && todas.some(ideia => ideia.id === id)))].slice(0, 3);
+        }
+    } catch (erro) {
+        status.textContent = "Não foi possível recuperar o plano anterior.";
+    }
+    exibirPlano();
+    categoria.addEventListener("change", atualizarSugestao);
+    botaoOutra.addEventListener("click", () => {
+        indice[categoria.value] = (indice[categoria.value] + 1) % ideias[categoria.value].length;
+        atualizarSugestao();
+    });
+    botaoAdicionar.addEventListener("click", () => {
+        const atual = sugestaoAtual();
+        if (plano.length >= 3 || plano.includes(atual.id)) return;
+        plano.push(atual.id);
+        salvar();
+        exibirPlano();
+    });
+    lista.addEventListener("click", evento => {
+        const botao = evento.target.closest("button[data-remover]");
+        if (!botao) return;
+        plano = plano.filter(id => id !== botao.dataset.remover);
+        salvar();
+        exibirPlano();
+    });
+    botaoLimpar.addEventListener("click", () => {
+        plano = [];
+        try {
+            localStorage.removeItem(chave);
+            status.textContent = "Seu plano foi apagado deste navegador.";
+        } catch (erro) {
+            status.textContent = "O navegador não permitiu limpar o armazenamento.";
+        }
+        exibirPlano();
+    });
+})();
+
+</script>
+</body>
+</html>

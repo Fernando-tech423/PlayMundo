@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PlayMundo: descubra jogos que exploram acessibilidade, sustentabilidade e diversidade.">
+    <meta name="theme-color" content="#063B33">
+    <title>PlayMundo | Jogos para todos</title>
+
+    <style>
+    
+
+        :root {
+            --verde-escuro: #063B33;
+            --verde-texto: #17483F;
+            --verde-claro: #EEF8ED;
+            --verde-menta: #B8EFD0;
+            --azul-claro: #B8E4F2;
+            --verde-lima: #D9F65C;
+            --off-white: #F4F6EE;
+            --branco: #FFFFFF;
+            --texto-suave: #536B65;
+            --borda: #E1E9E3;
+            --foco: #B08000;
+            --raio: 18px;
+            --largura-maxima: 1280px;
+            --escala-fonte: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: var(--escala-fonte);
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            min-width: 320px;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: var(--verde-texto);
+            background: var(--branco);
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: inherit; }
+        button { font: inherit; }
+
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--foco);
+            outline-offset: 4px;
+        }
+
+        .container {
+            width: min(100% - 48px, var(--largura-maxima));
+            margin-inline: auto;
+        }
+
+        .pular-conteudo {
+            position: absolute;
+            top: -100px;
+            left: 16px;
+            z-index: 3000;
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: var(--verde-escuro);
+            background: var(--branco);
+            font-weight: 700;
+        }
+
+        .pular-conteudo:focus { top: 12px; }
+
+       
+        .topo {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--verde-claro);
+            border-bottom: 1px solid var(--borda);
+        }
+
+        .topo-conteudo {
+            width: min(100% - 48px, 1450px);
+            min-height: 68px;
+            margin-inline: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            color: var(--verde-texto);
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icone {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #71DFB2, #29AD83);
+            box-shadow: 0 2px 7px #17483f2b;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 17px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            padding: 8px 2px;
+        }
+
+        .menu a {
+            flex: 0 0 auto;
+            color: var(--verde-texto);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+
+        .menu a:hover,
+        .menu a[aria-current="page"] {
+            color: #08765D;
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+
+        
+        .etiqueta {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            color: var(--verde-escuro);
+            background: #DDF4E6;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .titulo-secao {
+            color: var(--verde-escuro);
+            font-size: clamp(1.65rem, 3vw, 2.25rem);
+            line-height: 1.2;
+            letter-spacing: -0.7px;
+        }
+
+        .descricao-secao {
+            max-width: 700px;
+            margin-top: 12px;
+            color: var(--texto-suave);
+            font-size: 1rem;
+        }
+
+        .cabecalho-secao { margin-bottom: 30px; }
+
+        .botao {
+            min-height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 11px 20px;
+            border: 2px solid transparent;
+            border-radius: 999px;
+            background: var(--branco);
+            color: var(--verde-escuro);
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 180ms ease, background 180ms ease;
+        }
+
+        .botao:hover {
+            transform: translateY(-2px);
+            background: var(--verde-menta);
+        }
+
+        .botao-principal {
+            color: var(--branco);
+            background: var(--verde-escuro);
+        }
+
+        .botao-principal:hover {
+            color: var(--branco);
+            background: #126B59;
+        }
+
+        .botao-claro {
+            color: var(--verde-escuro);
+            background: var(--branco);
+        }
+
+        .botao-claro:hover { background: var(--verde-menta); }
+
+        
+        .inicio {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: clamp(64px, 8vw, 112px) 0;
+            color: var(--branco);
+            background: var(--verde-escuro);
+        }
+
+        .inicio::before,
+        .inicio::after {
+            position: absolute;
+            z-index: -1;
+            content: "";
+            border: 1px solid #b8efd02b;
+            border-radius: 50%;
+        }
+
+        .inicio::before {
+            width: 520px;
+            height: 520px;
+            top: -300px;
+            right: -80px;
+        }
+
+        .inicio::after {
+            width: 330px;
+            height: 330px;
+            right: 16%;
+            bottom: -250px;
+        }
+
+        .inicio-conteudo {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(290px, 0.8fr);
+            align-items: center;
+            gap: clamp(35px, 6vw, 90px);
+        }
+
+        .inicio .etiqueta {
+            color: #E8F8ED;
+            background: #226B56;
+        }
+
+        .inicio h1 {
+            max-width: 720px;
+            margin: 20px 0 18px;
+            color: var(--branco);
+            font-size: clamp(2.45rem, 5.4vw, 4.4rem);
+            line-height: 1.04;
+            letter-spacing: -2px;
+        }
+
+        .inicio-texto > p {
+            max-width: 620px;
+            margin-bottom: 28px;
+            color: #E0ECE6;
+            font-size: clamp(1rem, 1.4vw, 1.12rem);
+        }
+
+        .inicio-acoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .inicio-visual {
+            position: relative;
+            min-height: 310px;
+            padding: 28px;
+            overflow: hidden;
+            border: 1px solid #70A99A66;
+            border-radius: 26px;
+            background: linear-gradient(145deg, #0C5044, #0A443A 70%);
+            box-shadow: 0 24px 60px #001d193b;
+        }
+
+        .inicio-visual::before {
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            top: -70px;
+            right: -48px;
+            content: "";
+            border-radius: 50%;
+            background: #B8EFD01A;
+        }
+
+        .visual-simbolo {
+            width: 64px;
+            height: 64px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 25px;
+            border-radius: 19px;
+            color: var(--verde-escuro);
+            background: var(--verde-menta);
+            font-size: 2rem;
+        }
+
+        .inicio-visual h2 {
+            position: relative;
+            margin-bottom: 8px;
+            color: var(--verde-menta);
+            font-size: 1.35rem;
+        }
+
+        .inicio-visual p {
+            position: relative;
+            margin-bottom: 22px;
+            color: #E0ECE6;
+            font-size: 0.92rem;
+        }
+
+        .lista-recursos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .lista-recursos span {
+            padding: 7px 10px;
+            border: 1px solid #B8EFD044;
+            border-radius: 999px;
+            color: #F0FFF5;
+            background: #FFFFFF0D;
+            font-size: 0.75rem;
+        }
+
+        
+        .temas { padding: 65px 0 72px; }
+
+        .grade-temas {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .cartao-tema {
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 25px;
+            border: 1px solid transparent;
+            border-radius: var(--raio);
+            text-decoration: none;
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .cartao-tema:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px #17483f16;
+        }
+
+        .tema-sustentabilidade { background: var(--verde-menta); }
+        .tema-acessibilidade { background: var(--azul-claro); }
+        .tema-diversidade { background: var(--verde-lima); }
+
+        .tema-icone {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 17px;
+            border-radius: 13px;
+            background: #FFFFFFA8;
+            font-size: 1.35rem;
+        }
+
+        .cartao-tema h3 {
+            margin-bottom: 5px;
+            color: var(--verde-escuro);
+            font-size: 1.12rem;
+        }
+
+        .cartao-tema p {
+            max-width: 340px;
+            color: #31554C;
+            font-size: 0.9rem;
+        }
+
+        .tema-link {
+            margin-top: auto;
+            padding-top: 15px;
+            color: var(--verde-escuro);
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        /* JOGOS EM DESTAQUE */
+        .destaques {
+            padding: 70px 0 78px;
+            background: var(--off-white);
+        }
+
+        .grade-jogos {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .cartao-jogo {
+            overflow: hidden;
+            border: 1px solid var(--borda);
+            border-radius: var(--raio);
+            background: var(--branco);
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .cartao-jogo:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px #17483f13;
+        }
+
+        .jogo-arte {
+            min-height: 150px;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            color: var(--branco);
+            overflow: hidden;
+        }
+
+        .arte-terra {
+            background: radial-gradient(circle at 78% 22%, #D9F65C 0 7%, transparent 7.5%),
+                        radial-gradient(circle at 70% 35%, #8CD59B 0 15%, transparent 15.5%),
+                        linear-gradient(140deg, #164D3E, #347C54 55%, #B8D98C);
+        }
+
+        .arte-highland {
+            background: radial-gradient(circle at 78% 24%, #F6DE9C 0 8%, transparent 8.5%),
+                        linear-gradient(155deg, transparent 48%, #477C68 48.5% 62%, transparent 62.5%),
+                        linear-gradient(25deg, #254D4E, #6F9D8C 58%, #B8D7C5);
+        }
+
+        .arte-harmony {
+            background: radial-gradient(circle at 22% 24%, #F4D66D 0 8%, transparent 8.5%),
+                        radial-gradient(circle at 75% 65%, #E5A6BD 0 12%, transparent 12.5%),
+                        linear-gradient(135deg, #485C9C, #9276B5 55%, #D6A6C6);
+        }
+
+        .jogo-arte span {
+            padding: 6px 10px;
+            border: 1px solid #FFFFFF55;
+            border-radius: 999px;
+            background: #063B3370;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .jogo-conteudo { padding: 22px; }
+
+        .jogo-conteudo h3 {
+            margin: 10px 0 7px;
+            color: var(--verde-escuro);
+            font-size: 1.2rem;
+        }
+
+        .jogo-conteudo p {
+            min-height: 52px;
+            margin-bottom: 15px;
+            color: var(--texto-suave);
+            font-size: 0.9rem;
+        }
+
+        .jogo-conteudo a {
+            color: #08765D;
+            font-size: 0.86rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .jogo-conteudo a:hover { text-decoration: underline; }
+
+        
+        .explorar {
+            padding: 68px 0;
+            background: var(--branco);
+        }
+
+        .explorar-caixa {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 25px;
+            padding: clamp(25px, 4vw, 42px);
+            border-radius: 24px;
+            background: var(--verde-claro);
+        }
+
+        .explorar-caixa h2 {
+            margin-bottom: 8px;
+            color: var(--verde-escuro);
+            font-size: clamp(1.45rem, 2.8vw, 2rem);
+            line-height: 1.2;
+        }
+
+        .explorar-caixa p {
+            max-width: 700px;
+            color: var(--texto-suave);
+        }
+
+        
+        .rodape {
+            padding: 30px 0;
+            color: #E0ECE6;
+            background: var(--verde-escuro);
+        }
+
+        .rodape-conteudo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .rodape .logo { color: var(--branco); }
+        .rodape p { font-size: 0.82rem; }
+
+        .rodape-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .rodape-links a {
+            color: #E0ECE6;
+            font-size: 0.82rem;
+            text-decoration: none;
+        }
+
+        .rodape-links a:hover { text-decoration: underline; }
+
+        
+        .acessibilidade-ferramenta {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1100;
+        }
+
+        .botao-acessibilidade {
+            min-height: 48px;
+            padding: 11px 17px;
+            border: 2px solid var(--branco);
+            border-radius: 999px;
+            color: var(--branco);
+            background: var(--verde-escuro);
+            box-shadow: 0 5px 18px #0000002b;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .painel-acessibilidade {
+            width: min(310px, calc(100vw - 32px));
+            margin-bottom: 10px;
+            padding: 20px;
+            border: 1px solid var(--borda);
+            border-radius: 18px;
+            background: var(--branco);
+            box-shadow: 0 10px 35px #00000024;
+        }
+
+        .painel-acessibilidade[hidden] { display: none; }
+
+        .painel-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .painel-topo h2 {
+            color: var(--verde-escuro);
+            font-size: 1.05rem;
+        }
+
+        .fechar-painel {
+            width: 32px;
+            height: 32px;
+            border: 0;
+            border-radius: 50%;
+            color: var(--verde-escuro);
+            background: var(--verde-claro);
+            font-size: 1.15rem;
+            cursor: pointer;
+        }
+
+        .acoes-acessibilidade {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .acoes-acessibilidade button,
+        .restaurar-preferencias {
+            min-height: 42px;
+            padding: 8px 10px;
+            border: 1px solid var(--borda);
+            border-radius: 10px;
+            color: var(--verde-escuro);
+            background: var(--verde-claro);
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .restaurar-preferencias {
+            width: 100%;
+            margin-top: 9px;
+            background: var(--branco);
+        }
+
+        
+        body.alto-contraste {
+            color: #FFFFFF;
+            background: #000000;
+        }
+
+        body.alto-contraste .topo,
+        body.alto-contraste .temas,
+        body.alto-contraste .explorar,
+        body.alto-contraste .cartao-jogo,
+        body.alto-contraste .painel-acessibilidade {
+            color: #FFFFFF;
+            background: #000000;
+            border-color: #FFFFFF;
+        }
+
+        body.alto-contraste .menu a,
+        body.alto-contraste .logo,
+        body.alto-contraste .titulo-secao,
+        body.alto-contraste .cartao-tema h3,
+        body.alto-contraste .cartao-tema p,
+        body.alto-contraste .jogo-conteudo h3,
+        body.alto-contraste .jogo-conteudo p,
+        body.alto-contraste .descricao-secao,
+        body.alto-contraste .explorar-caixa h2,
+        body.alto-contraste .explorar-caixa p {
+            color: #FFFFFF;
+        }
+
+        body.alto-contraste .cartao-tema,
+        body.alto-contraste .explorar-caixa,
+        body.alto-contraste .acoes-acessibilidade button,
+        body.alto-contraste .restaurar-preferencias {
+            color: #FFFFFF;
+            background: #151515;
+            border: 1px solid #FFFFFF;
+        }
+
+        body.alto-contraste .jogo-conteudo a { color: #A6F5D1; }
+        body.alto-contraste .etiqueta { color: #000000; background: #FFFFFF; }
+
+        
+        @media (max-width: 1050px) {
+            .topo-conteudo { align-items: flex-start; flex-direction: column; gap: 5px; padding: 13px 0 8px; }
+            .menu { width: 100%; justify-content: flex-start; }
+            .inicio-conteudo { grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr); }
+        }
+
+        @media (max-width: 760px) {
+            .container, .topo-conteudo { width: min(100% - 32px, var(--largura-maxima)); }
+            .inicio { padding: 58px 0; }
+            .inicio-conteudo { grid-template-columns: 1fr; }
+            .inicio-visual { min-height: auto; }
+            .grade-temas, .grade-jogos { grid-template-columns: 1fr; }
+            .cartao-tema { min-height: 150px; }
+            .jogo-arte { min-height: 130px; }
+            .explorar-caixa { grid-template-columns: 1fr; }
+            .rodape-conteudo { align-items: flex-start; flex-direction: column; }
+        }
+
+        @media (max-width: 420px) {
+            .inicio h1 { letter-spacing: -1px; }
+            .inicio-acoes { align-items: stretch; flex-direction: column; }
+            .inicio-acoes .botao { width: 100%; }
+            .acessibilidade-ferramenta { right: 12px; bottom: 12px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo principal</a>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a class="logo" href="index.html" aria-label="PlayMundo — página inicial">
+                <span class="logo-icone" aria-hidden="true"></span>
+                <span>PlayMundo</span>
+            </a>
+
+            
+            <nav class="menu" aria-label="Navegação principal">
+                <a href="index.html" aria-current="page">Início</a>
+                <a href="acessibilidade-visual.html">Visual</a>
+                <a href="acessibilidade-motora.html">Motora</a>
+                <a href="acessibilidade-auditiva.html">Auditiva</a>
+                <a href="acessibilidade-cognitiva.html">Cognitiva</a>
+                <a href="catalogo.html">Jogos</a>
+                <a href="comparacao.html">Comparar</a>
+                <a href="guia.html">Guia</a>
+                <a href="impacto.html">Impacto</a>
+                <a href="sobre.html">Sobre</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+       
+        <section class="inicio" aria-labelledby="titulo-inicio">
+            <div class="container inicio-conteudo">
+                <div class="inicio-texto">
+                    <span class="etiqueta">Descoberta • Inclusão • Diversidade</span>
+                    <h1 id="titulo-inicio">Jogar também é imaginar futuros melhores.</h1>
+                    <p>
+                        Descubra jogos que abordam sustentabilidade, acessibilidade e diversidade.
+                        Explore diferentes experiências e conheça recursos que ajudam a tornar
+                        o universo dos games mais inclusivo.
+                    </p>
+                    <div class="inicio-acoes">
+                        <a class="botao botao-claro" href="catalogo.html">Explorar jogos <span aria-hidden="true">→</span></a>
+                        <a class="botao botao-principal" href="acessibilidade-visual.html">Conhecer acessibilidade</a>
+                    </div>
+                </div>
+
+                <aside class="inicio-visual" aria-label="Apresentação dos temas de acessibilidade">
+                    <div class="visual-simbolo" aria-hidden="true">♿</div>
+                    <h2>Um universo para todos</h2>
+                    <p>Jogar pode acontecer de muitas maneiras. Acessibilidade ajuda a abrir caminhos para mais pessoas participarem.</p>
+                    <div class="lista-recursos" aria-label="Temas de acessibilidade">
+                        <span>Visual</span>
+                        <span>Motora</span>
+                        <span>Auditiva</span>
+                        <span>Cognitiva</span>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+       
+        <section class="temas" aria-labelledby="titulo-temas">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <span class="etiqueta">Explore</span>
+                    <h2 class="titulo-secao" id="titulo-temas">Descubra novas experiências</h2>
+                    <p class="descricao-secao">O PlayMundo reúne jogos e informações sobre temas que podem inspirar experiências mais acessíveis, conscientes e diversas.</p>
+                </div>
+
+                <div class="grade-temas">
+                    <a class="cartao-tema tema-sustentabilidade" href="catalogo.html">
+                        <span class="tema-icone" aria-hidden="true">🌱</span>
+                        <h3>Sustentabilidade</h3>
+                        <p>Jogos que abordam natureza, meio ambiente e cuidado com o planeta.</p>
+                        <span class="tema-link">Explorar jogos →</span>
+                    </a>
+
+                    <a class="cartao-tema tema-acessibilidade" href="acessibilidade-visual.html">
+                        <span class="tema-icone" aria-hidden="true">♿</span>
+                        <h3>Acessibilidade</h3>
+                        <p>Recursos e experiências pensadas para ampliar as formas de jogar.</p>
+                        <span class="tema-link">Conhecer recursos →</span>
+                    </a>
+
+                    <a class="cartao-tema tema-diversidade" href="impacto.html">
+                        <span class="tema-icone" aria-hidden="true">🌍</span>
+                        <h3>Diversidade</h3>
+                        <p>Histórias, personagens e perspectivas que representam diferentes experiências.</p>
+                        <span class="tema-link">Ver impacto →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+       
+        <section class="destaques" aria-labelledby="titulo-destaques">
+            <div class="container">
+                <div class="cabecalho-secao">
+                    <span class="etiqueta">Para começar</span>
+                    <h2 class="titulo-secao" id="titulo-destaques">Jogos em destaque</h2>
+                    <p class="descricao-secao">Conheça alguns títulos que aparecem no nosso catálogo e descubra os temas que eles exploram.</p>
+                </div>
+
+                <div class="grade-jogos">
+                    <article class="cartao-jogo">
+                        <div class="jogo-arte arte-terra" aria-hidden="true"><span>Sustentabilidade</span></div>
+                        <div class="jogo-conteudo">
+                            <span class="etiqueta">Natureza</span>
+                            <h3>Terra Nil</h3>
+                            <p>Um jogo de estratégia sobre recuperar ecossistemas e transformar paisagens.</p>
+                            <a href="catalogo.html#terra-nil">Conhecer no catálogo →</a>
+                        </div>
+                    </article>
+
+                    <article class="cartao-jogo">
+                        <div class="jogo-arte arte-highland" aria-hidden="true"><span>Aventura</span></div>
+                        <div class="jogo-conteudo">
+                            <span class="etiqueta">Exploração</span>
+                            <h3>A Highland Song</h3>
+                            <p>Uma aventura de exploração em paisagens montanhosas.</p>
+                            <a href="catalogo.html#a-highland-song">Conhecer no catálogo →</a>
+                        </div>
+                    </article>
+
+                    <article class="cartao-jogo">
+                        <div class="jogo-arte arte-harmony" aria-hidden="true"><span>Quebra-cabeça</span></div>
+                        <div class="jogo-conteudo">
+                            <span class="etiqueta">Aventura</span>
+                            <h3>Harmony's Odyssey</h3>
+                            <p>Uma experiência de aventura e exploração com desafios em cenários lúdicos.</p>
+                            <a href="catalogo.html#harmonys-odyssey">Conhecer no catálogo →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="explorar" aria-labelledby="titulo-explorar">
+            <div class="container">
+                <div class="explorar-caixa">
+                    <div>
+                        <span class="etiqueta">Continue explorando</span>
+                        <h2 id="titulo-explorar">Acessibilidade não é um detalhe. É parte da experiência.</h2>
+                        <p>Entenda diferentes tipos de recursos, compare jogos e veja como pequenas escolhas de design podem remover barreiras.</p>
+                    </div>
+                    <a class="botao botao-principal" href="guia.html">Acessar o guia <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape-conteudo">
+            <a class="logo" href="index.html">
+                <span class="logo-icone" aria-hidden="true"></span>
+                <span>PlayMundo</span>
+            </a>
+            <p>Jogos, inclusão e novas formas de imaginar.</p>
+            <nav class="rodape-links" aria-label="Links do rodapé">
+                <a href="guia.html">Guia</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="sobre.html">Contato</a>
+            </nav>
+        </div>
+    </footer>
+
+   
+    <div class="acessibilidade-ferramenta">
+        <div class="painel-acessibilidade" id="painel-acessibilidade" aria-labelledby="titulo-painel" hidden>
+            <div class="painel-topo">
+                <h2 id="titulo-painel">Opções de acessibilidade</h2>
+                <button class="fechar-painel" id="fechar-painel" type="button" aria-label="Fechar painel">×</button>
+            </div>
+            <div class="acoes-acessibilidade">
+                <button type="button" id="aumentar-fonte">Aumentar texto +</button>
+                <button type="button" id="diminuir-fonte">Diminuir texto −</button>
+                <button type="button" id="alternar-contraste" aria-pressed="false">Alto contraste</button>
+            </div>
+            <button class="restaurar-preferencias" type="button" id="restaurar-preferencias">Restaurar padrão</button>
+        </div>
+        <button class="botao-acessibilidade" id="abrir-painel" type="button" aria-expanded="false" aria-controls="painel-acessibilidade">
+            ♿ Acessibilidade
+        </button>
+    </div>
+
+    <script>
+        
+        (() => {
+            const chavePreferencias = "playmundo-preferencias-acessibilidade";
+            const painel = document.getElementById("painel-acessibilidade");
+            const botaoAbrir = document.getElementById("abrir-painel");
+            const botaoFechar = document.getElementById("fechar-painel");
+            const botaoAumentar = document.getElementById("aumentar-fonte");
+            const botaoDiminuir = document.getElementById("diminuir-fonte");
+            const botaoContraste = document.getElementById("alternar-contraste");
+            const botaoRestaurar = document.getElementById("restaurar-preferencias");
+
+            let escalaFonte = 1;
+            let altoContraste = false;
+
+            function salvarPreferencias() {
+                const preferencias = { escalaFonte, altoContraste };
+                try {
+                    localStorage.setItem(chavePreferencias, JSON.stringify(preferencias));
+                } catch (erro) {
+                    console.warn("Não foi possível salvar as preferências neste navegador.", erro);
+                }
+            }
+
+            function aplicarPreferencias() {
+                document.documentElement.style.setProperty("--escala-fonte", `${Math.round(escalaFonte * 100)}%`);
+                document.body.classList.toggle("alto-contraste", altoContraste);
+                botaoContraste.setAttribute("aria-pressed", String(altoContraste));
+            }
+
+            function carregarPreferencias() {
+                try {
+                    const salvas = localStorage.getItem(chavePreferencias);
+                    if (salvas) {
+                        const preferencias = JSON.parse(salvas);
+                        if (typeof preferencias.escalaFonte === "number") {
+                            escalaFonte = Math.min(1.3, Math.max(0.9, preferencias.escalaFonte));
+                        }
+                        altoContraste = Boolean(preferencias.altoContraste);
+                    }
+                } catch (erro) {
+                    console.warn("As preferências salvas não puderam ser carregadas.", erro);
+                }
+                aplicarPreferencias();
+            }
+
+            function fecharPainel() {
+                painel.hidden = true;
+                botaoAbrir.setAttribute("aria-expanded", "false");
+                botaoAbrir.focus();
+            }
+
+            botaoAbrir.addEventListener("click", () => {
+                const vaiAbrir = painel.hidden;
+                painel.hidden = !vaiAbrir;
+                botaoAbrir.setAttribute("aria-expanded", String(vaiAbrir));
+                if (vaiAbrir) botaoFechar.focus();
+            });
+
+            botaoFechar.addEventListener("click", fecharPainel);
+
+            document.addEventListener("keydown", (evento) => {
+                if (evento.key === "Escape" && !painel.hidden) fecharPainel();
+            });
+
+            botaoAumentar.addEventListener("click", () => {
+                escalaFonte = Math.min(1.3, Number((escalaFonte + 0.1).toFixed(1)));
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoDiminuir.addEventListener("click", () => {
+                escalaFonte = Math.max(0.9, Number((escalaFonte - 0.1).toFixed(1)));
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoContraste.addEventListener("click", () => {
+                altoContraste = !altoContraste;
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoRestaurar.addEventListener("click", () => {
+                escalaFonte = 1;
+                altoContraste = false;
+                aplicarPreferencias();
+                try {
+                    localStorage.removeItem(chavePreferencias);
+                } catch (erro) {
+                    console.warn("Não foi possível limpar as preferências salvas.", erro);
+                }
+            });
+
+            carregarPreferencias();
+        })();
+    </script>
+</body>
+</html>

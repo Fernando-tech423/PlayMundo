@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore o catálogo do PlayMundo, com jogos de acessibilidade, sustentabilidade, diversidade e criatividade. Pesquise, filtre e salve seus favoritos.">
+<meta name="theme-color" content="#063B33">
+<title>Catálogo de Jogos | PlayMundo</title>
+<style>
+:root{--verde-escuro:#063B33;--verde-texto:#17483F;--verde-claro:#EEF8ED;--verde-menta:#B8EFD0;--azul-claro:#B8E4F2;--verde-lima:#D9F65C;--off-white:#F4F6EE;--branco:#FFFFFF;--texto-suave:#536B65;--borda:#E1E9E3;--foco:#B08000;--largura-maxima:1280px;--escala-fonte:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:var(--escala-fonte);scroll-behavior:smooth;scroll-padding-top:100px}
+body{min-width:320px;font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:var(--verde-texto);background:var(--branco)}
+a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--foco);outline-offset:3px}
+.container{width:min(100% - 48px,var(--largura-maxima));margin-inline:auto}
+.pular-conteudo{position:absolute;top:-120px;left:16px;z-index:3000;padding:12px 16px;border-radius:8px;background:#fff;color:#063B33;font-weight:700}.pular-conteudo:focus{top:12px}
+.topo{position:sticky;top:0;z-index:1000;background:var(--verde-claro);border-bottom:1px solid var(--borda)}
+.topo-conteudo{width:min(100% - 48px,1450px);min-height:68px;margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.logo{display:inline-flex;align-items:center;gap:10px;flex-shrink:0;color:var(--verde-texto);font-size:1.15rem;font-weight:800;text-decoration:none;letter-spacing:-.5px}
+.logo-icone{width:16px;height:16px;display:inline-block;border-radius:4px;background:linear-gradient(135deg,#71DFB2,#29AD83);box-shadow:0 2px 7px #17483f2b}
+.menu{display:flex;align-items:center;justify-content:flex-end;gap:17px;overflow-x:auto;scrollbar-width:thin;padding:8px 2px}
+.menu a{flex:0 0 auto;color:var(--verde-texto);font-size:.78rem;font-weight:700;text-decoration:none;transition:color .18s ease}.menu a:hover,.menu a[aria-current="page"]{color:#08765D;text-decoration:underline;text-underline-offset:5px}
+.etiqueta{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:#DDF4E6;color:var(--verde-escuro);font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.botao{min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 20px;border:2px solid transparent;border-radius:999px;background:var(--branco);color:var(--verde-escuro);font-size:.9rem;font-weight:800;text-decoration:none;transition:transform .18s ease,background .18s ease}
+.botao:hover{transform:translateY(-2px);background:var(--verde-menta)}.botao-principal{color:var(--branco);background:var(--verde-escuro)}.botao-principal:hover{background:#126B59;color:#fff}
+.hero{position:relative;overflow:hidden;color:var(--branco);background:var(--verde-escuro);padding:clamp(60px,8vw,94px) 0}
+.hero::before,.hero::after{content:"";position:absolute;border:1px solid #b8efd032;border-radius:50%;pointer-events:none}.hero::before{width:560px;height:560px;right:-120px;top:-360px}.hero::after{width:350px;height:350px;right:20%;bottom:-250px}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);align-items:center;gap:clamp(32px,6vw,90px)}
+.hero .etiqueta{background:#226B56;color:#E8F8ED}.hero h1{max-width:780px;margin:20px 0;font-size:clamp(2.5rem,5.2vw,4.5rem);line-height:1.04;letter-spacing:-2px;color:#fff}
+.hero p{max-width:600px;color:#DBF1E8;font-size:1.05rem}.hero-acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.hero .botao-principal{background:var(--verde-lima);color:var(--verde-escuro)}.hero .botao-principal:hover{background:#e9ff96}.hero .botao-secundario{border-color:#b8efd06b;background:transparent;color:#fff}.hero .botao-secundario:hover{background:#165748}
+.hero-art{min-height:310px;padding:24px;border:1px solid #FFFFFF22;border-radius:26px;background:linear-gradient(135deg,#135B4B,#0B4A42 50%,#14483A);box-shadow:0 20px 50px #031d173b;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.hero-art .mini-titulo{color:#B8EFD0;font-weight:800;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+.mini-pesquisa{display:flex;align-items:center;gap:12px;padding:16px;background:#fff;color:#17483F;border-radius:16px;font-weight:700;box-shadow:0 10px 24px #00000018}
+.mini-pesquisa span:first-child{font-size:1.2rem}.mini-tags{display:flex;gap:8px;flex-wrap:wrap}.mini-tags span{border:1px solid #b8efd09c;border-radius:999px;padding:7px 11px;color:#ecfff8;font-size:.82rem;font-weight:700}.mini-preview{display:flex;gap:10px}.mini-preview span{flex:1;min-height:65px;border-radius:14px;display:grid;place-items:center;font-size:1.8rem;background:#a9e9c4;color:#07382e}.mini-preview span:nth-child(2){background:#c6e9fa}.mini-preview span:nth-child(3){background:#e2f78c}
+.section-header{margin-bottom:25px}.section-header h2,.final-caixa h2{color:var(--verde-escuro);font-size:clamp(1.7rem,3vw,2.35rem);line-height:1.2;letter-spacing:-.8px}.section-header p{max-width:730px;margin-top:12px;color:var(--texto-suave)}
+.catalogo{padding:75px 0 80px;background:var(--off-white)}
+.filtros{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(220px,.7fr);gap:18px;align-items:end;padding:25px;border:1px solid var(--borda);border-radius:22px;background:#fff;box-shadow:0 10px 32px #173f3221}
+.campo{display:flex;flex-direction:column;gap:8px}.campo label{font-weight:800;font-size:.9rem;color:var(--verde-escuro)}.campo input,.campo select{width:100%;min-height:50px;padding:12px 15px;border:1.5px solid #a9c9b8;border-radius:12px;color:var(--verde-texto);background:#fff;font-size:1rem}
+.campo input::placeholder{color:#5C756A;opacity:1}.filtros-rodape{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:5px}.resultado{font-weight:800;color:var(--verde-escuro)}.acoes-filtros{display:flex;gap:9px;flex-wrap:wrap}.botao-filtro{min-height:40px;padding:8px 14px;border:1px solid #B5D4C6;border-radius:999px;background:#f2faf4;color:#17483f;font-size:.84rem;font-weight:800}.botao-filtro:hover,.botao-filtro[aria-pressed="true"]{background:#073d35;color:#fff;border-color:#073d35}
+.grade-jogos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:23px;margin-top:30px}.jogo-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid var(--borda);border-radius:22px;background:#fff;box-shadow:0 6px 20px #143e3212;transition:transform .2s ease,box-shadow .2s ease}.jogo-card:hover{transform:translateY(-4px);box-shadow:0 13px 30px #143e3222}.jogo-card[hidden]{display:none}
+.capa-jogo{position:relative;min-height:210px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:20px;color:#fff;isolation:isolate}.capa-jogo::before,.capa-jogo::after{content:"";position:absolute;z-index:-1;border:1px solid #ffffff4b;border-radius:50%}.capa-jogo::before{width:230px;height:230px;top:-115px;right:-50px}.capa-jogo::after{width:155px;height:155px;bottom:-95px;left:-55px}.capa-simbolo{position:absolute;right:23px;top:20px;filter:drop-shadow(0 10px 10px #00000035);font-size:4rem;transform:rotate(-10deg)}.capa-nome{max-width:78%;font-size:1.55rem;font-weight:900;letter-spacing:-.6px;line-height:1.08;text-shadow:0 2px 8px #00000033}.capa-frase{max-width:85%;margin-top:8px;font-size:.78rem;font-weight:700;opacity:.95}
+.capa-forza{background:linear-gradient(135deg,#1b4475,#159eaa 66%,#9ccbb7)}.capa-god{background:linear-gradient(130deg,#122b39,#566c75 55%,#aa9d85)}.capa-last{background:linear-gradient(140deg,#163b2b,#377152 65%,#202926)}.capa-celeste{background:linear-gradient(140deg,#25365e,#9b6caf 65%,#f18f9b)}.capa-terra{background:linear-gradient(145deg,#176954,#49ac79 60%,#a4d5a3)}.capa-venba{background:linear-gradient(135deg,#8b3a2b,#da7048 62%,#f6b565)}.capa-highland{background:linear-gradient(145deg,#25486b,#548c8b 60%,#a9bba0)}.capa-harmony{background:linear-gradient(145deg,#4e3375,#9e6db6 60%,#df9dc0)}
+.jogo-corpo{padding:21px;display:flex;flex:1;flex-direction:column;gap:12px}.jogo-meta{display:flex;justify-content:space-between;align-items:center;gap:10px}.jogo-meta>span{font-size:.73rem;font-weight:800;color:#526d61;text-transform:uppercase;letter-spacing:.03em}.favoritar{flex-shrink:0;padding:6px 10px;border:1px solid #d1e2d9;border-radius:999px;background:#f5faf7;color:#17483f;font-size:.75rem;font-weight:800}.favoritar[aria-pressed="true"]{background:#e4f7c4;border-color:#557a35;color:#143a18}
+.jogo-card h3{font-size:1.28rem;line-height:1.2;color:var(--verde-escuro)}.selos{display:flex;flex-wrap:wrap;gap:6px}.selo{display:inline-block;padding:5px 9px;border-radius:999px;font-size:.72rem;line-height:1.35;font-weight:800;background:#DCF4E8;color:#134738}.selo-motora{background:#D8ECFF;color:#193D5A}.selo-auditiva{background:#F5E2FE;color:#5F3072}.selo-cognitiva{background:#F8EFCF;color:#614E05}.selo-sustentabilidade{background:#DDF5D7;color:#25572D}.selo-diversidade{background:#FFE9DB;color:#743F1E}.selo-exploracao{background:#D6F0F2;color:#24565C}.selo-criatividade{background:#F1E2FE;color:#5A347B}
+.jogo-corpo>p{color:var(--texto-suave);font-size:.9rem}.jogo-corpo .recurso-principal{font-weight:800;color:#285f4c}.jogo-acoes{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:11px;margin-top:auto;padding-top:14px;border-top:1px solid #e7eeea}.jogo-acoes a{font-size:.82rem;font-weight:800;text-decoration:none}.link-interno{color:#08624d}.fonte{color:#4d6258}.jogo-acoes a:hover{text-decoration:underline;text-underline-offset:3px}
+.sem-resultados{padding:34px 25px;margin-top:24px;text-align:center;border:1px dashed #85aa98;border-radius:20px;background:#fff}.sem-resultados[hidden]{display:none}.sem-resultados h3{color:var(--verde-escuro);font-size:1.25rem}.sem-resultados p{margin-top:5px;color:var(--texto-suave)}
+.nota-catalogo{margin-top:22px;padding:17px 19px;border-left:4px solid #217c61;border-radius:11px;background:#e7f4ec;color:#285348;font-size:.9rem}
+.entenda{padding:75px 0;background:#fff}.entenda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.entenda-card{padding:26px;border-radius:19px;border:1px solid var(--borda);background:#f8fbf7}.entenda-card:nth-child(2){background:#f1f9ff}.entenda-card:nth-child(3){background:#faffec}.entenda-card span{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:14px;background:#b8efd0;font-size:1.35rem}.entenda-card h3{margin:14px 0 9px;color:var(--verde-escuro);font-size:1.15rem}.entenda-card p{font-size:.9rem;color:var(--texto-suave)}
+.proxima-pagina{padding:65px 0 80px;background:var(--verde-claro)}.final-caixa{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:36px;border:1px solid #d8e7dd;border-radius:24px;background:#fff}.final-caixa p{margin-top:9px;max-width:650px;color:var(--texto-suave)}.final-caixa .etiqueta{margin-bottom:12px}
+.rodape{padding:26px 0;background:var(--verde-escuro);color:#e4f6e9}.rodape-conteudo{display:flex;align-items:center;justify-content:space-between;gap:20px}.rodape .logo{color:#fff}.rodape p{font-size:.82rem}.rodape-links{display:flex;flex-wrap:wrap;gap:17px}.rodape-links a{font-size:.82rem;text-decoration:none;font-weight:700}.rodape-links a:hover{text-decoration:underline}
+.acessibilidade-ferramenta{position:fixed;right:20px;bottom:20px;z-index:1100}.botao-acessibilidade{min-height:48px;padding:11px 17px;border:2px solid #fff;border-radius:999px;color:#fff;background:var(--verde-escuro);box-shadow:0 5px 18px #0000002b;font-size:.85rem;font-weight:800}.painel-acessibilidade{width:min(310px,calc(100vw - 32px));margin-bottom:10px;padding:20px;border:1px solid var(--borda);border-radius:18px;background:#fff;box-shadow:0 10px 35px #00000024}.painel-acessibilidade[hidden]{display:none}.painel-topo{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.painel-topo h2{color:var(--verde-escuro);font-size:1.05rem}.fechar-painel{width:32px;height:32px;border:0;border-radius:50%;color:var(--verde-escuro);background:var(--verde-claro);font-size:1.15rem}.acoes-acessibilidade{display:grid;grid-template-columns:1fr 1fr;gap:9px}.acoes-acessibilidade button,.restaurar-preferencias{min-height:42px;padding:8px 10px;border:1px solid var(--borda);border-radius:10px;color:var(--verde-escuro);background:var(--verde-claro);font-size:.8rem;font-weight:700}.restaurar-preferencias{width:100%;margin-top:9px;background:#fff}
+body.alto-contraste{color:#fff;background:#000}
+body.alto-contraste .topo,body.alto-contraste .catalogo,body.alto-contraste .entenda,body.alto-contraste .proxima-pagina,body.alto-contraste .filtros,body.alto-contraste .jogo-card,body.alto-contraste .entenda-card,body.alto-contraste .final-caixa,body.alto-contraste .painel-acessibilidade,body.alto-contraste .sem-resultados{background:#000;color:#fff;border-color:#fff}
+body.alto-contraste .menu a,body.alto-contraste .logo,body.alto-contraste .section-header h2,body.alto-contraste .section-header p,body.alto-contraste .jogo-card h3,body.alto-contraste .jogo-corpo>p,body.alto-contraste .jogo-corpo .recurso-principal,body.alto-contraste .jogo-meta>span,body.alto-contraste .entenda-card h3,body.alto-contraste .entenda-card p,body.alto-contraste .final-caixa h2,body.alto-contraste .final-caixa p,body.alto-contraste .resultado,body.alto-contraste .campo label,body.alto-contraste .painel-topo h2,body.alto-contraste .sem-resultados h3,body.alto-contraste .sem-resultados p{color:#fff}
+body.alto-contraste .campo input,body.alto-contraste .campo select,body.alto-contraste .botao-filtro,body.alto-contraste .favoritar,body.alto-contraste .acoes-acessibilidade button,body.alto-contraste .restaurar-preferencias{background:#161616;border:1px solid #fff;color:#fff}
+body.alto-contraste .campo input::placeholder{color:#ddd}body.alto-contraste .jogo-acoes a{color:#ffec83}body.alto-contraste .nota-catalogo{background:#181818;color:#fff;border-color:#fff}body.alto-contraste .etiqueta,body.alto-contraste .selos .selo{background:#fff;color:#000}body.alto-contraste .jogo-card .capa-jogo{filter:grayscale(1)}body.alto-contraste .botao-filtro[aria-pressed="true"],body.alto-contraste .favoritar[aria-pressed="true"]{background:#ffec83;color:#000}
+@media(max-width:1100px){.grade-jogos{grid-template-columns:repeat(2,minmax(0,1fr))}.topo-conteudo{align-items:flex-start;flex-direction:column;gap:5px;padding:13px 0 8px}.menu{width:100%;justify-content:flex-start}}
+@media(max-width:800px){.hero-grid{grid-template-columns:1fr}.hero-art{min-height:240px}.filtros{grid-template-columns:1fr}.entenda-grid{grid-template-columns:1fr}.final-caixa{align-items:flex-start;flex-direction:column}}
+@media(max-width:620px){.container,.topo-conteudo{width:min(100% - 32px,var(--largura-maxima))}.hero{padding:56px 0}.hero h1{letter-spacing:-1px}.hero-acoes{flex-direction:column;align-items:stretch}.hero-acoes .botao{width:100%}.grade-jogos{grid-template-columns:1fr}.filtros{padding:18px}.capa-jogo{min-height:185px}.rodape-conteudo{align-items:flex-start;flex-direction:column}.acessibilidade-ferramenta{right:12px;bottom:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo principal</a>
+<header class="topo">
+<div class="topo-conteudo">
+<a aria-label="PlayMundo — página inicial" class="logo" href="index.html"><span aria-hidden="true" class="logo-icone"></span><span>PlayMundo</span></a>
+<nav aria-label="Navegação principal" class="menu">
+<a href="index.html">Início</a>
+<a href="acessibilidade-visual.html">Visual</a>
+<a href="acessibilidade-motora.html">Motora</a>
+<a href="acessibilidade-auditiva.html">Auditiva</a>
+<a href="acessibilidade-cognitiva.html">Cognitiva</a>
+<a href="catalogo.html" aria-current="page">Jogos</a>
+<a href="comparacao.html">Comparar</a>
+<a href="guia.html">Guia</a>
+<a href="impacto.html">Impacto</a>
+<a href="sobre.html">Sobre</a>
+</nav>
+</div>
+</header>
+
+<main id="conteudo">
+<section class="hero" aria-labelledby="titulo-hero">
+ <div class="container hero-grid">
+  <div>
+   <span class="etiqueta">Catálogo de jogos</span>
+   <h1 id="titulo-hero">Seu próximo jogo pode abrir novos mundos.</h1>
+   <p>Encontre experiências que valorizam a acessibilidade, a diversidade, a natureza e a criatividade. Use a busca e os filtros para descobrir o que combina com você.</p>
+   <div class="hero-acoes"><a class="botao botao-principal" href="#lista-de-jogos">Explorar catálogo <span aria-hidden="true">↓</span></a><a class="botao botao-secundario" href="guia.html">Aprender a avaliar recursos</a></div>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+   <span class="mini-titulo">Explore do seu jeito</span>
+   <div class="mini-pesquisa"><span>⌕</span><span>Que tipo de jogo você procura?</span></div>
+   <div class="mini-tags"><span>Acessibilidade</span><span>Natureza</span><span>Diversidade</span></div>
+   <div class="mini-preview"><span>🏎️</span><span>🌿</span><span>🧩</span></div>
+  </div>
+ </div>
+</section>
+<section class="catalogo" id="lista-de-jogos" aria-labelledby="titulo-catalogo">
+ <div class="container">
+  <div class="section-header"><span class="etiqueta">Descubra novos jogos</span><h2 id="titulo-catalogo">Explore o catálogo</h2><p>Busque pelo nome do jogo ou filtre pelo assunto que você quer conhecer. Você também pode salvar favoritos neste navegador.</p></div>
+  <div class="filtros" role="search" aria-label="Buscar e filtrar jogos">
+   <div class="campo"><label for="buscar-jogo">Buscar pelo nome ou recurso</label><input id="buscar-jogo" type="search" placeholder="Ex.: Celeste, legendas, sustentabilidade" autocomplete="off"></div>
+   <div class="campo"><label for="filtrar-categoria">Escolha uma categoria</label><select id="filtrar-categoria"><option value="todos">Todos os assuntos</option><option value="visual">Acessibilidade visual</option><option value="motora">Acessibilidade motora</option><option value="auditiva">Acessibilidade auditiva</option><option value="cognitiva">Ritmo e dificuldade</option><option value="sustentabilidade">Sustentabilidade</option><option value="diversidade">Diversidade cultural</option><option value="exploracao">Exploração</option><option value="criatividade">Criatividade</option></select></div>
+   <div class="filtros-rodape"><p class="resultado" id="total-jogos" role="status" aria-live="polite">8 jogos encontrados</p><div class="acoes-filtros"><button type="button" class="botao-filtro" id="somente-favoritos" aria-pressed="false">☆ Somente favoritos</button><button type="button" class="botao-filtro" id="limpar-filtros">Limpar filtros</button></div></div>
+  </div>
+  <div class="grade-jogos" id="grade-jogos">
+<article class="jogo-card" data-categorias="visual" data-busca="Forza Motorsport Corrida e simulação Permite personalizar a leitura das informações com modos para daltonismo, ajustes de contraste e tamanhos de texto. Destaque: opções de contraste, cores e leitura de tela." id="jogo-1">
+      <div class="capa-jogo capa-forza" aria-hidden="true"><span class="capa-simbolo">🏎️</span><span class="capa-nome">Forza Motorsport</span><span class="capa-frase">Veja a pista de outra forma</span></div>
+      <div class="jogo-corpo">
+        <div class="jogo-meta"><span>Corrida e simulação</span><button type="button" class="favoritar" aria-pressed="false" aria-label="Salvar Forza Motorsport nos favoritos" data-favorito="Forza Motorsport">☆ Salvar</button></div>
+        <h3>Forza Motorsport</h3>
+        <div class="selos"><span class="selo selo-visual">Acessibilidade visual</span></div>
+        <p>Permite personalizar a leitura das informações com modos para daltonismo, ajustes de contraste e tamanhos de texto.</p>
+        <p class="recurso-principal">Destaque: opções de contraste, cores e leitura de tela.</p>
+        <div class="jogo-acoes"><a href="acessibilidade-visual.html" class="link-interno">Conhecer acessibilidade visual <span aria-hidden="true">→</span></a><a class="fonte" href="https://support.forza.net/hc/en-us/articles/20964254277267-Forza-Motorsport-Accessibility-Support" target="_blank" rel="noopener noreferrer" aria-label="Abrir fonte oficial de Forza Motorsport em nova aba">Fonte oficial <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article><article class="jogo-card" data-categorias="motora" data-busca="God of War Ragnarök Ação e aventura Oferece remapeamento de botões, atalhos e maneiras alternativas de realizar ações para adaptar os controles. Destaque: remapeamento e assistências de comandos." id="jogo-2">
+      <div class="capa-jogo capa-god" aria-hidden="true"><span class="capa-simbolo">🪓</span><span class="capa-nome">God of War Ragnarök</span><span class="capa-frase">Seus controles, suas regras</span></div>
+      <div class="jogo-corpo">
+        <div class="jogo-meta"><span>Ação e aventura</span><button type="button" class="favoritar" aria-pressed="false" aria-label="Salvar God of War Ragnarök nos favoritos" data-favorito="God of War Ragnarök">☆ Salvar</button></div>
+        <h3>God of War Ragnarök</h3>
+        <div class="selos"><span class="selo selo-motora">Acessibilidade motora</span></div>
+        <p>Oferece remapeamento de botões, atalhos e maneiras alternativas de realizar ações para adaptar os controles.</p>
+        <p class="recurso-principal">Destaque: remapeamento e assistências de comandos.</p>
+        <div class="jogo-acoes"><a href="acessibilidade-motora.html" class="link-interno">Conhecer acessibilidade motora <span aria-hidden="true">→</span></a><a class="fonte" href="https://www.playstation.com/pt-br/games/god-of-war-ragnarok/accessibility/" target="_blank" rel="noopener noreferrer" aria-label="Abrir fonte oficial de God of War Ragnarök em nova aba">Fonte oficial <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article><article class="jogo-card" data-categorias="auditiva" data-busca="The Last of Us Parte II Ação e narrativa Traz legendas personalizáveis, identificação dos falantes e indicadores visuais que ajudam a acompanhar informações sonoras. Destaque: legendas e alertas visuais." id="jogo-3">
+      <div class="capa-jogo capa-last" aria-hidden="true"><span class="capa-simbolo">💬</span><span class="capa-nome">The Last of Us Parte II</span><span class="capa-frase">Histórias que também se veem</span></div>
+      <div class="jogo-corpo">
+        <div class="jogo-meta"><span>Ação e narrativa</span><button type="button" class="favoritar" aria-pressed="false" aria-label="Salvar The Last of Us Parte II nos favoritos" data-favorito="The Last of Us Parte II">☆ Salvar</button></div>
+        <h3>The Last of Us Parte II</h3>
+        <div class="selos"><span class="selo selo-auditiva">Acessibilidade auditiva</span></div>
+        <p>Traz legendas personalizáveis, identificação dos falantes e indicadores visuais que ajudam a acompanhar informações sonoras.</p>
+        <p class="recurso-principal">Destaque: legendas e alertas visuais.</p>
+        <div class="jogo-acoes"><a href="acessibilidade-auditiva.html" class="link-interno">Conhecer acessibilidade auditiva <span aria-hidden="true">→</span></a><a class="fonte" href="https://www.playstation.com/pt-br/games/the-last-of-us-part-ii/accessibility/" target="_blank" rel="noopener noreferrer" aria-label="Abrir fonte oficial de The Last of Us Parte II em nova aba">Fonte oficial <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article><article class="jogo-card" data-categorias="cognitiva" data-busca="Celeste Plataforma e aventura O Modo Assistência permite desacelerar o jogo e ajustar outros desafios. É um exemplo de personalização do ritmo, não uma classificação clínica. Destaque: velocidade ajustável e Modo Assistência." id="jogo-4">
+      <div class="capa-jogo capa-celeste" aria-hidden="true"><span class="capa-simbolo">🏔️</span><span class="capa-nome">Celeste</span><span class="capa-frase">A montanha no seu ritmo</span></div>
+      <div class="jogo-corpo">
+        <div class="jogo-meta"><span>Plataforma e aventura</span><button type="button" class="favoritar" aria-pressed="false" aria-label="Salvar Celeste nos favoritos" data-favorito="Celeste">☆ Salvar</button></div>
+        <h3>Celeste</h3>
+        <div class="selos"><span class="selo selo-cognitiva">Ritmo e dificuldade</span></div>
+        <p>O Modo Assistência permite desacelerar o jogo e ajustar outros desafios. É um exemplo de personalização do ritmo, não uma classificação clínica.</p>
+        <p class="recurso-principal">Destaque: velocidade ajustável e Modo Assistência.</p>
+        <div class="jogo-acoes"><a href="acessibilidade-cognitiva.html" class="link-interno">Conhecer ajustes de ritmo <span aria-hidden="true">→</span></a><a class="fonte" href="https://www.celestegame.com/changelog.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir fonte oficial de Celeste em nova aba">Fonte oficial <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article><article class="jogo-card" data-categorias="sustentabilidade" data-busca="Terra Nil Estratégia e natureza Uma experiência sobre recuperar ecossistemas degradados, limpar áreas poluídas e favorecer a biodiversidade. Tema: restauração ambiental e sustentabilidade." id="jogo-5">
+      <div class="capa-jogo capa-terra" aria-hidden="true"><span class="capa-simbolo">🌿</span><span class="capa-nome">Terra Nil</span><span class="capa-frase">Reconstruir também é jogar</span></div>
+      <div class="jogo-corpo">
+        <div class="jogo-meta"><span>Estratégia e natureza</span><button type="button" class="favoritar" aria-pressed="false" aria-label="Salvar Terra Nil nos favoritos" data-favorito="Terra Nil">☆ Salvar</button></div>
+        <h3>Terra Nil</h3>
+        <div class="selos"><span class="selo selo-sustentabilidade">Sustentabilidade</span></div>
+        <p>Uma experiência sobre recuperar ecossistemas degradados, limpar áreas poluídas e favorecer a biodiversidade.</p>
+        <p class="recurso-principal">Tema: restauração ambiental e sustentabilidade.</p>
+        <div class="jogo-acoes"><a href="impacto.html" class="link-interno">Explorar impacto social <span aria-hidden="true">→</span></a><a class="fonte" href="https://www.terranil.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir fonte oficial de Terra Nil em nova aba">Fonte oficial <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article><article class="jogo-card" data-categorias="diversidade" data-busca="Venba Narrativa e culinária Conta a história de uma família indiana no Canadá por meio de receitas, memórias e experiências de imigração. Tema: identidade cultural e diversidade." id="jogo-6">
+      <div class="capa-jogo capa-venba" aria-hidden="true"><span class="capa-simbolo">🍲</span><span class="capa-nome">Venba</span><span class="capa-frase">Memórias servidas à mesa</span></div>
+      <div class="jogo-corpo">
+        <div class="jogo-meta"><span>Narrativa e culinária</span><button type="button" class="favoritar" aria-pressed="false" aria-label="Salvar Venba nos favoritos" data-favorito="Venba">☆ Salvar</button></div>
+        <h3>Venba</h3>
+        <div class="selos"><span class="selo selo-diversidade">Diversidade cultural</span></div>
+        <p>Conta a história de uma família indiana no Canadá por meio de receitas, memórias e experiências de imigração.</p>
+        <p class="recurso-principal">Tema: identidade cultural e diversidade.</p>
+        <div class="jogo-acoes"><a href="impacto.html" class="link-interno">Explorar diversidade e impacto <span aria-hidden="true">→</span></a><a class="fonte" href="https://www.nintendo.com/pt-br/store/products/venba-switch/" target="_blank" rel="noopener noreferrer" aria-label="Abrir fonte oficial de Venba em nova aba">Fonte oficial <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article><article class="jogo-card" data-categorias="exploracao" data-busca="A Highland Song Aventura e exploração Uma jornada pelas montanhas da Escócia que mistura exploração da natureza, histórias e música. Tema: paisagens, descoberta e narrativa." id="jogo-7">
+      <div class="capa-jogo capa-highland" aria-hidden="true"><span class="capa-simbolo">⛰️</span><span class="capa-nome">A Highland Song</span><span class="capa-frase">Um caminho em cada montanha</span></div>
+      <div class="jogo-corpo">
+        <div class="jogo-meta"><span>Aventura e exploração</span><button type="button" class="favoritar" aria-pressed="false" aria-label="Salvar A Highland Song nos favoritos" data-favorito="A Highland Song">☆ Salvar</button></div>
+        <h3>A Highland Song</h3>
+        <div class="selos"><span class="selo selo-exploracao">Exploração</span></div>
+        <p>Uma jornada pelas montanhas da Escócia que mistura exploração da natureza, histórias e música.</p>
+        <p class="recurso-principal">Tema: paisagens, descoberta e narrativa.</p>
+        <div class="jogo-acoes"><a href="impacto.html" class="link-interno">Explorar temas do projeto <span aria-hidden="true">→</span></a><a class="fonte" href="https://www.inklestudios.com/a-highland-song/" target="_blank" rel="noopener noreferrer" aria-label="Abrir fonte oficial de A Highland Song em nova aba">Fonte oficial <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article><article class="jogo-card" data-categorias="criatividade" data-busca="Harmony’s Odyssey Quebra-cabeça e fantasia Uma aventura de quebra-cabeças com cenários em dioramas, criaturas míticas e diferentes desafios de lógica. Tema: criatividade, imaginação e descoberta." id="jogo-8">
+      <div class="capa-jogo capa-harmony" aria-hidden="true"><span class="capa-simbolo">🧩</span><span class="capa-nome">Harmony’s Odyssey</span><span class="capa-frase">Peças de um mundo encantado</span></div>
+      <div class="jogo-corpo">
+        <div class="jogo-meta"><span>Quebra-cabeça e fantasia</span><button type="button" class="favoritar" aria-pressed="false" aria-label="Salvar Harmony’s Odyssey nos favoritos" data-favorito="Harmony’s Odyssey">☆ Salvar</button></div>
+        <h3>Harmony’s Odyssey</h3>
+        <div class="selos"><span class="selo selo-criatividade">Criatividade</span></div>
+        <p>Uma aventura de quebra-cabeças com cenários em dioramas, criaturas míticas e diferentes desafios de lógica.</p>
+        <p class="recurso-principal">Tema: criatividade, imaginação e descoberta.</p>
+        <div class="jogo-acoes"><a href="impacto.html" class="link-interno">Explorar temas do projeto <span aria-hidden="true">→</span></a><a class="fonte" href="https://store.steampowered.com/app/1531490/Harmonys_Odyssey/" target="_blank" rel="noopener noreferrer" aria-label="Abrir fonte oficial de Harmony’s Odyssey em nova aba">Fonte oficial <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </article>
+  </div>
+  <div class="sem-resultados" id="sem-resultados" hidden><h3>Nenhum jogo encontrado por aqui.</h3><p>Tente outro termo ou escolha uma categoria diferente.</p></div>
+  <p class="nota-catalogo"><strong>Importante:</strong> as categorias mostram o tema em destaque de cada jogo neste catálogo. Elas não representam uma certificação de acessibilidade. Os recursos variam entre jogos, versões e plataformas. As ilustrações são elementos gráficos do PlayMundo, não capas oficiais.</p>
+ </div>
+</section>
+<section class="entenda" aria-labelledby="titulo-entenda"><div class="container"><div class="section-header"><span class="etiqueta">Como escolher?</span><h2 id="titulo-entenda">Mais do que um gênero de jogo</h2><p>Além de saber se é ação ou aventura, vale entender como cada experiência funciona na prática.</p></div><div class="entenda-grid"><article class="entenda-card"><span aria-hidden="true">♿</span><h3>Confira os recursos</h3><p>Verifique legendas, controles personalizáveis, opções visuais e ajustes de ritmo nas configurações oficiais.</p></article><article class="entenda-card"><span aria-hidden="true">🌎</span><h3>Explore os temas</h3><p>Jogos também podem inspirar conversas sobre meio ambiente, histórias de diferentes culturas e inclusão.</p></article><article class="entenda-card"><span aria-hidden="true">⭐</span><h3>Monte sua lista</h3><p>Marque os títulos que chamarem sua atenção. Seus favoritos ficam salvos neste navegador.</p></article></div></div></section>
+<section class="proxima-pagina" aria-labelledby="titulo-proxima"><div class="container"><div class="final-caixa"><div><span class="etiqueta">Continue explorando</span><h2 id="titulo-proxima">Próxima parada: comparação de jogos</h2><p>Depois de conhecer as opções, compare os recursos disponíveis e descubra quais diferenças fazem mais sentido para você.</p></div><a class="botao botao-principal" href="comparacao.html">Ir para a comparação <span aria-hidden="true">→</span></a></div></div></section>
+</main>
+
+<footer class="rodape">
+<div class="container rodape-conteudo">
+<a class="logo" href="index.html"><span aria-hidden="true" class="logo-icone"></span><span>PlayMundo</span></a>
+<p>Jogos, inclusão e novas formas de imaginar.</p>
+<nav aria-label="Links do rodapé" class="rodape-links"><a href="index.html">Início</a><a href="catalogo.html">Catálogo</a><a href="sobre.html">Contato</a></nav>
+</div>
+</footer>
+<div class="acessibilidade-ferramenta">
+<div aria-labelledby="titulo-painel" class="painel-acessibilidade" hidden="" id="painel-acessibilidade">
+<div class="painel-topo"><h2 id="titulo-painel">Opções de acessibilidade</h2><button aria-label="Fechar painel" class="fechar-painel" id="fechar-painel" type="button">×</button></div>
+<div class="acoes-acessibilidade"><button id="aumentar-fonte" type="button">Aumentar texto +</button><button id="diminuir-fonte" type="button">Diminuir texto −</button><button aria-pressed="false" id="alternar-contraste" type="button">Alto contraste</button></div>
+<button class="restaurar-preferencias" id="restaurar-preferencias" type="button">Restaurar padrão</button>
+</div>
+<button aria-controls="painel-acessibilidade" aria-expanded="false" class="botao-acessibilidade" id="abrir-painel" type="button">♿ Acessibilidade</button>
+</div>
+<script>
+(() => {
+            const chavePreferencias = "playmundo-preferencias-acessibilidade";
+            const painel = document.getElementById("painel-acessibilidade");
+            const botaoAbrir = document.getElementById("abrir-painel");
+            const botaoFechar = document.getElementById("fechar-painel");
+            const botaoAumentar = document.getElementById("aumentar-fonte");
+            const botaoDiminuir = document.getElementById("diminuir-fonte");
+            const botaoContraste = document.getElementById("alternar-contraste");
+            const botaoRestaurar = document.getElementById("restaurar-preferencias");
+
+            let escalaFonte = 1;
+            let altoContraste = false;
+
+            function salvarPreferencias() {
+                const preferencias = { escalaFonte, altoContraste };
+                try {
+                    localStorage.setItem(chavePreferencias, JSON.stringify(preferencias));
+                } catch (erro) {
+                    console.warn("Não foi possível salvar as preferências neste navegador.", erro);
+                }
+            }
+
+            function aplicarPreferencias() {
+                document.documentElement.style.setProperty("--escala-fonte", `${Math.round(escalaFonte * 100)}%`);
+                document.body.classList.toggle("alto-contraste", altoContraste);
+                botaoContraste.setAttribute("aria-pressed", String(altoContraste));
+            }
+
+            function carregarPreferencias() {
+                try {
+                    const salvas = localStorage.getItem(chavePreferencias);
+                    if (salvas) {
+                        const preferencias = JSON.parse(salvas);
+                        if (typeof preferencias.escalaFonte === "number") {
+                            escalaFonte = Math.min(1.3, Math.max(0.9, preferencias.escalaFonte));
+                        }
+                        altoContraste = Boolean(preferencias.altoContraste);
+                    }
+                } catch (erro) {
+                    console.warn("As preferências salvas não puderam ser carregadas.", erro);
+                }
+                aplicarPreferencias();
+            }
+
+            function fecharPainel() {
+                painel.hidden = true;
+                botaoAbrir.setAttribute("aria-expanded", "false");
+                botaoAbrir.focus();
+            }
+
+            botaoAbrir.addEventListener("click", () => {
+                const vaiAbrir = painel.hidden;
+                painel.hidden = !vaiAbrir;
+                botaoAbrir.setAttribute("aria-expanded", String(vaiAbrir));
+                if (vaiAbrir) botaoFechar.focus();
+            });
+
+            botaoFechar.addEventListener("click", fecharPainel);
+
+            document.addEventListener("keydown", (evento) => {
+                if (evento.key === "Escape" && !painel.hidden) fecharPainel();
+            });
+
+            botaoAumentar.addEventListener("click", () => {
+                escalaFonte = Math.min(1.3, Number((escalaFonte + 0.1).toFixed(1)));
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoDiminuir.addEventListener("click", () => {
+                escalaFonte = Math.max(0.9, Number((escalaFonte - 0.1).toFixed(1)));
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoContraste.addEventListener("click", () => {
+                altoContraste = !altoContraste;
+                aplicarPreferencias();
+                salvarPreferencias();
+            });
+
+            botaoRestaurar.addEventListener("click", () => {
+                escalaFonte = 1;
+                altoContraste = false;
+                aplicarPreferencias();
+                try {
+                    localStorage.removeItem(chavePreferencias);
+                } catch (erro) {
+                    console.warn("Não foi possível limpar as preferências salvas.", erro);
+                }
+            });
+
+            carregarPreferencias();
+        })();
+
+(() => {
+    const campoBusca = document.getElementById("buscar-jogo");
+    const campoCategoria = document.getElementById("filtrar-categoria");
+    const botaoFavoritos = document.getElementById("somente-favoritos");
+    const botaoLimpar = document.getElementById("limpar-filtros");
+    const contador = document.getElementById("total-jogos");
+    const mensagemVazia = document.getElementById("sem-resultados");
+    const cartoes = Array.from(document.querySelectorAll(".jogo-card"));
+    const chaveFavoritos = "playmundo-jogos-favoritos";
+    let apenasFavoritos = false;
+    let favoritos = [];
+
+    function normalizar(texto) {
+        return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+    }
+
+    function carregarFavoritos() {
+        try {
+            const valor = JSON.parse(localStorage.getItem(chaveFavoritos) || "[]");
+            favoritos = Array.isArray(valor) ? valor.filter(item => typeof item === "string") : [];
+        } catch (erro) {
+            favoritos = [];
+        }
+    }
+
+    function salvarFavoritos() {
+        try {
+            localStorage.setItem(chaveFavoritos, JSON.stringify(favoritos));
+        } catch (erro) {
+            console.warn("Não foi possível armazenar os jogos favoritos neste navegador.", erro);
+        }
+    }
+
+    function atualizarBotoesFavoritos() {
+        document.querySelectorAll(".favoritar").forEach(botao => {
+            const marcado = favoritos.includes(botao.dataset.favorito);
+            botao.setAttribute("aria-pressed", String(marcado));
+            botao.textContent = marcado ? "★ Salvo" : "☆ Salvar";
+            botao.setAttribute("aria-label", `${marcado ? "Remover" : "Salvar"} ${botao.dataset.favorito} ${marcado ? "dos" : "nos"} favoritos`);
+        });
+    }
+
+    function filtrarJogos() {
+        const texto = normalizar(campoBusca.value);
+        const categoria = campoCategoria.value;
+        let quantidade = 0;
+        cartoes.forEach(cartao => {
+            const nome = cartao.querySelector(".favoritar").dataset.favorito;
+            const correspondeTexto = normalizar(cartao.dataset.busca).includes(texto);
+            const correspondeCategoria = categoria === "todos" || cartao.dataset.categorias.split(" ").includes(categoria);
+            const correspondeFavoritos = !apenasFavoritos || favoritos.includes(nome);
+            const visivel = correspondeTexto && correspondeCategoria && correspondeFavoritos;
+            cartao.hidden = !visivel;
+            if (visivel) quantidade++;
+        });
+        contador.textContent = `${quantidade} ${quantidade === 1 ? "jogo encontrado" : "jogos encontrados"}`;
+        mensagemVazia.hidden = quantidade !== 0;
+    }
+
+    campoBusca.addEventListener("input", filtrarJogos);
+    campoCategoria.addEventListener("change", filtrarJogos);
+    botaoFavoritos.addEventListener("click", () => {
+        apenasFavoritos = !apenasFavoritos;
+        botaoFavoritos.setAttribute("aria-pressed", String(apenasFavoritos));
+        botaoFavoritos.textContent = apenasFavoritos ? "★ Mostrando favoritos" : "☆ Somente favoritos";
+        filtrarJogos();
+    });
+    botaoLimpar.addEventListener("click", () => {
+        campoBusca.value = "";
+        campoCategoria.value = "todos";
+        apenasFavoritos = false;
+        botaoFavoritos.setAttribute("aria-pressed", "false");
+        botaoFavoritos.textContent = "☆ Somente favoritos";
+        filtrarJogos();
+        campoBusca.focus();
+    });
+    document.querySelectorAll(".favoritar").forEach(botao => {
+        botao.addEventListener("click", () => {
+            const nome = botao.dataset.favorito;
+            favoritos = favoritos.includes(nome) ? favoritos.filter(jogo => jogo !== nome) : [...favoritos, nome];
+            salvarFavoritos();
+            atualizarBotoesFavoritos();
+            filtrarJogos();
+        });
+    });
+
+    carregarFavoritos();
+    atualizarBotoesFavoritos();
+    filtrarJogos();
+})();
+
+</script>
+</body>
+</html>
